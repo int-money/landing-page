@@ -199,22 +199,6 @@ The color scheme is defined in `app/globals.css` using CSS custom properties wit
 
 The site supports both light and dark modes. Theme switching is handled by `next-themes`. The dark theme features a deep purple-black background with space purple accents.
 
-## Deployment
-
-### Vercel (Recommended)
-
-1. Push your code to GitHub
-2. Import your repository on [Vercel](https://vercel.com)
-3. Vercel will automatically detect Next.js and deploy
-
-### Other Platforms
-
-```bash
-pnpm build
-# The output will be in the .next folder
-# Deploy according to your platform's documentation
-```
-
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
