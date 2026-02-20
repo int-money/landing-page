@@ -132,7 +132,12 @@
   .font-body {
     font-family: var(--font-body);
   }
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     font-family: var(--font-heading);
   }
   /* Offset for fixed navbar when scrolling to sections */
@@ -166,12 +171,10 @@
   /* Glassmorphism card */
   .glass-card {
     @apply backdrop-blur-xl;
-    background: linear-gradient(
-      135deg,
-      oklch(1 0 0 / 0.8) 0%,
-      oklch(1 0 0 / 0.6) 100%
-    );
-    box-shadow: 0 8px 32px oklch(0 0 0 / 0.08), inset 0 1px 0 oklch(1 0 0 / 0.5);
+    background: linear-gradient(135deg, oklch(1 0 0 / 0.8) 0%, oklch(1 0 0 / 0.6) 100%);
+    box-shadow:
+      0 8px 32px oklch(0 0 0 / 0.08),
+      inset 0 1px 0 oklch(1 0 0 / 0.5);
   }
 
   .dark .glass-card {
@@ -181,18 +184,23 @@
       oklch(0.11 0.015 290 / 0.85) 0%,
       oklch(0.08 0.01 290 / 0.7) 100%
     );
-    box-shadow: 0 8px 40px oklch(0 0 0 / 0.5),
+    box-shadow:
+      0 8px 40px oklch(0 0 0 / 0.5),
       0 0 0 1px oklch(1 0 0 / 0.04),
       inset 0 1px 0 oklch(1 0 0 / 0.06);
   }
 
   /* Glow effect - purple (boosted for dark) */
   .glow {
-    box-shadow: 0 0 60px oklch(0.55 0.25 290 / 0.4), 0 0 120px oklch(0.55 0.25 290 / 0.15);
+    box-shadow:
+      0 0 60px oklch(0.55 0.25 290 / 0.4),
+      0 0 120px oklch(0.55 0.25 290 / 0.15);
   }
 
   .glow-sm {
-    box-shadow: 0 0 30px oklch(0.55 0.25 290 / 0.3), 0 0 60px oklch(0.55 0.25 290 / 0.1);
+    box-shadow:
+      0 0 30px oklch(0.55 0.25 290 / 0.3),
+      0 0 60px oklch(0.55 0.25 290 / 0.1);
   }
 
   /* Gradient border - purple */
@@ -212,9 +220,12 @@
       oklch(0.55 0.25 270 / 0.1),
       oklch(0.7 0.2 310 / 0.3)
     );
-    -webkit-mask: linear-gradient(#fff 0 0) content-box,
+    -webkit-mask:
+      linear-gradient(#fff 0 0) content-box,
       linear-gradient(#fff 0 0);
-    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
     -webkit-mask-composite: xor;
     mask-composite: exclude;
     pointer-events: none;
@@ -287,10 +298,7 @@
 
   /* Dot grid pattern overlay */
   .grid-pattern {
-    background-image: radial-gradient(
-      oklch(1 0 0 / 0.04) 1px,
-      transparent 1px
-    );
+    background-image: radial-gradient(oklch(1 0 0 / 0.04) 1px, transparent 1px);
     background-size: 24px 24px;
   }
 
@@ -298,8 +306,8 @@
   .gradient-mesh {
     background:
       radial-gradient(ellipse 80% 60% at 20% 30%, oklch(0.35 0.2 290 / 0.25) 0%, transparent 70%),
-      radial-gradient(ellipse 60% 80% at 80% 20%, oklch(0.30 0.15 240 / 0.20) 0%, transparent 70%),
-      radial-gradient(ellipse 70% 50% at 60% 80%, oklch(0.30 0.18 330 / 0.15) 0%, transparent 70%);
+      radial-gradient(ellipse 60% 80% at 80% 20%, oklch(0.3 0.15 240 / 0.2) 0%, transparent 70%),
+      radial-gradient(ellipse 70% 50% at 60% 80%, oklch(0.3 0.18 330 / 0.15) 0%, transparent 70%);
   }
 
   /* Radial glow at section bottom for depth */
@@ -320,7 +328,9 @@
 
   /* Subtle text glow for headings */
   .text-glow {
-    text-shadow: 0 0 40px oklch(0.65 0.25 290 / 0.3), 0 0 80px oklch(0.55 0.25 290 / 0.1);
+    text-shadow:
+      0 0 40px oklch(0.65 0.25 290 / 0.3),
+      0 0 80px oklch(0.55 0.25 290 / 0.1);
   }
 
   /* Animated shimmer border that flows around cards */
@@ -341,8 +351,12 @@
       oklch(0.75 0.18 220 / 0.3) 20%,
       transparent 40%
     );
-    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
     -webkit-mask-composite: xor;
     mask-composite: exclude;
     animation: shimmer-rotate 4s linear infinite;
