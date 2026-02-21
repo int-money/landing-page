@@ -6,6 +6,7 @@ import { useActiveSection } from "@/hooks/use-active-section";
 import { Menu, X, ChevronRight } from "lucide-react";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
+import { ThemeToggle } from "@/components/atoms/theme-toggle";
 
 const NAV_LINKS = [
   { href: "#features", label: "Features" },
