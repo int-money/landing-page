@@ -181,7 +181,7 @@ export function HeroDemo() {
         {/* Main content — fixed height, scrolls internally */}
         <div
           ref={scrollRef}
-          className="p-5 md:p-6 space-y-5 h-[400px] overflow-y-auto scrollbar-hide"
+          className="p-3 sm:p-5 md:p-6 space-y-5 h-[340px] sm:h-[400px] overflow-y-auto scrollbar-hide"
         >
           {/* Command input area */}
           <div

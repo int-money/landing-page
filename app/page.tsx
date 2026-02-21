@@ -24,7 +24,7 @@ export default function Home() {
 
       {/* Hero Section */}
       <section className="container mx-auto px-4 pt-8 md:pt-16 pb-20 md:pb-28 relative z-10 section-glow">
-        <div className="mx-auto max-w-[90%] text-center">
+        <div className="mx-auto max-w-full sm:max-w-[90%] text-center">
           {/* Badge — glassmorphic with inner glow */}
           <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-primary/25 bg-primary/[0.08] backdrop-blur-md px-5 py-2 text-sm text-foreground shadow-lg shadow-primary/5">
             <span className="relative flex h-2 w-2">
@@ -34,7 +34,7 @@ export default function Home() {
             Your AI agent for global payments — Launching on Stellar
           </div>
 
-          <h1 className="mb-6 text-balance text-6xl font-bold tracking-tighter md:text-7xl lg:text-8xl text-glow">
+          <h1 className="mb-6 text-balance text-4xl sm:text-5xl font-bold tracking-tighter md:text-7xl lg:text-8xl text-glow">
             Meet the AI agent that <span className="gradient-text">moves your money.</span>
           </h1>
 
@@ -46,7 +46,7 @@ export default function Home() {
           <div className="mb-4 flex flex-col gap-4 sm:flex-row sm:justify-center">
             <Button
               size="lg"
-              className="text-base gap-2 rounded-full px-8 shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 glow-sm"
+              className="w-full sm:w-auto text-base gap-2 rounded-full px-8 shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 glow-sm"
             >
               <Sparkles className="h-5 w-5" />
               Join the Waitlist
@@ -55,7 +55,7 @@ export default function Home() {
               <Button
                 size="lg"
                 variant="outline"
-                className="text-base bg-transparent gap-2 rounded-full px-8 border-primary/30 hover:bg-primary/10 hover:border-primary/50 transition-all duration-300"
+                className="w-full sm:w-auto text-base bg-transparent gap-2 rounded-full px-8 border-primary/30 hover:bg-primary/10 hover:border-primary/50 transition-all duration-300"
               >
                 See Your Agent in Action
               </Button>
@@ -108,7 +108,7 @@ export default function Home() {
               </p>
             </div>
 
-            <div className="relative z-10 grid grid-cols-2 gap-3">
+            <div className="relative z-10 grid grid-cols-1 sm:grid-cols-2 gap-3">
               <div className="flex items-center gap-3 p-3 rounded-xl bg-muted/30 border border-border/50">
                 <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-green-500/20 shrink-0">
                   <Sparkles className="h-4 w-4 text-green-500" />
@@ -171,7 +171,7 @@ export default function Home() {
       {/* How It Works */}
       <section
         id="how-it-works"
-        className="container mx-auto px-4 py-28 relative z-10 section-glow"
+        className="container mx-auto px-4 py-16 md:py-28 relative z-10 section-glow"
       >
         <div className="mx-auto max-w-4xl">
           <div className="mb-16 text-center">
@@ -187,7 +187,7 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-[1fr_auto_1fr_auto_1fr] gap-10 md:gap-0 items-start relative">
+          <div className="grid grid-cols-1 md:grid-cols-[1fr_auto_1fr_auto_1fr] gap-8 md:gap-0 items-start relative">
             {/* Step 1 — You request */}
             <div className="text-center group relative">
               <div className="mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-background border-2 border-primary/40 group-hover:scale-110 group-hover:border-primary/70 transition-all duration-300 relative z-10">
@@ -252,10 +252,10 @@ export default function Home() {
         </div>
 
         <div className="mx-auto max-w-4xl">
-          <Card className="glass-card shimmer-border border-0 p-8 md:p-10 rounded-3xl">
+          <Card className="glass-card shimmer-border border-0 p-4 sm:p-8 md:p-10 rounded-3xl">
             <div className="space-y-6">
-              <div className="flex items-start gap-5 p-4 rounded-2xl hover:bg-primary/5 transition-all duration-300 group border-l-2 border-transparent hover:border-primary/40">
-                <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl icon-gradient border border-primary/20 group-hover:scale-110 transition-transform duration-300">
+              <div className="flex items-start gap-3 sm:gap-5 p-3 sm:p-4 rounded-2xl hover:bg-primary/5 transition-all duration-300 group border-l-2 border-transparent hover:border-primary/40">
+                <div className="flex h-12 w-12 sm:h-14 sm:w-14 shrink-0 items-center justify-center rounded-2xl icon-gradient border border-primary/20 group-hover:scale-110 transition-transform duration-300">
                   <Zap className="h-7 w-7 text-primary" />
                 </div>
                 <div>
@@ -267,8 +267,8 @@ export default function Home() {
                 </div>
               </div>
 
-              <div className="flex items-start gap-5 p-4 rounded-2xl hover:bg-primary/5 transition-all duration-300 group border-l-2 border-transparent hover:border-primary/40">
-                <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl icon-gradient border border-primary/20 group-hover:scale-110 transition-transform duration-300">
+              <div className="flex items-start gap-3 sm:gap-5 p-3 sm:p-4 rounded-2xl hover:bg-primary/5 transition-all duration-300 group border-l-2 border-transparent hover:border-primary/40">
+                <div className="flex h-12 w-12 sm:h-14 sm:w-14 shrink-0 items-center justify-center rounded-2xl icon-gradient border border-primary/20 group-hover:scale-110 transition-transform duration-300">
                   <Shield className="h-7 w-7 text-primary" />
                 </div>
                 <div>
@@ -281,8 +281,8 @@ export default function Home() {
                 </div>
               </div>
 
-              <div className="flex items-start gap-5 p-4 rounded-2xl hover:bg-primary/5 transition-all duration-300 group border-l-2 border-transparent hover:border-primary/40">
-                <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl icon-gradient border border-primary/20 group-hover:scale-110 transition-transform duration-300">
+              <div className="flex items-start gap-3 sm:gap-5 p-3 sm:p-4 rounded-2xl hover:bg-primary/5 transition-all duration-300 group border-l-2 border-transparent hover:border-primary/40">
+                <div className="flex h-12 w-12 sm:h-14 sm:w-14 shrink-0 items-center justify-center rounded-2xl icon-gradient border border-primary/20 group-hover:scale-110 transition-transform duration-300">
                   <Brain className="h-7 w-7 text-primary" />
                 </div>
                 <div>
@@ -311,7 +311,7 @@ export default function Home() {
               <Sparkles className="h-4 w-4" />
               Early Access
             </div>
-            <h2 className="mb-6 text-balance text-4xl font-bold md:text-6xl text-glow">
+            <h2 className="mb-6 text-balance text-3xl sm:text-4xl font-bold md:text-6xl text-glow">
               Ready to meet your <span className="gradient-text">financial agent?</span>
             </h2>
             <p className="mx-auto max-w-xl mb-10 text-pretty text-lg text-muted-foreground">
@@ -321,7 +321,7 @@ export default function Home() {
             <div className="flex flex-col gap-4 sm:flex-row sm:justify-center">
               <Button
                 size="lg"
-                className="text-base gap-2 rounded-full px-10 shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 glow-sm"
+                className="w-full sm:w-auto text-base gap-2 rounded-full px-10 shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 glow-sm"
               >
                 <Sparkles className="h-5 w-5" />
                 Join the Waitlist
@@ -330,7 +330,7 @@ export default function Home() {
                 <Button
                   size="lg"
                   variant="outline"
-                  className="text-base bg-transparent gap-2 rounded-full px-8 border-primary/30 hover:bg-primary/10 hover:border-primary/50 transition-all duration-300"
+                  className="w-full sm:w-auto text-base bg-transparent gap-2 rounded-full px-8 border-primary/30 hover:bg-primary/10 hover:border-primary/50 transition-all duration-300"
                 >
                   Explore Features
                 </Button>
@@ -345,8 +345,8 @@ export default function Home() {
         {/* Gradient divider line instead of plain border */}
         <div className="h-[1px] bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
         <div className="container mx-auto px-4 py-16">
-          <div className="grid gap-10 md:grid-cols-4">
-            <div>
+          <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
+            <div className="col-span-2 md:col-span-1">
               <div className="mb-5 flex items-center gap-2">
                 <Image
                   src="/icon.svg"
