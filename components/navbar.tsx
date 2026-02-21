@@ -80,24 +80,20 @@ export function Navbar() {
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center">
               <div className="flex items-center gap-1">
-                {NAV_LINKS.map((link) => (
-                  <a
-                    key={link.href}
-                    href={link.href}
-                    onMouseEnter={() => setActiveLink(link.href)}
-                    onMouseLeave={() => setActiveLink("")}
-                    className={cn(
-                      "relative px-4 py-2 text-sm font-medium transition-all duration-300 rounded-full",
-                      activeLink === link.href
-                        ? "text-foreground"
-                        : "text-muted-foreground hover:text-foreground"
-                    )}
-                  >
-                    {/* Hover background */}
-                    <span
+                {NAV_LINKS.map((link) => {
+                  const isActive = activeSection === link.href.replace("#", "");
+                  const isHovered = hoveredLink === link.href;
+                  return (
+                    <a
+                      key={link.href}
+                      href={link.href}
+                      onMouseEnter={() => setHoveredLink(link.href)}
+                      onMouseLeave={() => setHoveredLink("")}
                       className={cn(
-                        "absolute inset-0 rounded-full bg-muted/80 transition-all duration-300",
-                        activeLink === link.href ? "opacity-100 scale-100" : "opacity-0 scale-95"
+                        "relative px-4 py-2 text-sm font-medium transition-all duration-300 rounded-full",
+                        isActive || isHovered
+                          ? "text-foreground"
+                          : "text-muted-foreground hover:text-foreground"
                       )}
                     >
                       {/* Active/Hover background */}
@@ -107,8 +103,8 @@ export function Navbar() {
                           isActive && !isHovered
                             ? "bg-primary/15 opacity-100 scale-100"
                             : isHovered
-                            ? "bg-muted/80 opacity-100 scale-100"
-                            : "opacity-0 scale-95",
+                              ? "bg-muted/80 opacity-100 scale-100"
+                              : "opacity-0 scale-95",
                         )}
                       />
                       {/* Active indicator underline */}
@@ -181,7 +177,7 @@ export function Navbar() {
           <nav className="flex flex-col items-center gap-6">
             {NAV_LINKS.map((link, index) => {
               const isActive = activeSection === link.href;
-              
+
               return (
                 <a
                   key={link.href}
