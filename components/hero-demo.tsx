@@ -2,14 +2,7 @@
 
 import { useState, useEffect, useCallback, useRef } from "react";
 import { Card } from "@/components/ui/card";
-import {
-  Sparkles,
-  Check,
-  ArrowRight,
-  CircleDot,
-  Send,
-  RotateCw,
-} from "lucide-react";
+import { Sparkles, Check, ArrowRight, CircleDot, Send, RotateCw } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface Scene {
@@ -59,14 +52,7 @@ const SCENES: Scene[] = [
 export function HeroDemo() {
   const [sceneIndex, setSceneIndex] = useState(0);
   const [phase, setPhase] = useState<
-    | "idle"
-    | "typing"
-    | "user"
-    | "thinking"
-    | "reasoning"
-    | "response"
-    | "status"
-    | "fadeout"
+    "idle" | "typing" | "user" | "thinking" | "reasoning" | "response" | "status" | "fadeout"
   >("idle");
   const [visibleSteps, setVisibleSteps] = useState(0);
   const [isFading, setIsFading] = useState(false);
@@ -106,7 +92,6 @@ export function HeroDemo() {
     setTypedChars(0);
     scheduleNext(() => setPhase("typing"), 500);
     return () => clearAllTimeouts();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [sceneIndex]);
 
   // Typewriter effect
@@ -117,7 +102,6 @@ export function HeroDemo() {
     } else {
       scheduleNext(() => setPhase("user"), 300);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [phase, typedChars]);
 
   // Phase transitions
@@ -149,7 +133,6 @@ export function HeroDemo() {
         }, 600);
         break;
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [phase]);
 
   // Reasoning steps one by one
@@ -160,28 +143,17 @@ export function HeroDemo() {
     } else {
       scheduleNext(() => setPhase("response"), 400);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [phase, visibleSteps]);
 
   const showInput = phase !== "idle";
   const showThinking = phase === "thinking";
-  const showReasoning = ["reasoning", "response", "status", "fadeout"].includes(
-    phase
-  );
+  const showReasoning = ["reasoning", "response", "status", "fadeout"].includes(phase);
   const showResponse = ["response", "status", "fadeout"].includes(phase);
   const showStatus = ["status", "fadeout"].includes(phase);
 
   return (
-    <div
-      className={cn(
-        "transition-opacity duration-500 motion-reduce:transition-none",
-        isFading ? "opacity-0" : "opacity-100"
-      )}
-      aria-live="polite"
-      aria-atomic="true"
-      aria-label="IntMoney agent demonstration"
-    >
-      <Card className="overflow-hidden border border-border/50 rounded-2xl bg-card shadow-xl shadow-primary/5">
+    <div className={cn("transition-opacity duration-500", isFading ? "opacity-0" : "opacity-100")}>
+      <Card className="overflow-hidden border border-border/50 rounded-2xl bg-card shadow-2xl shadow-primary/10">
         {/* Terminal-style top bar */}
         <div className="flex items-center justify-between px-5 py-3.5 bg-background border-b border-border/50">
           <div className="flex items-center gap-3">
@@ -191,10 +163,8 @@ export function HeroDemo() {
               <div className="h-3 w-3 rounded-full bg-muted/30" />
             </div>
             <div className="flex items-center gap-2 ml-2">
-              <Sparkles className="h-3.5 w-3.5 text-primary" aria-hidden="true" />
-              <span className="text-xs font-medium text-muted-foreground">
-                IntMoney Agent
-              </span>
+              <Sparkles className="h-3.5 w-3.5 text-primary" />
+              <span className="text-xs font-medium text-muted-foreground">IntMoney Agent</span>
             </div>
           </div>
           <div className="flex items-center gap-1.5">
@@ -216,10 +186,8 @@ export function HeroDemo() {
           {/* Command input area */}
           <div
             className={cn(
-              "rounded-xl border border-border/50 bg-muted/20 p-4 transition-all duration-300 motion-reduce:transition-none shrink-0",
-              showInput
-                ? "border-primary/30 bg-primary/[0.03]"
-                : ""
+              "rounded-xl border border-border/50 bg-muted/20 p-4 transition-all duration-300 shrink-0",
+              showInput ? "border-primary/30 bg-primary/[0.03]" : ""
             )}
             role="region"
             aria-label="User command input"
@@ -242,9 +210,7 @@ export function HeroDemo() {
                     <span className="inline-block w-0.5 h-4 bg-primary ml-0.5 align-middle animate-pulse motion-reduce:animate-none" aria-hidden="true" />
                   )}
                   {!showInput && (
-                    <span className="text-muted-foreground/30">
-                      Type a command...
-                    </span>
+                    <span className="text-muted-foreground/30">Type a command...</span>
                   )}
                 </p>
               </div>
@@ -287,11 +253,8 @@ export function HeroDemo() {
                 <div className="p-3 space-y-0">
                   {scene.reasoningSteps.map((step, i) =>
                     i < visibleSteps ? (
-                      <div
-                        key={i}
-                        className="flex items-center gap-3 py-2 px-1 chat-slide-in"
-                      >
-                        <span className="step-check-pop inline-flex" aria-hidden="true">
+                      <div key={i} className="flex items-center gap-3 py-2 px-1 chat-slide-in">
+                        <span className="step-check-pop inline-flex">
                           <div className="flex h-5 w-5 items-center justify-center rounded-full bg-green-500/15">
                             <Check className="h-3 w-3 text-green-400" />
                           </div>
@@ -337,18 +300,14 @@ export function HeroDemo() {
                   <div
                     className={cn(
                       "h-1.5 w-1.5 rounded-full",
-                      scene.statusType === "success"
-                        ? "bg-green-400"
-                        : "bg-blue-400"
+                      scene.statusType === "success" ? "bg-green-400" : "bg-blue-400"
                     )}
                     aria-hidden="true"
                   />
                   <span
                     className={cn(
                       "text-xs font-medium",
-                      scene.statusType === "success"
-                        ? "text-green-400"
-                        : "text-blue-400"
+                      scene.statusType === "success" ? "text-green-400" : "text-blue-400"
                     )}
                   >
                     {scene.statusLabel}
@@ -373,10 +332,8 @@ export function HeroDemo() {
                 aria-selected={i === sceneIndex}
                 aria-label={`Scene ${i + 1}`}
                 className={cn(
-                  "h-1 rounded-full transition-all duration-500 motion-reduce:transition-none",
-                  i === sceneIndex
-                    ? "w-4 bg-primary"
-                    : "w-1 bg-muted/40"
+                  "h-1 rounded-full transition-all duration-500",
+                  i === sceneIndex ? "w-4 bg-primary" : "w-1 bg-muted/40"
                 )}
               />
             ))}

@@ -68,8 +68,8 @@ export function Navbar() {
     <>
       <header
         className={cn(
-          "fixed top-0 left-0 right-0 z-50 transition-all duration-500 flex justify-center motion-reduce:transition-none",
-          isScrolled ? "py-3" : "py-5",
+          "fixed top-0 left-0 right-0 z-50 transition-all duration-500 flex justify-center",
+          isScrolled ? "py-3" : "py-5"
         )}
       >
         <div className="px-4 w-full max-w-fit">
@@ -78,23 +78,14 @@ export function Navbar() {
             className={cn(
               "relative flex items-center gap-2 rounded-full border px-2 py-2 transition-all duration-500 motion-reduce:transition-none",
               isScrolled
-                ? "border-border/50 bg-background/80 backdrop-blur-lg shadow-lg shadow-black/20 shadow-[0_4px_30px_oklch(0.55_0.25_290_/_0.05)]"
-                : "border-border/30 bg-background/50 backdrop-blur-md",
+                ? "border-border/50 bg-background/80 backdrop-blur-2xl shadow-lg shadow-black/20 shadow-[0_4px_30px_oklch(0.55_0.25_290_/_0.05)]"
+                : "border-border/30 bg-background/50 backdrop-blur-xl"
             )}
           >
             {/* Logo */}
-            <a href="#" className="flex items-center gap-2 group pl-2 pr-3" aria-label="IntMoney home">
-              <Image
-                src="/icon.svg"
-                alt=""
-                width={36}
-                height={36}
-                className="rounded-lg"
-                aria-hidden="true"
-              />
-              <span className="text-base font-bold tracking-tight hidden sm:inline">
-                IntMoney
-              </span>
+            <a href="#" className="flex items-center gap-2 group pl-2 pr-3">
+              <Image src="/icon.svg" alt="IntMoney" width={36} height={36} className="rounded-lg" />
+              <span className="text-base font-bold tracking-tight hidden sm:inline">IntMoney</span>
             </a>
 
             {/* Separator */}
@@ -104,10 +95,8 @@ export function Navbar() {
             <div className="hidden md:flex items-center">
               <div className="flex items-center gap-1">
                 {NAV_LINKS.map((link) => {
-                  const isActive = activeSection === link.href;
+                  const isActive = activeSection === link.href.replace("#", "");
                   const isHovered = hoveredLink === link.href;
-                  const shouldHighlight = isHovered || isActive;
-
                   return (
                     <a
                       key={link.href}
@@ -116,10 +105,10 @@ export function Navbar() {
                       onMouseLeave={() => setHoveredLink("")}
                       aria-current={isActive ? "page" : undefined}
                       className={cn(
-                        "relative px-4 py-2 text-sm font-medium transition-all duration-300 rounded-full motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
-                        shouldHighlight
+                        "relative px-4 py-2 text-sm font-medium transition-all duration-300 rounded-full",
+                        isActive || isHovered
                           ? "text-foreground"
-                          : "text-muted-foreground hover:text-foreground",
+                          : "text-muted-foreground hover:text-foreground"
                       )}
                     >
                       {/* Active/Hover background */}
@@ -129,8 +118,8 @@ export function Navbar() {
                           isActive && !isHovered
                             ? "bg-primary/15 opacity-100 scale-100"
                             : isHovered
-                            ? "bg-muted/80 opacity-100 scale-100"
-                            : "opacity-0 scale-95",
+                              ? "bg-muted/80 opacity-100 scale-100"
+                              : "opacity-0 scale-95",
                         )}
                       />
                       {/* Active indicator underline */}
@@ -170,8 +159,8 @@ export function Navbar() {
                 className={cn(
                   "h-4 w-4 absolute transition-all duration-300 motion-reduce:transition-none",
                   isMobileMenuOpen
-                    ? "opacity-0 rotate-90 scale-0 motion-reduce:hidden"
-                    : "opacity-100 rotate-0 scale-100",
+                    ? "opacity-0 rotate-90 scale-0"
+                    : "opacity-100 rotate-0 scale-100"
                 )}
                 aria-hidden="true"
               />
@@ -180,7 +169,7 @@ export function Navbar() {
                   "h-4 w-4 absolute transition-all duration-300 motion-reduce:transition-none",
                   isMobileMenuOpen
                     ? "opacity-100 rotate-0 scale-100"
-                    : "opacity-0 -rotate-90 scale-0 motion-reduce:hidden",
+                    : "opacity-0 -rotate-90 scale-0"
                 )}
                 aria-hidden="true"
               />
@@ -197,25 +186,21 @@ export function Navbar() {
         aria-modal="true"
         aria-label="Mobile navigation menu"
         className={cn(
-          "fixed inset-0 z-40 bg-background/90 backdrop-blur-lg transition-all duration-500 motion-reduce:transition-none md:hidden",
-          isMobileMenuOpen
-            ? "opacity-100 pointer-events-auto"
-            : "opacity-0 pointer-events-none",
+          "fixed inset-0 z-40 bg-background/90 backdrop-blur-2xl transition-all duration-500 md:hidden",
+          isMobileMenuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
         )}
       >
         <div
           className={cn(
-            "flex flex-col items-center justify-center min-h-screen gap-8 p-8 transition-all duration-500 motion-reduce:transition-none delay-100",
-            isMobileMenuOpen
-              ? "opacity-100 translate-y-0"
-              : "opacity-0 -translate-y-8 motion-reduce:translate-y-0",
+            "flex flex-col items-center justify-center min-h-screen gap-8 p-8 transition-all duration-500 delay-100",
+            isMobileMenuOpen ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-8"
           )}
         >
           {/* Mobile Nav Links */}
           <nav className="flex flex-col items-center gap-6" aria-label="Mobile navigation">
             {NAV_LINKS.map((link, index) => {
               const isActive = activeSection === link.href;
-              
+
               return (
                 <a
                   key={link.href}
