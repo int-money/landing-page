@@ -126,6 +126,11 @@
   html {
     scroll-behavior: smooth;
   }
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
   body {
     @apply bg-background text-foreground;
   }
@@ -138,6 +143,28 @@
   /* Offset for fixed navbar when scrolling to sections */
   section[id] {
     scroll-margin-top: 100px;
+  }
+  /* Screen reader only utility */
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+  .focus\:not-sr-only:focus {
+    position: static;
+    width: auto;
+    height: auto;
+    padding: inherit;
+    margin: inherit;
+    overflow: visible;
+    clip: auto;
+    white-space: normal;
   }
 }
 
@@ -252,6 +279,13 @@
     animation-delay: -3s;
   }
 
+  @media (prefers-reduced-motion: reduce) {
+    .float,
+    .float-delayed {
+      animation: none;
+    }
+  }
+
   /* Agent thinking dots */
   .agent-thinking {
     display: inline-flex;
@@ -275,6 +309,13 @@
     animation-delay: 0.4s;
   }
 
+  @media (prefers-reduced-motion: reduce) {
+    .agent-thinking span {
+      animation: none;
+      opacity: 0.6;
+    }
+  }
+
   /* Chat bubble slide-in */
   .chat-slide-in {
     animation: chat-slide-in 0.5s ease-out forwards;
@@ -283,6 +324,15 @@
   /* Step checkmark pop */
   .step-check-pop {
     animation: step-pop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .chat-slide-in,
+    .step-check-pop {
+      animation: none;
+      opacity: 1;
+      transform: none;
+    }
   }
 
   /* Dot grid pattern overlay */
@@ -426,5 +476,22 @@
 @keyframes shimmer-rotate {
   to {
     --shimmer-angle: 360deg;
+  }
+}
+
+/* Respect reduced motion preference for all animations */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  /* Keep essential animations but make them instant */
+  .animate-ping,
+  .animate-spin {
+    animation: none;
   }
 }
