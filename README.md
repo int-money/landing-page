@@ -36,22 +36,26 @@ This repository contains the landing page for IntMoney, featuring a modern, resp
 1. **Fork the repository** — click the "Fork" button on [github.com/int-money/landing-page](https://github.com/int-money/landing-page)
 
 2. **Clone your fork**
+
    ```bash
    git clone https://github.com/YOUR_USERNAME/landing-page.git
    cd landing-page
    ```
 
 3. **Install dependencies**
+
    ```bash
    pnpm install
    ```
 
 4. **Copy environment variables**
+
    ```bash
    cp .env.example .env.local
    ```
 
 5. **Start the development server**
+
    ```bash
    pnpm dev
    ```
@@ -83,15 +87,15 @@ landing-page/
 
 ## Available Scripts
 
-| Command | Description |
-|---------|-------------|
-| `pnpm dev` | Start development server |
-| `pnpm build` | Build for production |
-| `pnpm start` | Start production server |
-| `pnpm lint` | Run ESLint |
-| `pnpm format` | Format code with Prettier |
+| Command             | Description                      |
+| ------------------- | -------------------------------- |
+| `pnpm dev`          | Start development server         |
+| `pnpm build`        | Build for production             |
+| `pnpm start`        | Start production server          |
+| `pnpm lint`         | Run ESLint                       |
+| `pnpm format`       | Format code with Prettier        |
 | `pnpm format:check` | Check formatting without writing |
-| `pnpm test` | Run tests |
+| `pnpm test`         | Run tests                        |
 
 ## Contributing
 
@@ -119,19 +123,20 @@ All commits **must** follow the [Conventional Commits](https://www.conventionalc
 
 **Types:**
 
-| Type | When to use |
-|------|-------------|
-| `feat` | A new feature |
-| `fix` | A bug fix |
+| Type       | When to use                                             |
+| ---------- | ------------------------------------------------------- |
+| `feat`     | A new feature                                           |
+| `fix`      | A bug fix                                               |
 | `refactor` | Code change that neither fixes a bug nor adds a feature |
-| `docs` | Documentation changes |
-| `style` | Formatting, missing semicolons, etc. (not CSS changes) |
-| `test` | Adding or updating tests |
-| `chore` | Maintenance tasks (deps, config, CI) |
-| `perf` | Performance improvements |
-| `ci` | CI/CD pipeline changes |
+| `docs`     | Documentation changes                                   |
+| `style`    | Formatting, missing semicolons, etc. (not CSS changes)  |
+| `test`     | Adding or updating tests                                |
+| `chore`    | Maintenance tasks (deps, config, CI)                    |
+| `perf`     | Performance improvements                                |
+| `ci`       | CI/CD pipeline changes                                  |
 
 **Examples:**
+
 ```bash
 feat(waitlist): add email validation to waitlist modal
 fix(navbar): resolve mobile menu focus trap
@@ -163,12 +168,12 @@ PRs with UI changes that do not include a screen recording will not be reviewed.
 
 ### Issue Labels
 
-| Label | Meaning |
-|-------|---------|
-| `stellar-wave` | Part of the open-source wave initiative |
+| Label              | Meaning                                   |
+| ------------------ | ----------------------------------------- |
+| `stellar-wave`     | Part of the open-source wave initiative   |
 | `good first issue` | Great starting point for new contributors |
-| `enhancement` | New feature or improvement |
-| `bug` | Something isn't working |
+| `enhancement`      | New feature or improvement                |
+| `bug`              | Something isn't working                   |
 
 ### PR Checklist
 
@@ -190,7 +195,7 @@ The color scheme is defined in `app/globals.css` using CSS custom properties wit
 
 ```css
 .dark {
-  --primary: oklch(0.65 0.25 290);    /* Space purple */
+  --primary: oklch(0.65 0.25 290); /* Space purple */
   --background: oklch(0.065 0.01 290); /* Deep purple-black */
 }
 ```

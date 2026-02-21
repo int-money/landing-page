@@ -53,7 +53,7 @@ export function Navbar() {
       <header
         className={cn(
           "fixed top-0 left-0 right-0 z-50 transition-all duration-500 flex justify-center",
-          isScrolled ? "py-3" : "py-5",
+          isScrolled ? "py-3" : "py-5"
         )}
       >
         <div className="px-4 w-full max-w-fit">
@@ -61,22 +61,14 @@ export function Navbar() {
             className={cn(
               "relative flex items-center gap-2 rounded-full border px-2 py-2 transition-all duration-500",
               isScrolled
-                ? "border-border/50 bg-background/80 backdrop-blur-lg shadow-lg shadow-black/20 shadow-[0_4px_30px_oklch(0.55_0.25_290_/_0.05)]"
-                : "border-border/30 bg-background/50 backdrop-blur-md",
+                ? "border-border/50 bg-background/80 backdrop-blur-2xl shadow-lg shadow-black/20 shadow-[0_4px_30px_oklch(0.55_0.25_290_/_0.05)]"
+                : "border-border/30 bg-background/50 backdrop-blur-xl"
             )}
           >
             {/* Logo */}
             <a href="#" className="flex items-center gap-2 group pl-2 pr-3">
-              <Image
-                src="/icon.svg"
-                alt="IntMoney"
-                width={36}
-                height={36}
-                className="rounded-lg"
-              />
-              <span className="text-base font-bold tracking-tight hidden sm:inline">
-                IntMoney
-              </span>
+              <Image src="/icon.svg" alt="IntMoney" width={36} height={36} className="rounded-lg" />
+              <span className="text-base font-bold tracking-tight hidden sm:inline">IntMoney</span>
             </a>
 
             {/* Separator */}
@@ -95,16 +87,14 @@ export function Navbar() {
                       "relative px-4 py-2 text-sm font-medium transition-all duration-300 rounded-full",
                       activeLink === link.href
                         ? "text-foreground"
-                        : "text-muted-foreground hover:text-foreground",
+                        : "text-muted-foreground hover:text-foreground"
                     )}
                   >
                     {/* Hover background */}
                     <span
                       className={cn(
                         "absolute inset-0 rounded-full bg-muted/80 transition-all duration-300",
-                        activeLink === link.href
-                          ? "opacity-100 scale-100"
-                          : "opacity-0 scale-95",
+                        activeLink === link.href ? "opacity-100 scale-100" : "opacity-0 scale-95"
                       )}
                     />
                     <span className="relative z-10">{link.label}</span>
@@ -139,7 +129,7 @@ export function Navbar() {
                   "h-4 w-4 absolute transition-all duration-300",
                   isMobileMenuOpen
                     ? "opacity-0 rotate-90 scale-0"
-                    : "opacity-100 rotate-0 scale-100",
+                    : "opacity-100 rotate-0 scale-100"
                 )}
               />
               <X
@@ -147,7 +137,7 @@ export function Navbar() {
                   "h-4 w-4 absolute transition-all duration-300",
                   isMobileMenuOpen
                     ? "opacity-100 rotate-0 scale-100"
-                    : "opacity-0 -rotate-90 scale-0",
+                    : "opacity-0 -rotate-90 scale-0"
                 )}
               />
             </button>
@@ -158,18 +148,14 @@ export function Navbar() {
       {/* Mobile Menu Overlay */}
       <div
         className={cn(
-          "fixed inset-0 z-40 bg-background/90 backdrop-blur-lg transition-all duration-500 md:hidden",
-          isMobileMenuOpen
-            ? "opacity-100 pointer-events-auto"
-            : "opacity-0 pointer-events-none",
+          "fixed inset-0 z-40 bg-background/90 backdrop-blur-2xl transition-all duration-500 md:hidden",
+          isMobileMenuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
         )}
       >
         <div
           className={cn(
             "flex flex-col items-center justify-center min-h-screen gap-8 p-8 transition-all duration-500 delay-100",
-            isMobileMenuOpen
-              ? "opacity-100 translate-y-0"
-              : "opacity-0 -translate-y-8",
+            isMobileMenuOpen ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-8"
           )}
         >
           {/* Mobile Nav Links */}

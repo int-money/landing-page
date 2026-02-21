@@ -2,15 +2,7 @@ import { Card } from "@/components/ui/card";
 import { Navbar } from "@/components/navbar";
 import { Button } from "@/components/ui/button";
 import { HeroDemo } from "@/components/hero-demo";
-import {
-  Zap,
-  Globe,
-  Shield,
-  Sparkles,
-  Brain,
-  MessageSquareText,
-  CheckCircle2,
-} from "lucide-react";
+import { Zap, Globe, Shield, Sparkles, Brain, MessageSquareText, CheckCircle2 } from "lucide-react";
 import Image from "next/image";
 
 export default function Home() {
@@ -43,14 +35,12 @@ export default function Home() {
           </div>
 
           <h1 className="mb-6 text-balance text-6xl font-bold tracking-tighter md:text-7xl lg:text-8xl text-glow">
-            Meet the AI agent that{" "}
-            <span className="gradient-text">moves your money.</span>
+            Meet the AI agent that <span className="gradient-text">moves your money.</span>
           </h1>
 
           <p className="mx-auto mb-10 max-w-3xl text-pretty text-lg text-muted-foreground md:text-xl">
-            Tell IntMoney what you need in plain language. Your personal
-            financial agent figures out the best route, handles currency
-            conversion, and executes — in seconds.
+            Tell IntMoney what you need in plain language. Your personal financial agent figures out
+            the best route, handles currency conversion, and executes — in seconds.
           </p>
 
           <div className="mb-4 flex flex-col gap-4 sm:flex-row sm:justify-center">
@@ -87,22 +77,18 @@ export default function Home() {
       </section>
 
       {/* Features Bento Grid */}
-      <section
-        id="features"
-        className="container mx-auto px-4 py-24 relative z-10 section-glow"
-      >
+      <section id="features" className="container mx-auto px-4 py-24 relative z-10 section-glow">
         <div className="mb-16 text-center">
           <div className="inline-flex items-center gap-2 rounded-full bg-primary/10 px-4 py-1.5 text-sm font-medium text-primary mb-4">
             <Sparkles className="h-4 w-4" />
             Features
           </div>
           <h2 className="mb-4 text-balance text-3xl font-bold md:text-5xl text-glow">
-            Your agent works{" "}
-            <span className="gradient-text">while you don&apos;t</span>
+            Your agent works <span className="gradient-text">while you don&apos;t</span>
           </h2>
           <p className="mx-auto max-w-2xl text-pretty text-lg text-muted-foreground">
-            An intelligent agent that understands, plans, and executes your
-            financial tasks autonomously
+            An intelligent agent that understands, plans, and executes your financial tasks
+            autonomously
           </p>
         </div>
 
@@ -114,14 +100,11 @@ export default function Home() {
               <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl icon-gradient border border-primary/20 group-hover:scale-110 group-hover:glow-sm transition-all duration-300">
                 <Brain className="h-7 w-7 text-primary" />
               </div>
-              <h3 className="mb-3 text-2xl md:text-3xl font-bold">
-                Understands &amp; Learns
-              </h3>
+              <h3 className="mb-3 text-2xl md:text-3xl font-bold">Understands &amp; Learns</h3>
               <p className="text-muted-foreground text-base md:text-lg leading-relaxed mb-8">
-                Say what you need naturally — your agent parses intent, asks
-                smart clarifying questions, and remembers your patterns over
-                time. Frequent contacts, preferred currencies, past
-                transactions — it all makes your next request faster.
+                Say what you need naturally — your agent parses intent, asks smart clarifying
+                questions, and remembers your patterns over time. Frequent contacts, preferred
+                currencies, past transactions — it all makes your next request faster.
               </p>
             </div>
 
@@ -160,12 +143,10 @@ export default function Home() {
               <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-xl icon-gradient border border-primary/20 group-hover:scale-110 transition-transform duration-300">
                 <Globe className="h-5 w-5 text-primary" />
               </div>
-              <h3 className="mb-2 text-lg font-bold">
-                Stellar-Powered Speed
-              </h3>
+              <h3 className="mb-2 text-lg font-bold">Stellar-Powered Speed</h3>
               <p className="text-muted-foreground text-sm leading-relaxed">
-                Optimal path on Stellar&apos;s network — fastest route, lowest
-                fee, best exchange rate. Under 5 seconds, less than $0.01.
+                Optimal path on Stellar&apos;s network — fastest route, lowest fee, best exchange
+                rate. Under 5 seconds, less than $0.01.
               </p>
             </div>
           </Card>
@@ -177,12 +158,10 @@ export default function Home() {
               <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-xl icon-gradient border border-primary/20 group-hover:scale-110 transition-transform duration-300">
                 <Shield className="h-5 w-5 text-primary" />
               </div>
-              <h3 className="mb-2 text-lg font-bold">
-                End-to-End Protection
-              </h3>
+              <h3 className="mb-2 text-lg font-bold">End-to-End Protection</h3>
               <p className="text-muted-foreground text-sm leading-relaxed">
-                Biometric authentication, fully encrypted keys, and an agent
-                that verifies every transaction before it moves a single cent.
+                Biometric authentication, fully encrypted keys, and an agent that verifies every
+                transaction before it moves a single cent.
               </p>
             </div>
           </Card>
@@ -201,8 +180,7 @@ export default function Home() {
               How It Works
             </div>
             <h2 className="mb-4 text-balance text-3xl font-bold md:text-5xl text-glow">
-              From words to{" "}
-              <span className="gradient-text">money moved</span>
+              From words to <span className="gradient-text">money moved</span>
             </h2>
             <p className="mx-auto max-w-2xl text-pretty text-lg text-muted-foreground">
               Three steps. Your agent handles the complexity in between.
@@ -210,7 +188,6 @@ export default function Home() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-[1fr_auto_1fr_auto_1fr] gap-10 md:gap-0 items-start relative">
-
             {/* Step 1 — You request */}
             <div className="text-center group relative">
               <div className="mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-background border-2 border-primary/40 group-hover:scale-110 group-hover:border-primary/70 transition-all duration-300 relative z-10">
@@ -234,7 +211,8 @@ export default function Home() {
               </div>
               <h3 className="mb-2 text-lg font-bold">Agent understands intent</h3>
               <p className="text-muted-foreground text-sm leading-relaxed text-balance">
-                Your agent parses your request, figures out exactly what you mean, and prepares the transaction.
+                Your agent parses your request, figures out exactly what you mean, and prepares the
+                transaction.
               </p>
             </div>
 
@@ -258,22 +236,18 @@ export default function Home() {
       </section>
 
       {/* Ecosystem Section */}
-      <section
-        id="ecosystem"
-        className="container mx-auto px-4 py-24 relative z-10 section-glow"
-      >
+      <section id="ecosystem" className="container mx-auto px-4 py-24 relative z-10 section-glow">
         <div className="mb-16 text-center">
           <div className="inline-flex items-center gap-2 rounded-full bg-primary/10 px-4 py-1.5 text-sm font-medium text-primary mb-4">
             <Globe className="h-4 w-4" />
             Ecosystem
           </div>
           <h2 className="mb-4 text-balance text-3xl font-bold md:text-5xl text-glow">
-            Part of the{" "}
-            <span className="gradient-text">Stellar Ecosystem</span>
+            Part of the <span className="gradient-text">Stellar Ecosystem</span>
           </h2>
           <p className="mx-auto max-w-2xl text-pretty text-lg text-muted-foreground">
-            Your agent leverages the full power of Stellar&apos;s network to
-            move your money faster, cheaper, and smarter
+            Your agent leverages the full power of Stellar&apos;s network to move your money faster,
+            cheaper, and smarter
           </p>
         </div>
 
@@ -285,13 +259,10 @@ export default function Home() {
                   <Zap className="h-7 w-7 text-primary" />
                 </div>
                 <div>
-                  <h3 className="mb-2 text-lg font-bold">
-                    Agent + Stellar = Instant Payments
-                  </h3>
+                  <h3 className="mb-2 text-lg font-bold">Agent + Stellar = Instant Payments</h3>
                   <p className="text-muted-foreground leading-relaxed">
-                    Your AI agent and Stellar&apos;s payment-optimized network
-                    work together to deliver near-instant, low-cost cross-border
-                    transactions that feel effortless.
+                    Your AI agent and Stellar&apos;s payment-optimized network work together to
+                    deliver near-instant, low-cost cross-border transactions that feel effortless.
                   </p>
                 </div>
               </div>
@@ -301,13 +272,11 @@ export default function Home() {
                   <Shield className="h-7 w-7 text-primary" />
                 </div>
                 <div>
-                  <h3 className="mb-2 text-lg font-bold">
-                    Security Your Agent Enforces
-                  </h3>
+                  <h3 className="mb-2 text-lg font-bold">Security Your Agent Enforces</h3>
                   <p className="text-muted-foreground leading-relaxed">
-                    Stellar&apos;s decentralized, battle-tested network combined
-                    with your agent&apos;s transaction verification ensures every
-                    payment is safe, authenticated, and accounted for.
+                    Stellar&apos;s decentralized, battle-tested network combined with your
+                    agent&apos;s transaction verification ensures every payment is safe,
+                    authenticated, and accounted for.
                   </p>
                 </div>
               </div>
@@ -321,9 +290,9 @@ export default function Home() {
                     A Network That Makes Your Agent Smarter
                   </h3>
                   <p className="text-muted-foreground leading-relaxed">
-                    As the Stellar ecosystem grows with new anchors, stablecoin
-                    rails, and remittance corridors, your agent gains more routes
-                    and better rates to work with.
+                    As the Stellar ecosystem grows with new anchors, stablecoin rails, and
+                    remittance corridors, your agent gains more routes and better rates to work
+                    with.
                   </p>
                 </div>
               </div>
@@ -343,12 +312,11 @@ export default function Home() {
               Early Access
             </div>
             <h2 className="mb-6 text-balance text-4xl font-bold md:text-6xl text-glow">
-              Ready to meet your{" "}
-              <span className="gradient-text">financial agent?</span>
+              Ready to meet your <span className="gradient-text">financial agent?</span>
             </h2>
             <p className="mx-auto max-w-xl mb-10 text-pretty text-lg text-muted-foreground">
-              Join 2,000+ early adopters on the waitlist. Be among the first to
-              let an AI agent handle your cross-border payments.
+              Join 2,000+ early adopters on the waitlist. Be among the first to let an AI agent
+              handle your cross-border payments.
             </p>
             <div className="flex flex-col gap-4 sm:flex-row sm:justify-center">
               <Button
@@ -388,13 +356,11 @@ export default function Home() {
                   className="rounded-lg"
                   loading="lazy"
                 />
-                <span className="text-base font-bold tracking-tight">
-                  IntMoney
-                </span>
+                <span className="text-base font-bold tracking-tight">IntMoney</span>
               </div>
               <p className="text-sm text-muted-foreground leading-relaxed">
-                Your personal AI agent for cross-border payments. Built on
-                Stellar, always learning, always working for you.
+                Your personal AI agent for cross-border payments. Built on Stellar, always learning,
+                always working for you.
               </p>
             </div>
 
@@ -404,10 +370,7 @@ export default function Home() {
               </h4>
               <ul className="space-y-3 text-sm text-muted-foreground">
                 <li>
-                  <a
-                    href="#features"
-                    className="hover:text-primary transition-colors duration-200"
-                  >
+                  <a href="#features" className="hover:text-primary transition-colors duration-200">
                     Features
                   </a>
                 </li>
@@ -420,10 +383,7 @@ export default function Home() {
                   </a>
                 </li>
                 <li>
-                  <a
-                    href="#"
-                    className="hover:text-primary transition-colors duration-200"
-                  >
+                  <a href="#" className="hover:text-primary transition-colors duration-200">
                     Security
                   </a>
                 </li>
@@ -436,26 +396,17 @@ export default function Home() {
               </h4>
               <ul className="space-y-3 text-sm text-muted-foreground">
                 <li>
-                  <a
-                    href="#"
-                    className="hover:text-primary transition-colors duration-200"
-                  >
+                  <a href="#" className="hover:text-primary transition-colors duration-200">
                     Documentation
                   </a>
                 </li>
                 <li>
-                  <a
-                    href="#"
-                    className="hover:text-primary transition-colors duration-200"
-                  >
+                  <a href="#" className="hover:text-primary transition-colors duration-200">
                     API
                   </a>
                 </li>
                 <li>
-                  <a
-                    href="#"
-                    className="hover:text-primary transition-colors duration-200"
-                  >
+                  <a href="#" className="hover:text-primary transition-colors duration-200">
                     GitHub
                   </a>
                 </li>
@@ -468,26 +419,17 @@ export default function Home() {
               </h4>
               <ul className="space-y-3 text-sm text-muted-foreground">
                 <li>
-                  <a
-                    href="#"
-                    className="hover:text-primary transition-colors duration-200"
-                  >
+                  <a href="#" className="hover:text-primary transition-colors duration-200">
                     About
                   </a>
                 </li>
                 <li>
-                  <a
-                    href="#"
-                    className="hover:text-primary transition-colors duration-200"
-                  >
+                  <a href="#" className="hover:text-primary transition-colors duration-200">
                     Blog
                   </a>
                 </li>
                 <li>
-                  <a
-                    href="#"
-                    className="hover:text-primary transition-colors duration-200"
-                  >
+                  <a href="#" className="hover:text-primary transition-colors duration-200">
                     Contact
                   </a>
                 </li>
@@ -497,21 +439,12 @@ export default function Home() {
 
           <div className="mt-14 pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-muted-foreground">
             <div className="h-[1px] w-full bg-gradient-to-r from-transparent via-border/50 to-transparent absolute left-0 right-0" />
-            <p>
-              &copy; 2025 IntMoney. Your personal AI agent for cross-border
-              payments.
-            </p>
+            <p>&copy; 2025 IntMoney. Your personal AI agent for cross-border payments.</p>
             <div className="flex items-center gap-6">
-              <a
-                href="#"
-                className="hover:text-primary transition-colors duration-200"
-              >
+              <a href="#" className="hover:text-primary transition-colors duration-200">
                 Privacy
               </a>
-              <a
-                href="#"
-                className="hover:text-primary transition-colors duration-200"
-              >
+              <a href="#" className="hover:text-primary transition-colors duration-200">
                 Terms
               </a>
             </div>
