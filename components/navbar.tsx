@@ -1,8 +1,8 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Button } from "@/components/ui/button";
 import { Menu, X, ChevronRight } from "lucide-react";
+import { WaitlistButton } from "@/components/atoms/waitlist-button";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 const NAV_LINKS = [
@@ -108,13 +108,13 @@ export function Navbar() {
 
             {/* Desktop CTA */}
             <div className="hidden md:flex items-center pl-1 pr-1">
-              <Button
+              <WaitlistButton
                 variant="default"
                 className="rounded-full px-5 h-9 shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300 group text-sm"
               >
                 <span>Join Waitlist</span>
                 <ChevronRight className="ml-1 h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" />
-              </Button>
+              </WaitlistButton>
             </div>
 
             {/* Mobile Menu Button */}
@@ -178,14 +178,14 @@ export function Navbar() {
           </nav>
 
           {/* Mobile CTA */}
-          <Button
+          <WaitlistButton
             size="lg"
             className="rounded-full px-10 py-6 text-lg shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 mt-4"
             onClick={() => setIsMobileMenuOpen(false)}
           >
             Join the Waitlist
             <ChevronRight className="ml-2 h-5 w-5" />
-          </Button>
+          </WaitlistButton>
 
           {/* Decorative elements */}
           <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-primary/10 rounded-full blur-3xl -z-10" />
