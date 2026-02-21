@@ -5,6 +5,8 @@ import { Menu, X, ChevronRight } from "lucide-react";
 import { WaitlistButton } from "@/components/atoms/waitlist-button";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
+import { useActiveSection } from "@/hooks/use-active-section";
+
 const NAV_LINKS = [
   { href: "#features", label: "Features" },
   { href: "#how-it-works", label: "How it Works" },
@@ -14,7 +16,8 @@ const NAV_LINKS = [
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [activeLink, setActiveLink] = useState("");
+  const [hoveredLink, setHoveredLink] = useState("");
+  const activeSection = useActiveSection();
 
   // Handle scroll effect
   useEffect(() => {
@@ -77,29 +80,41 @@ export function Navbar() {
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center">
               <div className="flex items-center gap-1">
-                {NAV_LINKS.map((link) => (
-                  <a
-                    key={link.href}
-                    href={link.href}
-                    onMouseEnter={() => setActiveLink(link.href)}
-                    onMouseLeave={() => setActiveLink("")}
-                    className={cn(
-                      "relative px-4 py-2 text-sm font-medium transition-all duration-300 rounded-full",
-                      activeLink === link.href
-                        ? "text-foreground"
-                        : "text-muted-foreground hover:text-foreground"
-                    )}
-                  >
-                    {/* Hover background */}
-                    <span
+                {NAV_LINKS.map((link) => {
+                  const isActive = activeSection === link.href.replace("#", "");
+                  const isHovered = hoveredLink === link.href;
+                  return (
+                    <a
+                      key={link.href}
+                      href={link.href}
+                      onMouseEnter={() => setHoveredLink(link.href)}
+                      onMouseLeave={() => setHoveredLink("")}
                       className={cn(
-                        "absolute inset-0 rounded-full bg-muted/80 transition-all duration-300",
-                        activeLink === link.href ? "opacity-100 scale-100" : "opacity-0 scale-95"
+                        "relative px-4 py-2 text-sm font-medium transition-all duration-300 rounded-full",
+                        isActive || isHovered
+                          ? "text-foreground"
+                          : "text-muted-foreground hover:text-foreground"
                       )}
-                    />
-                    <span className="relative z-10">{link.label}</span>
-                  </a>
-                ))}
+                    >
+                      {/* Active/Hover background */}
+                      <span
+                        className={cn(
+                          "absolute inset-0 rounded-full transition-all duration-300",
+                          isActive && !isHovered
+                            ? "bg-primary/15 opacity-100 scale-100"
+                            : isHovered
+                              ? "bg-muted/80 opacity-100 scale-100"
+                              : "opacity-0 scale-95",
+                        )}
+                      />
+                      {/* Active indicator underline */}
+                      {isActive && !isHovered && (
+                        <span className="absolute bottom-1 left-1/2 -translate-x-1/2 h-0.5 w-6 bg-primary rounded-full transition-all duration-300" />
+                      )}
+                      <span className="relative z-10">{link.label}</span>
+                    </a>
+                  );
+                })}
               </div>
             </div>
 
@@ -160,21 +175,35 @@ export function Navbar() {
         >
           {/* Mobile Nav Links */}
           <nav className="flex flex-col items-center gap-6">
-            {NAV_LINKS.map((link, index) => (
-              <a
-                key={link.href}
-                href={link.href}
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="group relative text-3xl font-bold text-foreground transition-all duration-300 hover:text-primary"
-                style={{ transitionDelay: `${(index + 1) * 75}ms` }}
-              >
-                <span className="relative">
-                  {link.label}
-                  {/* Underline effect */}
-                  <span className="absolute -bottom-2 left-0 h-1 w-0 bg-primary rounded-full transition-all duration-300 group-hover:w-full" />
-                </span>
-              </a>
-            ))}
+            {NAV_LINKS.map((link, index) => {
+              const isActive = activeSection === link.href;
+
+              return (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className={cn(
+                    "group relative text-3xl font-bold transition-all duration-300",
+                    isActive
+                      ? "text-primary"
+                      : "text-foreground hover:text-primary"
+                  )}
+                  style={{ transitionDelay: `${(index + 1) * 75}ms` }}
+                >
+                  <span className="relative">
+                    {link.label}
+                    {/* Underline effect */}
+                    <span
+                      className={cn(
+                        "absolute -bottom-2 left-0 h-1 bg-primary rounded-full transition-all duration-300",
+                        isActive ? "w-full" : "w-0 group-hover:w-full"
+                      )}
+                    />
+                  </span>
+                </a>
+              );
+            })}
           </nav>
 
           {/* Mobile CTA */}
