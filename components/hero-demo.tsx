@@ -174,21 +174,24 @@ export function HeroDemo() {
   return (
     <div
       className={cn(
-        "transition-opacity duration-500",
+        "transition-opacity duration-500 motion-reduce:transition-none",
         isFading ? "opacity-0" : "opacity-100"
       )}
+      aria-live="polite"
+      aria-atomic="true"
+      aria-label="IntMoney agent demonstration"
     >
       <Card className="overflow-hidden border border-border/50 rounded-2xl bg-card shadow-xl shadow-primary/5">
         {/* Terminal-style top bar */}
         <div className="flex items-center justify-between px-5 py-3.5 bg-background border-b border-border/50">
           <div className="flex items-center gap-3">
-            <div className="flex gap-1.5">
+            <div className="flex gap-1.5" aria-hidden="true">
               <div className="h-3 w-3 rounded-full bg-muted/30" />
               <div className="h-3 w-3 rounded-full bg-muted/30" />
               <div className="h-3 w-3 rounded-full bg-muted/30" />
             </div>
             <div className="flex items-center gap-2 ml-2">
-              <Sparkles className="h-3.5 w-3.5 text-primary" />
+              <Sparkles className="h-3.5 w-3.5 text-primary" aria-hidden="true" />
               <span className="text-xs font-medium text-muted-foreground">
                 IntMoney Agent
               </span>
@@ -196,7 +199,7 @@ export function HeroDemo() {
           </div>
           <div className="flex items-center gap-1.5">
             <span className="relative flex h-1.5 w-1.5">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75"></span>
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75 motion-reduce:animate-none"></span>
               <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-green-400"></span>
             </span>
             <span className="text-[10px] text-muted-foreground/70 uppercase tracking-wider font-medium">
@@ -213,14 +216,16 @@ export function HeroDemo() {
           {/* Command input area */}
           <div
             className={cn(
-              "rounded-xl border border-border/50 bg-muted/20 p-4 transition-all duration-300 shrink-0",
+              "rounded-xl border border-border/50 bg-muted/20 p-4 transition-all duration-300 motion-reduce:transition-none shrink-0",
               showInput
                 ? "border-primary/30 bg-primary/[0.03]"
                 : ""
             )}
+            role="region"
+            aria-label="User command input"
           >
             <div className="flex items-center gap-3">
-              <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-primary/15">
+              <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-primary/15" aria-hidden="true">
                 <Send className="h-3.5 w-3.5 text-primary" />
               </div>
               <div className="flex-1 min-w-0">
@@ -234,7 +239,7 @@ export function HeroDemo() {
                       ? scene.userMessage
                       : ""}
                   {phase === "typing" && (
-                    <span className="inline-block w-0.5 h-4 bg-primary ml-0.5 align-middle animate-pulse" />
+                    <span className="inline-block w-0.5 h-4 bg-primary ml-0.5 align-middle animate-pulse motion-reduce:animate-none" aria-hidden="true" />
                   )}
                   {!showInput && (
                     <span className="text-muted-foreground/30">
@@ -244,7 +249,7 @@ export function HeroDemo() {
                 </p>
               </div>
               {showInput && phase !== "typing" && (
-                <div className="chat-slide-in">
+                <div className="chat-slide-in" aria-hidden="true">
                   <ArrowRight className="h-4 w-4 text-primary/60" />
                 </div>
               )}
@@ -255,14 +260,14 @@ export function HeroDemo() {
           <div className="flex flex-col gap-4">
             {/* Thinking state */}
             {showThinking && (
-              <div className="flex items-center gap-3 chat-slide-in px-1">
-                <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-primary/10">
-                  <RotateCw className="h-3.5 w-3.5 text-primary animate-spin" />
+              <div className="flex items-center gap-3 chat-slide-in px-1" role="status" aria-label="Agent is processing">
+                <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-primary/10" aria-hidden="true">
+                  <RotateCw className="h-3.5 w-3.5 text-primary animate-spin motion-reduce:animate-none" />
                 </div>
                 <span className="text-xs text-muted-foreground/70 font-medium">
                   Agent is reasoning...
                 </span>
-                <div className="agent-thinking ml-1">
+                <div className="agent-thinking ml-1" aria-hidden="true">
                   <span></span>
                   <span></span>
                   <span></span>
@@ -272,9 +277,9 @@ export function HeroDemo() {
 
             {/* Reasoning trace */}
             {showReasoning && (
-              <div className="rounded-xl border border-border/40 bg-muted/10 overflow-hidden">
+              <div className="rounded-xl border border-border/40 bg-muted/10 overflow-hidden" role="region" aria-label="Agent reasoning steps">
                 <div className="px-4 py-2.5 border-b border-border/40 flex items-center gap-2">
-                  <CircleDot className="h-3 w-3 text-primary/60" />
+                  <CircleDot className="h-3 w-3 text-primary/60" aria-hidden="true" />
                   <span className="text-[10px] uppercase tracking-wider text-muted-foreground/50 font-medium">
                     Agent Trace
                   </span>
@@ -286,7 +291,7 @@ export function HeroDemo() {
                         key={i}
                         className="flex items-center gap-3 py-2 px-1 chat-slide-in"
                       >
-                        <span className="step-check-pop inline-flex">
+                        <span className="step-check-pop inline-flex" aria-hidden="true">
                           <div className="flex h-5 w-5 items-center justify-center rounded-full bg-green-500/15">
                             <Check className="h-3 w-3 text-green-400" />
                           </div>
@@ -301,9 +306,9 @@ export function HeroDemo() {
 
             {/* Agent response */}
             {showResponse && (
-              <div className="rounded-xl border border-primary/20 bg-primary/[0.05] p-4 chat-slide-in">
+              <div className="rounded-xl border border-primary/20 bg-primary/[0.05] p-4 chat-slide-in" role="region" aria-label="Agent response">
                 <div className="flex items-start gap-3">
-                  <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-primary/20 mt-0.5">
+                  <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-primary/20 mt-0.5" aria-hidden="true">
                     <Sparkles className="h-3.5 w-3.5 text-primary" />
                   </div>
                   <div>
@@ -320,7 +325,7 @@ export function HeroDemo() {
 
             {/* Status badge */}
             {showStatus && (
-              <div className="flex justify-center pt-1 chat-slide-in">
+              <div className="flex justify-center pt-1 chat-slide-in" role="status" aria-live="polite">
                 <div
                   className={cn(
                     "inline-flex items-center gap-2 rounded-full px-4 py-2",
@@ -336,6 +341,7 @@ export function HeroDemo() {
                         ? "bg-green-400"
                         : "bg-blue-400"
                     )}
+                    aria-hidden="true"
                   />
                   <span
                     className={cn(
@@ -356,15 +362,18 @@ export function HeroDemo() {
         {/* Bottom bar with scene indicators */}
         <div className="px-5 py-3 bg-background border-t border-border/40 flex items-center justify-between">
           <p className="text-[10px] text-muted-foreground/40 font-medium">
-            <Sparkles className="h-3 w-3 text-primary/40 inline mr-1 align-middle" />
+            <Sparkles className="h-3 w-3 text-primary/40 inline mr-1 align-middle" aria-hidden="true" />
             Your agent handles the rest
           </p>
-          <div className="flex items-center gap-1.5">
+          <div className="flex items-center gap-1.5" role="tablist" aria-label="Demo scenes">
             {SCENES.map((_, i) => (
               <div
                 key={i}
+                role="tab"
+                aria-selected={i === sceneIndex}
+                aria-label={`Scene ${i + 1}`}
                 className={cn(
-                  "h-1 rounded-full transition-all duration-500",
+                  "h-1 rounded-full transition-all duration-500 motion-reduce:transition-none",
                   i === sceneIndex
                     ? "w-4 bg-primary"
                     : "w-1 bg-muted/40"
