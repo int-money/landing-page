@@ -6,6 +6,7 @@ import { Menu, X, ChevronRight } from "lucide-react";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { useActiveSection } from "@/hooks/use-active-section";
+import ThemeToggle from "./atoms/theme-toggle";
 
 const NAV_LINKS = [
   { href: "#features", label: "Features" },
@@ -104,7 +105,7 @@ export function Navbar() {
                             ? "bg-primary/15 opacity-100 scale-100"
                             : isHovered
                               ? "bg-muted/80 opacity-100 scale-100"
-                              : "opacity-0 scale-95",
+                              : "opacity-0 scale-95"
                         )}
                       />
                       {/* Active indicator underline */}
@@ -120,6 +121,8 @@ export function Navbar() {
 
             {/* Separator */}
             <div className="hidden md:block w-px h-6 bg-border/50" />
+
+            <ThemeToggle />
 
             {/* Desktop CTA */}
             <div className="hidden md:flex items-center pl-1 pr-1">
@@ -185,9 +188,7 @@ export function Navbar() {
                   onClick={() => setIsMobileMenuOpen(false)}
                   className={cn(
                     "group relative text-3xl font-bold transition-all duration-300",
-                    isActive
-                      ? "text-primary"
-                      : "text-foreground hover:text-primary"
+                    isActive ? "text-primary" : "text-foreground hover:text-primary"
                   )}
                   style={{ transitionDelay: `${(index + 1) * 75}ms` }}
                 >
