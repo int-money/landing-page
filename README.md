@@ -1,5 +1,7 @@
 # IntMoney
 
+[![CI](https://github.com/int-money/landing-page/actions/workflows/ci.yml/badge.svg)](https://github.com/int-money/landing-page/actions/workflows/ci.yml)
+
 An AI agent wallet built on Stellar. Send, receive, swap, and manage your funds using natural language — IntMoney understands your intent and handles the rest.
 
 This repository contains the landing page for IntMoney, featuring a modern, responsive design with interactive elements and smooth animations.
