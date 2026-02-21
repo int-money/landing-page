@@ -2,6 +2,7 @@ import type React from "react";
 import type { Metadata } from "next";
 import { Geist, Inter } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
+import { ThemeProvider } from "@/components/theme-provider";
 import "./globals.css";
 
 const geist = Geist({
@@ -9,6 +10,7 @@ const geist = Geist({
   display: "swap",
   variable: "--font-geist",
 });
+
 const inter = Inter({
   subsets: ["latin"],
   display: "swap",
@@ -30,17 +32,4 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
-  return (
-    <html lang="en" className="dark">
-      <body className={`${inter.variable} ${geist.variable} font-body antialiased`}>
-        {children}
-        <Analytics />
-      </body>
-    </html>
-  );
-}
+export default

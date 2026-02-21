@@ -23,16 +23,17 @@ export default function PrivacyPage() {
             Legal
           </div>
           <h1 className="text-4xl md:text-5xl font-bold mb-4">Privacy Policy</h1>
-          <p className="text-muted-foreground">
-            Last updated: February 20, 2026
-          </p>
+          <p className="text-muted-foreground">Last updated: February 20, 2026</p>
         </div>
 
         <div className="prose prose-neutral dark:prose-invert max-w-none space-y-8">
           <section>
             <h2 className="text-2xl font-bold mb-4">Introduction</h2>
             <p className="text-muted-foreground leading-relaxed">
-              IntMoney (&quot;we,&quot; &quot;our,&quot; or &quot;us&quot;) is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our AI agent wallet service built on the Stellar network.
+              IntMoney (&quot;we,&quot; &quot;our,&quot; or &quot;us&quot;) is committed to
+              protecting your privacy. This Privacy Policy explains how we collect, use, disclose,
+              and safeguard your information when you use our AI agent wallet service built on the
+              Stellar network.
             </p>
           </section>
 
@@ -68,29 +69,36 @@ export default function PrivacyPage() {
           <section>
             <h2 className="text-2xl font-bold mb-4">Data Security</h2>
             <p className="text-muted-foreground leading-relaxed">
-              We implement industry-standard security measures to protect your information, including end-to-end encryption for sensitive data, biometric authentication, and secure key storage. Your private keys are encrypted and never leave your device. However, no method of transmission over the Internet is 100% secure, and we cannot guarantee absolute security.
+              We implement industry-standard security measures to protect your information,
+              including end-to-end encryption for sensitive data, biometric authentication, and
+              secure key storage. Your private keys are encrypted and never leave your device.
+              However, no method of transmission over the Internet is 100% secure, and we cannot
+              guarantee absolute security.
             </p>
           </section>
 
           <section>
             <h2 className="text-2xl font-bold mb-4">Stellar Network</h2>
             <p className="text-muted-foreground leading-relaxed">
-              IntMoney operates on the Stellar blockchain network. Transactions on the Stellar network are public and permanently recorded on the blockchain. While your personal information is not directly tied to your Stellar address in our system, blockchain transactions are transparent and traceable.
+              IntMoney operates on the Stellar blockchain network. Transactions on the Stellar
+              network are public and permanently recorded on the blockchain. While your personal
+              information is not directly tied to your Stellar address in our system, blockchain
+              transactions are transparent and traceable.
             </p>
           </section>
 
           <section>
             <h2 className="text-2xl font-bold mb-4">Third-Party Services</h2>
             <p className="text-muted-foreground leading-relaxed">
-              We may use third-party services for analytics, payment processing, and infrastructure. These third parties have access to your information only to perform specific tasks on our behalf and are obligated to protect your information.
+              We may use third-party services for analytics, payment processing, and infrastructure.
+              These third parties have access to your information only to perform specific tasks on
+              our behalf and are obligated to protect your information.
             </p>
           </section>
 
           <section>
             <h2 className="text-2xl font-bold mb-4">Your Rights</h2>
-            <p className="text-muted-foreground leading-relaxed mb-4">
-              You have the right to:
-            </p>
+            <p className="text-muted-foreground leading-relaxed mb-4">You have the right to:</p>
             <ul className="list-disc pl-6 space-y-2 text-muted-foreground">
               <li>Access and receive a copy of your personal data</li>
               <li>Correct inaccurate or incomplete information</li>
@@ -103,7 +111,9 @@ export default function PrivacyPage() {
           <section>
             <h2 className="text-2xl font-bold mb-4">Changes to This Policy</h2>
             <p className="text-muted-foreground leading-relaxed">
-              We may update this Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page and updating the &quot;Last updated&quot; date.
+              We may update this Privacy Policy from time to time. We will notify you of any changes
+              by posting the new Privacy Policy on this page and updating the &quot;Last
+              updated&quot; date.
             </p>
           </section>
 

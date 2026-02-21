@@ -168,6 +168,15 @@
     );
   }
 
+  .dark .gradient-text {
+    background-image: linear-gradient(
+      135deg,
+      oklch(0.72 0.25 290) 0%,
+      oklch(0.75 0.18 220) 50%,
+      oklch(0.68 0.22 310) 100%
+    );
+  }
+
   /* Glassmorphism card */
   .glass-card {
     @apply backdrop-blur-xl;
@@ -201,6 +210,14 @@
     box-shadow:
       0 0 30px oklch(0.55 0.25 290 / 0.3),
       0 0 60px oklch(0.55 0.25 290 / 0.1);
+  }
+
+  .dark .glow {
+    box-shadow: 0 0 60px oklch(0.55 0.25 290 / 0.4), 0 0 120px oklch(0.55 0.25 290 / 0.15);
+  }
+
+  .dark .glow-sm {
+    box-shadow: 0 0 30px oklch(0.55 0.25 290 / 0.3), 0 0 60px oklch(0.55 0.25 290 / 0.1);
   }
 
   /* Gradient border - purple */
@@ -322,6 +339,11 @@
     transform: translateX(-50%);
     width: 60%;
     height: 1px;
+    background: linear-gradient(90deg, transparent, oklch(0.65 0.25 290 / 0.2), transparent);
+    box-shadow: 0 0 40px 20px oklch(0.55 0.25 290 / 0.03);
+  }
+
+  .dark .section-glow::after {
     background: linear-gradient(90deg, transparent, oklch(0.65 0.25 290 / 0.3), transparent);
     box-shadow: 0 0 40px 20px oklch(0.55 0.25 290 / 0.06);
   }

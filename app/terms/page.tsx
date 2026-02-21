@@ -23,23 +23,25 @@ export default function TermsPage() {
             Legal
           </div>
           <h1 className="text-4xl md:text-5xl font-bold mb-4">Terms of Service</h1>
-          <p className="text-muted-foreground">
-            Last updated: February 20, 2026
-          </p>
+          <p className="text-muted-foreground">Last updated: February 20, 2026</p>
         </div>
 
         <div className="prose prose-neutral dark:prose-invert max-w-none space-y-8">
           <section>
             <h2 className="text-2xl font-bold mb-4">Agreement to Terms</h2>
             <p className="text-muted-foreground leading-relaxed">
-              By accessing or using IntMoney (&quot;the Service&quot;), you agree to be bound by these Terms of Service (&quot;Terms&quot;). If you disagree with any part of these terms, you may not access the Service.
+              By accessing or using IntMoney (&quot;the Service&quot;), you agree to be bound by
+              these Terms of Service (&quot;Terms&quot;). If you disagree with any part of these
+              terms, you may not access the Service.
             </p>
           </section>
 
           <section>
             <h2 className="text-2xl font-bold mb-4">Description of Service</h2>
             <p className="text-muted-foreground leading-relaxed">
-              IntMoney is an AI-powered wallet service built on the Stellar blockchain network. The Service allows users to send, receive, swap, and manage digital assets using natural language commands through text or voice interfaces.
+              IntMoney is an AI-powered wallet service built on the Stellar blockchain network. The
+              Service allows users to send, receive, swap, and manage digital assets using natural
+              language commands through text or voice interfaces.
             </p>
           </section>
 
@@ -61,56 +63,76 @@ export default function TermsPage() {
           <section>
             <h2 className="text-2xl font-bold mb-4">Financial Transactions</h2>
             <p className="text-muted-foreground leading-relaxed">
-              All transactions processed through IntMoney are executed on the Stellar blockchain network. Once a transaction is confirmed on the blockchain, it cannot be reversed. You are solely responsible for verifying transaction details before approval. IntMoney is not responsible for losses resulting from user error, including sending funds to incorrect addresses.
+              All transactions processed through IntMoney are executed on the Stellar blockchain
+              network. Once a transaction is confirmed on the blockchain, it cannot be reversed. You
+              are solely responsible for verifying transaction details before approval. IntMoney is
+              not responsible for losses resulting from user error, including sending funds to
+              incorrect addresses.
             </p>
           </section>
 
           <section>
             <h2 className="text-2xl font-bold mb-4">AI Agent Limitations</h2>
             <p className="text-muted-foreground leading-relaxed">
-              While our AI agent is designed to understand and execute your financial requests accurately, it may occasionally misinterpret commands or make errors. You are responsible for reviewing all transaction details before final approval. IntMoney is not liable for losses resulting from AI misinterpretation of user commands.
+              While our AI agent is designed to understand and execute your financial requests
+              accurately, it may occasionally misinterpret commands or make errors. You are
+              responsible for reviewing all transaction details before final approval. IntMoney is
+              not liable for losses resulting from AI misinterpretation of user commands.
             </p>
           </section>
 
           <section>
             <h2 className="text-2xl font-bold mb-4">Fees</h2>
             <p className="text-muted-foreground leading-relaxed">
-              IntMoney may charge fees for certain services. All applicable fees will be clearly disclosed before you complete a transaction. Network fees charged by the Stellar blockchain are separate and not controlled by IntMoney.
+              IntMoney may charge fees for certain services. All applicable fees will be clearly
+              disclosed before you complete a transaction. Network fees charged by the Stellar
+              blockchain are separate and not controlled by IntMoney.
             </p>
           </section>
 
           <section>
             <h2 className="text-2xl font-bold mb-4">Intellectual Property</h2>
             <p className="text-muted-foreground leading-relaxed">
-              The Service and its original content, features, and functionality are owned by IntMoney and are protected by international copyright, trademark, patent, trade secret, and other intellectual property laws.
+              The Service and its original content, features, and functionality are owned by
+              IntMoney and are protected by international copyright, trademark, patent, trade
+              secret, and other intellectual property laws.
             </p>
           </section>
 
           <section>
             <h2 className="text-2xl font-bold mb-4">Limitation of Liability</h2>
             <p className="text-muted-foreground leading-relaxed">
-              To the maximum extent permitted by law, IntMoney shall not be liable for any indirect, incidental, special, consequential, or punitive damages, or any loss of profits or revenues, whether incurred directly or indirectly, or any loss of data, use, goodwill, or other intangible losses resulting from your use of the Service.
+              To the maximum extent permitted by law, IntMoney shall not be liable for any indirect,
+              incidental, special, consequential, or punitive damages, or any loss of profits or
+              revenues, whether incurred directly or indirectly, or any loss of data, use, goodwill,
+              or other intangible losses resulting from your use of the Service.
             </p>
           </section>
 
           <section>
             <h2 className="text-2xl font-bold mb-4">Termination</h2>
             <p className="text-muted-foreground leading-relaxed">
-              We may terminate or suspend your account and access to the Service immediately, without prior notice or liability, for any reason, including breach of these Terms. Upon termination, your right to use the Service will immediately cease.
+              We may terminate or suspend your account and access to the Service immediately,
+              without prior notice or liability, for any reason, including breach of these Terms.
+              Upon termination, your right to use the Service will immediately cease.
             </p>
           </section>
 
           <section>
             <h2 className="text-2xl font-bold mb-4">Changes to Terms</h2>
             <p className="text-muted-foreground leading-relaxed">
-              We reserve the right to modify or replace these Terms at any time. If a revision is material, we will provide at least 30 days&apos; notice prior to any new terms taking effect. Continued use of the Service after changes become effective constitutes acceptance of the revised Terms.
+              We reserve the right to modify or replace these Terms at any time. If a revision is
+              material, we will provide at least 30 days&apos; notice prior to any new terms taking
+              effect. Continued use of the Service after changes become effective constitutes
+              acceptance of the revised Terms.
             </p>
           </section>
 
           <section>
             <h2 className="text-2xl font-bold mb-4">Governing Law</h2>
             <p className="text-muted-foreground leading-relaxed">
-              These Terms shall be governed by and construed in accordance with applicable laws, without regard to conflict of law provisions.
+              These Terms shall be governed by and construed in accordance with applicable laws,
+              without regard to conflict of law provisions.
             </p>
           </section>
 

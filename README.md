@@ -1,39 +1,53 @@
-# IntMoney
+# IntMoney Landing Page
 
-An AI agent wallet built on Stellar. Send, receive, swap, and manage your funds using natural language — IntMoney understands your intent and handles the rest.
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/int-money/landing-page/blob/main/CONTRIBUTING.md)
+[![Part of Stellar Wave](https://img.shields.io/badge/Stellar-Wave-blue.svg)](https://stellar.org)
 
-This repository contains the landing page for IntMoney, featuring a modern, responsive design with interactive elements and smooth animations.
+**The modern, responsive landing page for IntMoney — an AI agent wallet built on Stellar.**
+
+## Overview
+
+IntMoney is an AI-powered wallet that lets you send, receive, swap, and manage funds using natural language. This repository contains the high-performance, accessible landing page showcasing the IntMoney experience with interactive demos, smooth animations, and a modern design.
+
+## Preview
+
+> 📸 **Screenshot:** Add a screenshot or GIF of the landing page here
+>
+> For now, run `pnpm dev` locally to see the full experience.
 
 ## Features
 
-- **Modern UI/UX** - Glassmorphism effects, gradient accents, and smooth animations
-- **Interactive Demo** - Try the chat/voice interface directly on the landing page
-- **Responsive Design** - Fully responsive across all device sizes
-- **Smooth Scrolling** - Animated navigation between sections
-- **Dark Mode Ready** - Built with theming support via next-themes
-- **Accessible** - Built with Radix UI primitives for accessibility
-- **Performance Optimized** - Next.js 16 with React 19 for optimal performance
+- **Modern UI/UX** — Glassmorphism effects, gradient accents, and smooth animations
+- **Interactive Demo** — Try the chat/voice interface directly on the landing page
+- **Responsive Design** — Fully responsive across all device sizes
+- **Dark Mode Ready** — Built with theming support via next-themes
+- **Accessible** — Built with Radix UI primitives for accessibility
+- **Performance Optimized** — Next.js 16 with React 19 for optimal performance
 
 ## Tech Stack
 
-- **Framework**: [Next.js 16](https://nextjs.org/) with App Router
-- **Language**: [TypeScript](https://www.typescriptlang.org/)
-- **Styling**: [Tailwind CSS 4](https://tailwindcss.com/)
-- **UI Components**: [Radix UI](https://www.radix-ui.com/) + [shadcn/ui](https://ui.shadcn.com/)
-- **Icons**: [Lucide React](https://lucide.dev/)
-- **Animations**: CSS animations + Tailwind Animate
-- **Theming**: [next-themes](https://github.com/pacocoursey/next-themes)
+- **Framework**: [Next.js 16](https://nextjs.org/) — React framework with App Router
+- **Language**: [TypeScript](https://www.typescriptlang.org/) — Type-safe JavaScript
+- **Styling**: [Tailwind CSS 4](https://tailwindcss.com/) — Utility-first CSS
+- **UI Components**: [Radix UI](https://www.radix-ui.com/) + [shadcn/ui](https://ui.shadcn.com/) — Headless, accessible components
+- **Icons**: [Lucide React](https://lucide.dev/) — Beautiful icon library
+- **Animations**: CSS animations + Tailwind Animate — Smooth, performant motion
+- **Theming**: [next-themes](https://github.com/pacocoursey/next-themes) — Dark mode support
 
 ## Getting Started
 
 ### Prerequisites
 
-- Node.js 20+
-- pnpm
+- **Node.js** 20 or higher
+- **pnpm** (install globally with `npm install -g pnpm`)
 
 ### Installation
 
-1. **Fork the repository** — click the "Fork" button on [github.com/int-money/landing-page](https://github.com/int-money/landing-page)
+1. **Fork the repository**
+   - Click the "Fork" button at [github.com/int-money/landing-page](https://github.com/int-money/landing-page)
+   - This creates your own copy to work on
+
 
 2. **Clone your fork**
 
@@ -60,11 +74,26 @@ This repository contains the landing page for IntMoney, featuring a modern, resp
    pnpm dev
    ```
 
-6. **Open your browser** — navigate to [http://localhost:3000](http://localhost:3000)
+5. **Open in browser** — Visit [http://localhost:3000](http://localhost:3000)
+
+Done! You now have the project running locally.
 
 ## Project Structure
 
-This project follows [Atomic Design](https://bradfrost.com/blog/post/atomic-web-design/) principles:
+This project follows **Atomic Design** principles for scalable, organized component architecture:
+
+```
+components/
+├── atoms/       # Indivisible UI primitives (Button, Card, Badge)
+├── molecules/   # Small groups of atoms (SectionHeader, FeatureChip)
+├── organisms/   # Complex composed sections (Navbar, Footer, HeroSection)
+├── templates/   # Page-level layout shells
+├── providers/   # Context providers (ThemeProvider)
+└── ui/          # Shadcn/ui pre-built components
+```
+
+<details>
+<summary><strong>Full project structure</strong></summary>
 
 ```
 landing-page/
@@ -73,17 +102,23 @@ landing-page/
 │   ├── layout.tsx           # Root layout with theme provider
 │   └── page.tsx             # Main landing page
 ├── components/
-│   ├── atoms/               # Indivisible UI primitives (Button, Card, GradientText)
-│   ├── molecules/           # Small groups of atoms (SectionHeader, FeatureChip, StepCard)
-│   ├── organisms/           # Complex composed sections (Navbar, HeroSection, Footer)
+│   ├── atoms/               # Indivisible UI primitives
+│   ├── molecules/           # Small groups of atoms
+│   ├── organisms/           # Complex composed sections
 │   ├── templates/           # Page-level layout shells
-│   └── providers/           # Context providers (ThemeProvider)
+│   ├── providers/           # Context providers
+│   └── ui/                  # Shadcn/ui components
 ├── hooks/                   # Custom React hooks
 ├── lib/
 │   └── utils.ts             # Utility functions (cn helper)
 ├── public/                  # Static assets
-└── styles/                  # Additional stylesheets
+├── styles/                  # Additional stylesheets
+├── package.json
+├── tsconfig.json
+└── next.config.mjs
 ```
+
+</details>
 
 ## Available Scripts
 
@@ -99,29 +134,30 @@ landing-page/
 
 ## Contributing
 
-We welcome contributions! Before you start, please read this section carefully.
+We welcome contributors! **Before you start, please read [CONTRIBUTING.md](CONTRIBUTING.md)** for the full development workflow.
 
-### Workflow
+### Non-Negotiable Rules ⚠️
 
-1. **Fork** the repository to your own GitHub account
-2. **Clone** your fork locally
-3. **Branch** from `main`:
-   ```bash
-   git checkout -b feat/issue-number-short-description
-   ```
-4. **Make** your changes following the guidelines below
-5. **Push** to your fork
-6. **Open a Pull Request** against `int-money/landing-page:main`
+These rules are **mandatory** for all PRs. Violations will block your contribution.
 
-### Commit Standards
+#### 1. Screen Recordings Required for UI Changes
 
-All commits **must** follow the [Conventional Commits](https://www.conventionalcommits.org/) specification:
+Every PR with UI modifications must include a screen recording:
+
+- Show the full interaction for new features
+- Show before/after for bug fixes
+- Accepted formats: `.mp4`, `.mov`, `.gif`, or Loom/YouTube link
+- Upload directly to your PR description
+
+#### 2. Conventional Commits (Atomic)
+
+All commits must follow the [Conventional Commits](https://www.conventionalcommits.org/) spec:
 
 ```
 <type>(<scope>): <short description>
 ```
 
-**Types:**
+**Types:** `feat`, `fix`, `refactor`, `docs`, `style`, `test`, `chore`, `perf`, `ci`
 
 | Type       | When to use                                             |
 | ---------- | ------------------------------------------------------- |
@@ -138,31 +174,18 @@ All commits **must** follow the [Conventional Commits](https://www.conventionalc
 **Examples:**
 
 ```bash
-feat(waitlist): add email validation to waitlist modal
-fix(navbar): resolve mobile menu focus trap
-refactor(atoms): extract SectionBadge from inline JSX
-docs: update README with project structure
-chore: remove unused radix-ui dependencies
+feat(navbar): add mobile hamburger menu
+fix(hero): resolve text overflow on sm viewports
+refactor(button): extract common styles to atom
 ```
 
-### Atomic Commits
+### Quick Start for Contributors
 
-Each commit must represent **one logical change**:
-
-- Extracting a component AND fixing a bug = **two separate commits**
-- No `WIP`, `fixup`, or `save progress` commits in your final PR
-- Every commit should build and pass lint on its own
-- Use `git rebase -i` to clean up your history before submitting
-
-### Screen Recording Requirement
-
-Every PR that includes UI changes **must** include a screen recording:
-
-- Record a walkthrough demonstrating the feature or fix
-- For bug fixes, show the before and after
-- For new features, show the full user interaction
-- Upload directly to the PR description or as a comment
-- Accepted formats: `.mp4`, `.mov`, `.gif`, or a Loom/YouTube link
+1. **Fork** the repository
+2. **Create a branch**: `git checkout -b feat/your-feature`
+3. **Make atomic commits** following the spec above
+4. **Push to your fork**
+5. **Open a PR** with a screen recording (if UI changes)
 
 PRs with UI changes that do not include a screen recording will not be reviewed.
 
@@ -189,9 +212,7 @@ Before submitting your PR, verify:
 
 ## Customization
 
-### Colors
-
-The color scheme is defined in `app/globals.css` using CSS custom properties with the OKLCH color space:
+The color scheme uses CSS custom properties (OKLCH color space) in [app/globals.css](app/globals.css). Edit the color values to customize the theme:
 
 ```css
 .dark {
@@ -200,15 +221,12 @@ The color scheme is defined in `app/globals.css` using CSS custom properties wit
 }
 ```
 
-### Theme
-
-The site supports both light and dark modes. Theme switching is handled by `next-themes`. The dark theme features a deep purple-black background with space purple accents.
-
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+MIT License — see [LICENSE](LICENSE) for details.
 
 ## Links
 
+- **IntMoney**: [https://github.com/int-money](https://github.com/int-money)
 - **Stellar Network**: [https://stellar.org](https://stellar.org)
-- **GitHub**: [https://github.com/int-money/landing-page](https://github.com/int-money/landing-page)
+- **This Repository**: [github.com/int-money/landing-page](https://github.com/int-money/landing-page)

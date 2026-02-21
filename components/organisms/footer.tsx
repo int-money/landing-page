@@ -10,13 +10,9 @@ export function Footer() {
     { label: "Ecosystem", href: "#ecosystem" },
   ];
 
-  const developerLinks = [
-    { label: "GitHub", href: "https://github.com/int-money/landing-page" },
-  ];
+  const developerLinks = [{ label: "GitHub", href: "https://github.com/int-money/landing-page" }];
 
-  const companyLinks = [
-    { label: "Contact", href: "mailto:hello@intmoney.com" },
-  ];
+  const companyLinks = [{ label: "Contact", href: "mailto:hello@intmoney.com" }];
 
   return (
     <footer className="relative z-10 backdrop-blur-sm">
@@ -34,13 +30,11 @@ export function Footer() {
                 className="rounded-lg"
                 loading="lazy"
               />
-              <span className="text-base font-bold tracking-tight">
-                IntMoney
-              </span>
+              <span className="text-base font-bold tracking-tight">IntMoney</span>
             </div>
             <p className="text-sm text-muted-foreground leading-relaxed">
-              Your personal AI agent for cross-border payments. Built on
-              Stellar, always learning, always working for you.
+              Your personal AI agent for cross-border payments. Built on Stellar, always learning,
+              always working for you.
             </p>
           </div>
 
@@ -51,21 +45,12 @@ export function Footer() {
 
         <div className="mt-14 pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-muted-foreground">
           <div className="h-[1px] w-full bg-gradient-to-r from-transparent via-border/50 to-transparent absolute left-0 right-0" />
-          <p>
-            &copy; {currentYear} IntMoney. Your personal AI agent for
-            cross-border payments.
-          </p>
+          <p>&copy; {currentYear} IntMoney. Your personal AI agent for cross-border payments.</p>
           <div className="flex items-center gap-6">
-            <a
-              href="/privacy"
-              className="hover:text-primary transition-colors duration-200"
-            >
+            <a href="/privacy" className="hover:text-primary transition-colors duration-200">
               Privacy
             </a>
-            <a
-              href="/terms"
-              className="hover:text-primary transition-colors duration-200"
-            >
+            <a href="/terms" className="hover:text-primary transition-colors duration-200">
               Terms
             </a>
           </div>

@@ -17,10 +17,7 @@ export function FooterColumn({ title, links }: FooterColumnProps) {
       <ul className="space-y-3 text-sm text-muted-foreground">
         {links.map((link) => (
           <li key={link.label}>
-            <a
-              href={link.href}
-              className="hover:text-primary transition-colors duration-200"
-            >
+            <a href={link.href} className="hover:text-primary transition-colors duration-200">
               {link.label}
             </a>
           </li>
