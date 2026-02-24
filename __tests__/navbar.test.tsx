@@ -2,6 +2,7 @@ import { describe, it, expect, beforeEach } from "vitest";
 import { render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { Navbar } from "@/components/organisms/navbar";
+import { WaitlistProvider } from "@/components/providers/waitlist-provider";
 
 describe("Navbar", () => {
   beforeEach(() => {
@@ -9,13 +10,21 @@ describe("Navbar", () => {
   });
 
   it("renders the IntMoney logo", () => {
-    render(<Navbar />);
+    render(
+      <WaitlistProvider>
+        <Navbar />
+      </WaitlistProvider>
+    );
     const logo = screen.getByAltText("IntMoney");
     expect(logo).toBeInTheDocument();
   });
 
   it("renders desktop navigation links", () => {
-    render(<Navbar />);
+    render(
+      <WaitlistProvider>
+        <Navbar />
+      </WaitlistProvider>
+    );
     // Target the desktop nav — the <header> element contains it
     const header = screen.getByRole("banner");
     const nav = within(header).getByRole("navigation");
@@ -25,13 +34,21 @@ describe("Navbar", () => {
   });
 
   it("renders the Join Waitlist CTA button", () => {
-    render(<Navbar />);
+    render(
+      <WaitlistProvider>
+        <Navbar />
+      </WaitlistProvider>
+    );
     expect(screen.getByText("Join Waitlist")).toBeInTheDocument();
   });
 
   it("toggles mobile menu on hamburger click", async () => {
     const user = userEvent.setup();
-    render(<Navbar />);
+    render(
+      <WaitlistProvider>
+        <Navbar />
+      </WaitlistProvider>
+    );
 
     const toggleButton = screen.getByLabelText("Toggle menu");
     expect(toggleButton).toBeInTheDocument();

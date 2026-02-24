@@ -1,14 +1,19 @@
+"use client";
+
 import { Button } from "@/components/atoms/button";
 import { StatusDot } from "@/components/atoms/status-dot";
 import { GradientText } from "@/components/atoms/gradient-text";
 import { HeroDemo } from "@/components/organisms/hero-demo";
 import { Sparkles } from "lucide-react";
+import { useWaitlist } from "@/components/providers/waitlist-provider";
 
 export function HeroSection() {
+  const { openWaitlist } = useWaitlist();
+
   return (
     <section className="container mx-auto px-4 pt-8 md:pt-16 pb-20 md:pb-28 relative z-10 section-glow">
       <div className="mx-auto max-w-full sm:max-w-[90%] text-center">
-        <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-primary/25 bg-primary/[0.08] backdrop-blur-md px-5 py-2 text-sm text-foreground shadow-lg shadow-primary/5">
+        <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-primary/25 bg-primary/8 backdrop-blur-md px-5 py-2 text-sm text-foreground shadow-lg shadow-primary/5">
           <StatusDot />
           Your AI agent for global payments — Launching on Stellar
         </div>
@@ -26,6 +31,7 @@ export function HeroSection() {
           <Button
             size="lg"
             className="w-full sm:w-auto text-base gap-2 rounded-full px-8 shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 glow-sm"
+            onClick={openWaitlist}
           >
             <Sparkles className="h-5 w-5" />
             Join the Waitlist
@@ -45,7 +51,7 @@ export function HeroSection() {
       </div>
 
       <div className="mx-auto mt-20 max-w-4xl relative">
-        <div className="absolute -inset-10 bg-primary/[0.07] rounded-[40px] blur-[40px] pointer-events-none" />
+        <div className="absolute -inset-10 bg-primary/[0.07] rounded-[40px] blur-2xl pointer-events-none" />
         <div className="relative">
           <HeroDemo />
         </div>

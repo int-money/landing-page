@@ -7,6 +7,7 @@ import { Menu, X, ChevronRight } from "lucide-react";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { ThemeToggle } from "@/components/atoms/theme-toggle";
+import { useWaitlist } from "@/components/providers/waitlist-provider";
 
 const NAV_LINKS = [
   { href: "#features", label: "Features" },
@@ -19,6 +20,8 @@ export function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [hoveredLink, setHoveredLink] = useState("");
   const activeSection = useActiveSection(["features", "how-it-works", "ecosystem"]);
+  const { openWaitlist } = useWaitlist();
+
 
   useEffect(() => {
     const handleScroll = () => {
@@ -123,6 +126,7 @@ export function Navbar() {
               <Button
                 variant="default"
                 className="rounded-full px-5 h-9 shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300 group text-sm"
+                onClick={openWaitlist}
               >
                 <span>Join Waitlist</span>
                 <ChevronRight className="ml-1 h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" />
@@ -199,7 +203,7 @@ export function Navbar() {
           <Button
             size="lg"
             className="rounded-full px-10 py-6 text-lg shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 mt-4"
-            onClick={() => setIsMobileMenuOpen(false)}
+            onClick={() => {setIsMobileMenuOpen(false); openWaitlist(); }}
           >
             Join the Waitlist
             <ChevronRight className="ml-2 h-5 w-5" />

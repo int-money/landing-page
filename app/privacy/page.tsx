@@ -10,8 +10,8 @@ export default function PrivacyPage() {
 
       {/* Decorative background orbs */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute -top-40 -right-40 w-[500px] h-[500px] bg-primary/15 rounded-full blur-[64px] float will-change-transform" />
-        <div className="absolute top-1/4 -left-60 w-[400px] h-[400px] bg-[oklch(0.45_0.2_240_/_0.12)] rounded-full blur-[64px] float-delayed will-change-transform" />
+        <div className="absolute -top-40 -right-40 w-125 h-125 bg-primary/15 rounded-full blur-3xl float will-change-transform" />
+        <div className="absolute top-1/4 -left-60 w-100 h-100 bg-[oklch(0.45_0.2_240_/_0.12)] rounded-full blur-3xl float-delayed will-change-transform" />
       </div>
 
       <Navbar />

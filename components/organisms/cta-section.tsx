@@ -1,8 +1,13 @@
+"use client";
+
 import { Button } from "@/components/atoms/button";
 import { SectionHeader } from "@/components/molecules/section-header";
 import { Sparkles } from "lucide-react";
+import { useWaitlist } from "@/components/providers/waitlist-provider";
 
 export function CtaSection() {
+  const { openWaitlist } = useWaitlist();
+
   return (
     <section className="relative z-10 py-28">
       <div className="absolute inset-0 gradient-mesh opacity-70" />
@@ -23,6 +28,7 @@ export function CtaSection() {
             <Button
               size="lg"
               className="w-full sm:w-auto text-base gap-2 rounded-full px-10 shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 glow-sm"
+              onClick={openWaitlist}
             >
               <Sparkles className="h-5 w-5" />
               Join the Waitlist
