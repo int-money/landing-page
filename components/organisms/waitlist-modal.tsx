@@ -78,7 +78,7 @@ export function WaitlistModal({
       }
 
       setStatus("success");
-    } catch (error) {
+    } catch{
       setStatus("error");
     }
   };
