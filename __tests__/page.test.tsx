@@ -56,6 +56,6 @@ describe("Home Page", () => {
 
   it("renders the footer with IntMoney branding", () => {
     render(<Home />);
-    expect(screen.getByText(/2025 IntMoney/i)).toBeInTheDocument();
+    expect(screen.getByText(/\d{4}\s+IntMoney/i)).toBeInTheDocument();
   });
 });

@@ -1,6 +1,6 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
 import { render, screen, act } from "@testing-library/react";
-import { HeroDemo } from "@/components/hero-demo";
+import { HeroDemo } from "@/components/organisms/hero-demo";
 
 describe("HeroDemo", () => {
   beforeEach(() => {
