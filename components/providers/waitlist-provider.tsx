@@ -1,6 +1,7 @@
 "use client";
 
-import { createContext, useContext, useState, ReactNode } from "react";
+import { createContext, useContext, useState } from "react";
+import type { ReactNode } from "react";
 import { WaitlistModal } from "@/components/organisms/waitlist-modal";
 
 interface WaitlistContextValue {
@@ -9,9 +10,7 @@ interface WaitlistContextValue {
   closeWaitlist: () => void;
 }
 
-const WaitlistContext = createContext<WaitlistContextValue | undefined>(
-  undefined
-);
+const WaitlistContext = createContext<WaitlistContextValue | undefined>(undefined);
 
 interface WaitlistProviderProps {
   children: ReactNode;
@@ -24,9 +23,7 @@ export function WaitlistProvider({ children }: WaitlistProviderProps) {
   const closeWaitlist = () => setOpen(false);
 
   return (
-    <WaitlistContext.Provider
-      value={{ open, openWaitlist, closeWaitlist }}
-    >
+    <WaitlistContext.Provider value={{ open, openWaitlist, closeWaitlist }}>
       {children}
 
       {/* keep modal at top level so any component can trigger it */}

@@ -6,12 +6,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader2, CheckCircle2 } from "lucide-react";
 
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/atoms/dialog";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/atoms/dialog";
 
 type WaitlistFormData = {
   email: string;
@@ -29,14 +24,8 @@ const schema = z.object({
   name: z.string().optional(),
 });
 
-export function WaitlistModal({
-  open,
-  onOpenChange,
-  onSubmit,
-}: WaitlistModalProps) {
-  const [status, setStatus] = useState<
-    "idle" | "submitting" | "success" | "error"
-  >("idle");
+export function WaitlistModal({ open, onOpenChange, onSubmit }: WaitlistModalProps) {
+  const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
 
   const {
     register,
@@ -78,7 +67,7 @@ export function WaitlistModal({
       }
 
       setStatus("success");
-    } catch (error) {
+    } catch {
       setStatus("error");
     }
   };
@@ -88,16 +77,9 @@ export function WaitlistModal({
       <DialogContent className="glass-card max-w-md rounded-2xl p-10">
         {status === "success" ? (
           <div className="flex flex-col items-center justify-center py-10 text-center">
-            <CheckCircle2
-              className="text-primary mb-4 animate-[scaleIn_0.4s_ease-out]"
-              size={64}
-            />
-            <h2 className="text-2xl font-semibold gradient-text">
-              You're on the list!
-            </h2>
-            <p className="mt-2 text-muted-foreground">
-              We'll notify you as soon as we launch.
-            </p>
+            <CheckCircle2 className="text-primary mb-4 animate-[scaleIn_0.4s_ease-out]" size={64} />
+            <h2 className="text-2xl font-semibold gradient-text">You're on the list!</h2>
+            <p className="mt-2 text-muted-foreground">We'll notify you as soon as we launch.</p>
           </div>
         ) : (
           <>
@@ -107,12 +89,7 @@ export function WaitlistModal({
               </DialogTitle>
             </DialogHeader>
 
-            <form
-              onSubmit={handleSubmit(onFormSubmit)}
-              className="mt-6 space-y-4"
-            >
-            
-
+            <form onSubmit={handleSubmit(onFormSubmit)} className="mt-6 space-y-4">
               <div className="flex flex-col space-y-1">
                 <label htmlFor="email" className="text-sm font-bold mb-5">
                   Email (Required)<span className="text-red-500">*</span>
@@ -130,13 +107,11 @@ export function WaitlistModal({
                   }`}
                 />
                 {errors.email && (
-                  <span className="text-xs text-red-500">
-                    {errors.email.message}
-                  </span>
+                  <span className="text-xs text-red-500">{errors.email.message}</span>
                 )}
               </div>
 
-                <div className="flex flex-col space-y-1">
+              <div className="flex flex-col space-y-1">
                 <label htmlFor="name" className="text-sm font-bold mb-5">
                   Name (optional)
                 </label>
