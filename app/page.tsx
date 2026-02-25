@@ -1,21 +1,16 @@
-import { Card } from "@/components/ui/card";
-import { Navbar } from "@/components/navbar";
-import { Button } from "@/components/ui/button";
-import { HeroDemo } from "@/components/hero-demo";
+import { LandingLayout } from "@/components/templates/landing-layout";
+import { Navbar } from "@/components/organisms/navbar";
+import { HeroSection } from "@/components/organisms/hero-section";
+import { FeaturesGrid } from "@/components/organisms/features-grid";
 import { SkipToContent } from "@/components/skip-to-content";
-import {
-  Zap,
-  Globe,
-  Shield,
-  Sparkles,
-  Brain,
-  MessageSquareText,
-  CheckCircle2,
-} from "lucide-react";
-import Image from "next/image";
+import { HowItWorks } from "@/components/organisms/how-it-works";
+import { Ecosystem } from "@/components/organisms/ecosystem";
+import { CtaSection } from "@/components/organisms/cta-section";
+import { Footer } from "@/components/organisms/footer";
 
 export default function Home() {
   return (
+    <LandingLayout>
     <div className="min-h-screen bg-background relative overflow-hidden">
       <SkipToContent />
       
@@ -32,6 +27,13 @@ export default function Home() {
 
       {/* Modern Navbar */}
       <Navbar />
+      <HeroSection />
+      <FeaturesGrid />
+      <HowItWorks />
+      <Ecosystem />
+      <CtaSection />
+      <Footer />
+    </LandingLayout>
 
       {/* Hero Section */}
       <section id="main-content" className="container mx-auto px-4 pt-8 md:pt-16 pb-20 md:pb-28 relative z-10 section-glow" aria-label="Hero">
@@ -536,3 +538,4 @@ export default function Home() {
     </div>
   );
 }
+
