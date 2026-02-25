@@ -84,15 +84,8 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${inter.variable} ${geist.variable} font-body antialiased`}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="dark"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <WaitlistProvider>
-            {children}
-          </WaitlistProvider>
+        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
+          <WaitlistProvider>{children}</WaitlistProvider>
         </ThemeProvider>
         <Analytics />
         <script

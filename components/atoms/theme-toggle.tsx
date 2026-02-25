@@ -1,63 +1,87 @@
 "use client";
 
-import { Moon, Sun } from "lucide-react";
-import { useTheme } from "next-themes";
-import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { cva, type VariantProps } from "class-variance-authority";
+import { Monitor, Moon, Sun } from "lucide-react";
+import { useTheme } from "next-themes";
+import { useEffect, useState } from "react";
 
-export function ThemeToggle() {
+const ThemeToggleButtonVariants = cva(
+  "rounded-full aspect-square shadow-lg hover:shadow-xl transition-all duration-300 p-4 box-border relative",
+  {
+    variants: {
+      size: {
+        sm: "h-5",
+        md: "h-10",
+        lg: "h-15",
+      },
+    },
+
+    defaultVariants: {
+      size: "sm",
+    },
+  }
+);
+
+type IThemeToggleProp = {
+  className?: React.ComponentProps<"button">["className"];
+} & VariantProps<typeof ThemeToggleButtonVariants>;
+
+export default function ThemeToggle({ className, size }: IThemeToggleProp) {
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
-  // Prevent hydration mismatch
+  // Avoid hydration mismatch by only rendering icons after mount
   useEffect(() => {
     setMounted(true);
   }, []);
 
+  const handleToggleButton = () => {
+    if (theme === "light") setTheme("dark");
+    else if (theme === "dark") setTheme("system");
+    else setTheme("light");
+  };
+
   if (!mounted) {
     return (
-      <Button
-        variant="ghost"
-        size="icon-sm"
-        className="rounded-full"
-        aria-label="Toggle theme"
-        disabled
-      >
-        <Sun className="h-4 w-4" aria-hidden="true" />
-      </Button>
+      <div
+        className={`${ThemeToggleButtonVariants({ size })} aspect-square block bg-gray-500 animate-pulse`}
+      />
     );
   }
 
-  const toggleTheme = () => {
-    setTheme(theme === "dark" ? "light" : "dark");
-  };
-
   return (
     <Button
-      variant="ghost"
-      size="icon-sm"
-      onClick={toggleTheme}
-      className="rounded-full relative"
-      aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
+      onClick={handleToggleButton}
+      className={cn(ThemeToggleButtonVariants({ size, className }))}
+      aria-label="Toggle theme"
+      variant={"ghost"}
     >
+      {/* Sun Icon: Visible in Light mode */}
       <Sun
         className={cn(
-          "h-4 w-4 absolute transition-all duration-300 motion-reduce:transition-none",
-          theme === "dark"
-            ? "rotate-90 scale-0 opacity-0"
-            : "rotate-0 scale-100 opacity-100"
+          "h-full! w-full! transition-all! duration-300! transform! absolute!",
+          theme === "light" ? "scale-80! rotate-0! opacity-100!" : "scale-0! rotate-90! opacity-0!"
         )}
-        aria-hidden="true"
       />
+
+      {/* Moon Icon: Visible in Dark mode */}
       <Moon
         className={cn(
-          "h-4 w-4 absolute transition-all duration-300 motion-reduce:transition-none",
-          theme === "dark"
-            ? "rotate-0 scale-100 opacity-100"
-            : "-rotate-90 scale-0 opacity-0"
+          "h-full! w-full! transition-all! duration-300! transform! absolute!",
+          theme === "dark" ? "scale-80! rotate-0! opacity-100!" : "scale-0! -rotate-90! opacity-0!"
         )}
-        aria-hidden="true"
+      />
+
+      {/* Monitor Icon: Visible in System mode */}
+      <Monitor
+        className={cn(
+          "h-full! w-full! transition-all! duration-300! transform! absolute!",
+          theme === "system"
+            ? "scale-70! rotate-0! opacity-100!"
+            : "scale-0! rotate-180! opacity-0!"
+        )}
       />
     </Button>
   );
