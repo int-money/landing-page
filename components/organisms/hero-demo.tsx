@@ -149,16 +149,6 @@ export function HeroDemo() {
   return (
     <div className={cn("transition-opacity duration-500", isFading ? "opacity-0" : "opacity-100")}>
       <Card className="overflow-hidden border border-border/50 rounded-2xl bg-card shadow-2xl shadow-primary/10">
-    <div
-      className={cn(
-        "transition-opacity duration-500 motion-reduce:transition-none",
-        isFading ? "opacity-0" : "opacity-100"
-      )}
-      aria-live="polite"
-      aria-atomic="true"
-      aria-label="IntMoney agent demonstration"
-    >
-      <Card className="overflow-hidden border border-border/50 rounded-2xl bg-card shadow-xl shadow-primary/5">
         {/* Terminal-style top bar */}
         <div className="flex items-center justify-between px-5 py-3.5 bg-background border-b border-border/50">
           <div className="flex items-center gap-3">
@@ -168,7 +158,7 @@ export function HeroDemo() {
               <div className="h-3 w-3 rounded-full bg-muted/30" />
             </div>
             <div className="flex items-center gap-2 ml-2">
-              <Sparkles className="h-3.5 w-3.5 text-primary" aria-hidden="true" />
+              <Sparkles className="h-3.5 w-3.5 text-primary" />
               <span className="text-xs font-medium text-muted-foreground">IntMoney Agent</span>
             </div>
           </div>
@@ -189,7 +179,7 @@ export function HeroDemo() {
         >
           <div
             className={cn(
-              "rounded-xl border border-border/50 bg-muted/20 p-4 transition-all duration-300 motion-reduce:transition-none shrink-0",
+              "rounded-xl border border-border/50 bg-muted/20 p-4 transition-all duration-300 shrink-0",
               showInput ? "border-primary/30 bg-primary/[0.03]" : ""
             )}
             role="region"
@@ -252,7 +242,7 @@ export function HeroDemo() {
                   {scene.reasoningSteps.map((step, i) =>
                     i < visibleSteps ? (
                       <div key={i} className="flex items-center gap-3 py-2 px-1 chat-slide-in">
-                        <span className="step-check-pop inline-flex" aria-hidden="true">
+                        <span className="step-check-pop inline-flex">
                           <div className="flex h-5 w-5 items-center justify-center rounded-full bg-green-500/15">
                             <Check className="h-3 w-3 text-green-400" />
                           </div>
@@ -327,7 +317,7 @@ export function HeroDemo() {
                 aria-selected={i === sceneIndex}
                 aria-label={`Scene ${i + 1}`}
                 className={cn(
-                  "h-1 rounded-full transition-all duration-500 motion-reduce:transition-none",
+                  "h-1 rounded-full transition-all duration-500",
                   i === sceneIndex ? "w-4 bg-primary" : "w-1 bg-muted/40"
                 )}
               />

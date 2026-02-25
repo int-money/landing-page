@@ -68,7 +68,7 @@ export function Navbar() {
     <>
       <header
         className={cn(
-          "fixed top-0 left-0 right-0 z-50 transition-all duration-500 flex justify-center motion-reduce:transition-none",
+          "fixed top-0 left-0 right-0 z-50 transition-all duration-500 flex justify-center",
           isScrolled ? "py-3" : "py-5"
         )}
       >
@@ -82,22 +82,10 @@ export function Navbar() {
                 : "border-border/30 bg-background/50 backdrop-blur-xl"
             )}
           >
+            {/* Logo */}
             <a href="#" className="flex items-center gap-2 group pl-2 pr-3">
               <Image src="/icon.svg" alt="IntMoney" width={36} height={36} className="rounded-lg" />
               <span className="text-base font-bold tracking-tight hidden sm:inline">IntMoney</span>
-            {/* Logo */}
-            <a href="#" className="flex items-center gap-2 group pl-2 pr-3" aria-label="IntMoney home">
-              <Image
-                src="/icon.svg"
-                alt=""
-                width={36}
-                height={36}
-                className="rounded-lg"
-                aria-hidden="true"
-              />
-              <span className="text-base font-bold tracking-tight hidden sm:inline">
-                IntMoney
-              </span>
             </a>
 
             <div className="hidden md:block w-px h-6 bg-border/50" aria-hidden="true" />
@@ -115,7 +103,7 @@ export function Navbar() {
                       onMouseLeave={() => setHoveredLink("")}
                       aria-current={isActive ? "page" : undefined}
                       className={cn(
-                        "relative px-4 py-2 text-sm font-medium transition-all duration-300 rounded-full motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
+                        "relative px-4 py-2 text-sm font-medium transition-all duration-300 rounded-full",
                         isActive || isHovered
                           ? "text-foreground"
                           : "text-muted-foreground hover:text-foreground"
@@ -171,7 +159,7 @@ export function Navbar() {
                 className={cn(
                   "h-4 w-4 absolute transition-all duration-300 motion-reduce:transition-none",
                   isMobileMenuOpen
-                    ? "opacity-0 rotate-90 scale-0 motion-reduce:hidden"
+                    ? "opacity-0 rotate-90 scale-0"
                     : "opacity-100 rotate-0 scale-100"
                 )}
                 aria-hidden="true"
@@ -181,7 +169,7 @@ export function Navbar() {
                   "h-4 w-4 absolute transition-all duration-300 motion-reduce:transition-none",
                   isMobileMenuOpen
                     ? "opacity-100 rotate-0 scale-100"
-                    : "opacity-0 -rotate-90 scale-0 motion-reduce:hidden"
+                    : "opacity-0 -rotate-90 scale-0"
                 )}
                 aria-hidden="true"
               />
@@ -197,14 +185,14 @@ export function Navbar() {
         aria-modal="true"
         aria-label="Mobile navigation menu"
         className={cn(
-          "fixed inset-0 z-40 bg-background/90 backdrop-blur-2xl transition-all duration-500 motion-reduce:transition-none md:hidden",
+          "fixed inset-0 z-40 bg-background/90 backdrop-blur-2xl transition-all duration-500 md:hidden",
           isMobileMenuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
         )}
       >
         <div
           className={cn(
-            "flex flex-col items-center justify-center min-h-screen gap-8 p-8 transition-all duration-500 motion-reduce:transition-none delay-100",
-            isMobileMenuOpen ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-8 motion-reduce:translate-y-0"
+            "flex flex-col items-center justify-center min-h-screen gap-8 p-8 transition-all duration-500 delay-100",
+            isMobileMenuOpen ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-8"
           )}
         >
           <nav className="flex flex-col items-center gap-6" aria-label="Mobile navigation">

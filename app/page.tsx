@@ -1,12 +1,9 @@
-import { LandingLayout } from "@/components/templates/landing-layout";
-import { Navbar } from "@/components/organisms/navbar";
-import { HeroSection } from "@/components/organisms/hero-section";
-import { FeaturesGrid } from "@/components/organisms/features-grid";
-import { SkipToContent } from "@/components/skip-to-content";
-import { HowItWorks } from "@/components/organisms/how-it-works";
-import { Ecosystem } from "@/components/organisms/ecosystem";
-import { CtaSection } from "@/components/organisms/cta-section";
-import { Footer } from "@/components/organisms/footer";
+import { Card } from "@/components/ui/card";
+import { Navbar } from "@/components/navbar";
+import { Button } from "@/components/ui/button";
+import { HeroDemo } from "@/components/hero-demo";
+import { Zap, Globe, Shield, Sparkles, Brain, MessageSquareText, CheckCircle2 } from "lucide-react";
+import Image from "next/image";
 
 export default function Home() {
   return (
@@ -92,19 +89,14 @@ export default function Home() {
       </section>
 
       {/* Features Bento Grid */}
-      <section
-        id="features"
-        className="container mx-auto px-4 py-24 relative z-10 section-glow"
-        aria-labelledby="features-heading"
-      >
+      <section id="features" className="container mx-auto px-4 py-24 relative z-10 section-glow">
         <div className="mb-16 text-center">
           <div className="inline-flex items-center gap-2 rounded-full bg-primary/10 px-4 py-1.5 text-sm font-medium text-primary mb-4">
             <Sparkles className="h-4 w-4" aria-hidden="true" />
             Features
           </div>
-          <h2 id="features-heading" className="mb-4 text-balance text-3xl font-bold md:text-5xl text-glow">
-            Your agent works{" "}
-            <span className="gradient-text">while you don&apos;t</span>
+          <h2 className="mb-4 text-balance text-3xl font-bold md:text-5xl text-glow">
+            Your agent works <span className="gradient-text">while you don&apos;t</span>
           </h2>
           <p className="mx-auto max-w-2xl text-pretty text-lg text-muted-foreground">
             An intelligent agent that understands, plans, and executes your
@@ -207,9 +199,8 @@ export default function Home() {
               <Zap className="h-4 w-4" aria-hidden="true" />
               How It Works
             </div>
-            <h2 id="how-it-works-heading" className="mb-4 text-balance text-3xl font-bold md:text-5xl text-glow">
-              From words to{" "}
-              <span className="gradient-text">money moved</span>
+            <h2 className="mb-4 text-balance text-3xl font-bold md:text-5xl text-glow">
+              From words to <span className="gradient-text">money moved</span>
             </h2>
             <p className="mx-auto max-w-2xl text-pretty text-lg text-muted-foreground">
               Three steps. Your agent handles the complexity in between.
@@ -265,19 +256,14 @@ export default function Home() {
       </section>
 
       {/* Ecosystem Section */}
-      <section
-        id="ecosystem"
-        className="container mx-auto px-4 py-24 relative z-10 section-glow"
-        aria-labelledby="ecosystem-heading"
-      >
+      <section id="ecosystem" className="container mx-auto px-4 py-24 relative z-10 section-glow">
         <div className="mb-16 text-center">
           <div className="inline-flex items-center gap-2 rounded-full bg-primary/10 px-4 py-1.5 text-sm font-medium text-primary mb-4">
             <Globe className="h-4 w-4" aria-hidden="true" />
             Ecosystem
           </div>
-          <h2 id="ecosystem-heading" className="mb-4 text-balance text-3xl font-bold md:text-5xl text-glow">
-            Part of the{" "}
-            <span className="gradient-text">Stellar Ecosystem</span>
+          <h2 className="mb-4 text-balance text-3xl font-bold md:text-5xl text-glow">
+            Part of the <span className="gradient-text">Stellar Ecosystem</span>
           </h2>
           <p className="mx-auto max-w-2xl text-pretty text-lg text-muted-foreground">
             Your agent leverages the full power of Stellar&apos;s network to
@@ -350,9 +336,8 @@ export default function Home() {
               <Sparkles className="h-4 w-4" aria-hidden="true" />
               Early Access
             </div>
-            <h2 id="cta-heading" className="mb-6 text-balance text-4xl font-bold md:text-6xl text-glow">
-              Ready to meet your{" "}
-              <span className="gradient-text">financial agent?</span>
+            <h2 className="mb-6 text-balance text-4xl font-bold md:text-6xl text-glow">
+              Ready to meet your <span className="gradient-text">financial agent?</span>
             </h2>
             <p className="mx-auto max-w-xl mb-10 text-pretty text-lg text-muted-foreground">
               Join 2,000+ early adopters on the waitlist. Be among the first to
@@ -411,127 +396,86 @@ export default function Home() {
               <h4 className="mb-5 text-sm font-bold uppercase tracking-wider text-foreground/70">
                 Product
               </h4>
-              <nav aria-label="Product links">
-                <ul className="space-y-3 text-sm text-muted-foreground">
-                  <li>
-                    <a
-                      href="#features"
-                      className="hover:text-primary transition-colors duration-200 motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded"
-                    >
-                      Features
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="#how-it-works"
-                      className="hover:text-primary transition-colors duration-200 motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded"
-                    >
-                      How It Works
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="#"
-                      className="hover:text-primary transition-colors duration-200 motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded"
-                    >
-                      Security
-                    </a>
-                  </li>
-                </ul>
-              </nav>
+              <ul className="space-y-3 text-sm text-muted-foreground">
+                <li>
+                  <a href="#features" className="hover:text-primary transition-colors duration-200">
+                    Features
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#how-it-works"
+                    className="hover:text-primary transition-colors duration-200"
+                  >
+                    How It Works
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:text-primary transition-colors duration-200">
+                    Security
+                  </a>
+                </li>
+              </ul>
             </div>
 
             <div>
               <h4 className="mb-5 text-sm font-bold uppercase tracking-wider text-foreground/70">
                 Developers
               </h4>
-              <nav aria-label="Developer links">
-                <ul className="space-y-3 text-sm text-muted-foreground">
-                  <li>
-                    <a
-                      href="#"
-                      className="hover:text-primary transition-colors duration-200 motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded"
-                    >
-                      Documentation
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="#"
-                      className="hover:text-primary transition-colors duration-200 motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded"
-                    >
-                      API
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="#"
-                      className="hover:text-primary transition-colors duration-200 motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded"
-                    >
-                      GitHub
-                    </a>
-                  </li>
-                </ul>
-              </nav>
+              <ul className="space-y-3 text-sm text-muted-foreground">
+                <li>
+                  <a href="#" className="hover:text-primary transition-colors duration-200">
+                    Documentation
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:text-primary transition-colors duration-200">
+                    API
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:text-primary transition-colors duration-200">
+                    GitHub
+                  </a>
+                </li>
+              </ul>
             </div>
 
             <div>
               <h4 className="mb-5 text-sm font-bold uppercase tracking-wider text-foreground/70">
                 Company
               </h4>
-              <nav aria-label="Company links">
-                <ul className="space-y-3 text-sm text-muted-foreground">
-                  <li>
-                    <a
-                      href="#"
-                      className="hover:text-primary transition-colors duration-200 motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded"
-                    >
-                      About
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="#"
-                      className="hover:text-primary transition-colors duration-200 motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded"
-                    >
-                      Blog
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="#"
-                      className="hover:text-primary transition-colors duration-200 motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded"
-                    >
-                      Contact
-                    </a>
-                  </li>
-                </ul>
-              </nav>
+              <ul className="space-y-3 text-sm text-muted-foreground">
+                <li>
+                  <a href="#" className="hover:text-primary transition-colors duration-200">
+                    About
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:text-primary transition-colors duration-200">
+                    Blog
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:text-primary transition-colors duration-200">
+                    Contact
+                  </a>
+                </li>
+              </ul>
             </div>
           </div>
 
           <div className="mt-14 pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-muted-foreground">
-            <div className="h-[1px] w-full bg-gradient-to-r from-transparent via-border/50 to-transparent absolute left-0 right-0" aria-hidden="true" />
-            <p>
-              &copy; 2025 IntMoney. Your personal AI agent for cross-border
-              payments.
-            </p>
-            <nav aria-label="Legal links">
-              <div className="flex items-center gap-6">
-                <a
-                  href="#"
-                  className="hover:text-primary transition-colors duration-200 motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded"
-                >
-                  Privacy
-                </a>
-                <a
-                  href="#"
-                  className="hover:text-primary transition-colors duration-200 motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded"
-                >
-                  Terms
-                </a>
-              </div>
-            </nav>
+            <div className="h-[1px] w-full bg-gradient-to-r from-transparent via-border/50 to-transparent absolute left-0 right-0" />
+            <p>&copy; 2025 IntMoney. Your personal AI agent for cross-border payments.</p>
+            <div className="flex items-center gap-6">
+              <a href="#" className="hover:text-primary transition-colors duration-200">
+                Privacy
+              </a>
+              <a href="#" className="hover:text-primary transition-colors duration-200">
+                Terms
+              </a>
+            </div>
           </div>
         </div>
       </footer>
