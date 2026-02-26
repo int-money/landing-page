@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback, useRef } from "react";
-import { Card } from "@/components/ui/card";
+import { Card } from "@/components/atoms/card";
 import { Sparkles, Check, ArrowRight, CircleDot, Send, RotateCw } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -77,7 +77,6 @@ export function HeroDemo() {
     [clearAllTimeouts]
   );
 
-  // Auto-scroll to bottom when content changes
   useEffect(() => {
     if (scrollRef.current) {
       scrollRef.current.scrollTo({
@@ -87,14 +86,12 @@ export function HeroDemo() {
     }
   }, [phase, visibleSteps]);
 
-  // Start scene
   useEffect(() => {
     setTypedChars(0);
     scheduleNext(() => setPhase("typing"), 500);
     return () => clearAllTimeouts();
   }, [sceneIndex]);
 
-  // Typewriter effect
   useEffect(() => {
     if (phase !== "typing") return;
     if (typedChars < scene.userMessage.length) {
@@ -104,7 +101,6 @@ export function HeroDemo() {
     }
   }, [phase, typedChars]);
 
-  // Phase transitions
   useEffect(() => {
     switch (phase) {
       case "user":
@@ -135,7 +131,6 @@ export function HeroDemo() {
     }
   }, [phase]);
 
-  // Reasoning steps one by one
   useEffect(() => {
     if (phase !== "reasoning") return;
     if (visibleSteps < scene.reasoningSteps.length) {
@@ -154,7 +149,6 @@ export function HeroDemo() {
   return (
     <div className={cn("transition-opacity duration-500", isFading ? "opacity-0" : "opacity-100")}>
       <Card className="overflow-hidden border border-border/50 rounded-2xl bg-card shadow-2xl shadow-primary/10">
-        {/* Terminal-style top bar */}
         <div className="flex items-center justify-between px-5 py-3.5 bg-background border-b border-border/50">
           <div className="flex items-center gap-3">
             <div className="flex gap-1.5">
@@ -178,12 +172,10 @@ export function HeroDemo() {
           </div>
         </div>
 
-        {/* Main content — fixed height, scrolls internally */}
         <div
           ref={scrollRef}
-          className="p-5 md:p-6 space-y-5 h-[400px] overflow-y-auto scrollbar-hide"
+          className="p-3 sm:p-5 md:p-6 space-y-5 h-[340px] sm:h-[400px] overflow-y-auto scrollbar-hide"
         >
-          {/* Command input area */}
           <div
             className={cn(
               "rounded-xl border border-border/50 bg-muted/20 p-4 transition-all duration-300 shrink-0",
@@ -220,9 +212,7 @@ export function HeroDemo() {
             </div>
           </div>
 
-          {/* Agent processing area */}
           <div className="flex flex-col gap-4">
-            {/* Thinking state */}
             {showThinking && (
               <div className="flex items-center gap-3 chat-slide-in px-1">
                 <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-primary/10">
@@ -239,7 +229,6 @@ export function HeroDemo() {
               </div>
             )}
 
-            {/* Reasoning trace */}
             {showReasoning && (
               <div className="rounded-xl border border-border/40 bg-muted/10 overflow-hidden">
                 <div className="px-4 py-2.5 border-b border-border/40 flex items-center gap-2">
@@ -265,7 +254,6 @@ export function HeroDemo() {
               </div>
             )}
 
-            {/* Agent response */}
             {showResponse && (
               <div className="rounded-xl border border-primary/20 bg-primary/[0.05] p-4 chat-slide-in">
                 <div className="flex items-start gap-3">
@@ -284,7 +272,6 @@ export function HeroDemo() {
               </div>
             )}
 
-            {/* Status badge */}
             {showStatus && (
               <div className="flex justify-center pt-1 chat-slide-in">
                 <div
@@ -315,7 +302,6 @@ export function HeroDemo() {
           </div>
         </div>
 
-        {/* Bottom bar with scene indicators */}
         <div className="px-5 py-3 bg-background border-t border-border/40 flex items-center justify-between">
           <p className="text-[10px] text-muted-foreground/40 font-medium">
             <Sparkles className="h-3 w-3 text-primary/40 inline mr-1 align-middle" />

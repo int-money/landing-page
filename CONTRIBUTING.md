@@ -1,59 +1,117 @@
-# Contributing to IntMoney
+# Contributing to IntMoney Landing Page
 
-First off, thank you for considering contributing to IntMoney! We welcome contributions from everyone and abide by our [Code of Conduct](CODE_OF_CONDUCT.md). Please read these guidelines to ensure a smooth collaboration.
+First off, thank you for taking the time to contribute! 🎉
 
-## Fork & Branch Workflow
+This document provides detailed guidelines for contributing to the IntMoney landing page. Please read it carefully — these rules are **non-negotiable** for all contributions.
 
-1. Fork the repository to your own GitHub account
-2. Clone your fork locally
-3. Create a feature branch from main: `git checkout -b feat/issue-number-short-description`
-4. Make your changes
-5. Push to your fork
-6. Open a Pull Request against `int-money/landing-page:main`
+## Table of Contents
 
-## Commit Standards (Conventional Commits)
+- [Before You Start](#before-you-start)
+- [Development Workflow](#development-workflow)
+- [Commit Standards](#commit-standards)
+- [Code Structure](#code-structure)
+- [Screen Recordings](#screen-recordings-required)
+- [Git Hooks](#git-hooks-husky--lint-staged)
+- [PR Checklist](#pr-checklist)
+- [Issues & Labels](#issues--labels)
 
-All commits must follow the [Conventional Commits](https://www.conventionalcommits.org/) specification:
+---
+
+## Before You Start
+
+### Non-Negotiable Rules ⚠️
+
+**These rules must be followed. PRs that violate them will not be reviewed.**
+
+1. **Screen recording required** for every PR with UI changes
+2. **Conventional Commits** for all commit messages
+3. **Atomic commits** — one logical change per commit
+4. **No barrel exports** — use direct file imports
+5. **Atomic Design structure** — place components in the correct hierarchy
+
+---
+
+## Development Workflow
+
+### 1. Fork the Repository
+
+Click the **Fork** button at github.com/int-money/landing-page to create your own copy.
+
+### 2. Clone Your Fork
+
+```bash
+git clone https://github.com/YOUR_USERNAME/landing-page.git
+cd landing-page
+```
+
+### 3. Create a Feature Branch
+
+```bash
+git checkout -b feat/issue-number-short-description
+```
+
+---
+
+## Commit Standards
+
+All commits **must** follow the Conventional Commits specification:
 
 ```
-<type>(<scope>): <short description> [optional body] [optional footer]
+<type>(<scope>): <description>
 ```
 
-**Types**: `feat`, `fix`, `docs`, `style`, `refactor`, `test`, `chore`, `perf`, `ci`
+**Types:** `feat`, `fix`, `docs`, `style`, `refactor`, `test`, `chore`, `perf`, `ci`
 
-**Examples**:
-- `feat(waitlist): add email validation to waitlist modal`
-- `fix(navbar): resolve mobile menu focus trap`
-- `refactor(atoms): extract SectionBadge from inline JSX`
-- `docs: update README with project structure`
-- `chore: remove unused radix-ui dependencies`
+Each commit must represent **one logical change**.
 
-## Atomic Commits
+---
 
-- Each commit should represent one logical change — do not bundle unrelated changes.
-- If you're extracting a component AND fixing a bug, those are two separate commits.
-- Commits should build and pass lint individually (no "WIP" or "fixup" commits in the final PR).
-- Use interactive rebase (`git rebase -i`) to clean up your history before submitting a PR.
+## Code Structure
 
-## Screen Recording Requirement
+This project strictly follows **Atomic Design principles**.
 
-- **Every PR that changes UI must include a screen recording** demonstrating the feature or fix.
-- Record your screen showing the before/after (for fixes) or a full walkthrough (for new features).
-- Upload the recording directly to the PR description or as a comment.
-- Acceptable formats: `.mp4`, `.mov`, `.gif`, or a Loom/YouTube link.
-- This helps reviewers verify visual correctness without pulling the branch locally.
+- `components/atoms/`
+- `components/molecules/`
+- `components/organisms/`
+- `components/templates/`
+- `components/providers/`
+- `components/ui/` (do not modify shadcn components)
+
+### Import Rules
+
+❌ Do NOT use barrel exports (`index.ts`).
+
+✅ Always import directly:
+
+```ts
+import { Button } from "@/components/atoms/button";
+```
+
+---
+
+## Screen Recordings (Required)
+
+Every PR that includes UI changes **must include a screen recording**.
+
+Accepted formats:
+
+- `.mp4`
+- `.mov`
+- `.gif`
+- Loom link
+
+PRs without recordings for UI changes will not be reviewed.
+
+---
 
 ## Local Setup
-
-The project uses Next.js 16, TypeScript, Tailwind CSS 4, and shadcn/ui.
-We also follow [Atomic Design principles](https://atomicdesign.bradfrost.com/) (atoms → molecules → organisms → templates → pages).
 
 ```bash
 # Clone your fork
 git clone https://github.com/YOUR_USERNAME/landing-page.git
 cd landing-page
 
-# Install dependencies (we use pnpm)
+# Install dependencies
 pnpm install
 
 # Copy environment variables
@@ -63,12 +121,82 @@ cp .env.example .env.local
 pnpm dev
 ```
 
-## PR Review Process
+---
 
-1. Ensure all CI checks pass (lint, type-check, build).
-2. Self-review your diff before requesting review.
-3. Link the issue being addressed in the PR description.
-4. **Include a screen recording (mandatory for UI changes).**
-5. Respond to review feedback promptly.
+## Git Hooks (Husky + lint-staged)
 
-> **Note**: These contribution guidelines are non-negotiable. PRs that do not follow them (e.g., missing conventional commits or missing a required screen recording) will not be reviewed.
+This project uses **Husky** and **lint-staged** to enforce code quality locally before code is committed or pushed.
+
+Hooks are automatically installed after running:
+
+```bash
+pnpm install
+```
+
+### What Runs Automatically?
+
+### ✅ Pre-commit (Fast)
+
+Runs only on staged files:
+
+- ESLint with `--fix` on `.ts` and `.tsx` files
+- Prettier with `--write` on staged files
+
+This ensures formatting and lint issues are fixed before the commit is created.
+
+### ✅ Pre-push (Strict)
+
+Runs on the entire project:
+
+- Full TypeScript type-check: `pnpm tsc --noEmit`
+- Full lint run: `pnpm lint`
+
+If any errors are found, the push is blocked.
+
+---
+
+### Emergency Bypass (Use Sparingly)
+
+In rare emergency situations, hooks can be bypassed using:
+
+```bash
+git commit --no-verify
+git push --no-verify
+```
+
+⚠ This is strongly discouraged. Code that bypasses hooks may fail CI and will likely be rejected during review.
+
+---
+
+### Why We Enforce This
+
+- Faster feedback than CI
+- Prevents broken branches
+- Saves CI minutes
+- Keeps `main` clean and stable
+
+---
+
+## PR Checklist
+
+Before submitting your PR, ensure:
+
+- [ ] `pnpm lint` passes
+- [ ] `pnpm build` succeeds
+- [ ] Commits follow Conventional Commits
+- [ ] Each commit is atomic
+- [ ] No `WIP` commits
+- [ ] Issue linked (e.g., `Closes #18`)
+- [ ] Screen recording attached (for UI changes)
+
+---
+
+## Questions?
+
+If you have questions:
+
+- Comment on the issue
+- Open a discussion
+- Check existing PRs for patterns
+
+Thank you for contributing! 🚀

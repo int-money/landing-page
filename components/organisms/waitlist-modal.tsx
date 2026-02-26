@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { useWaitlist } from "@/components/providers/waitlist-provider";
@@ -39,21 +40,11 @@ export function WaitlistModal() {
     handleSubmit,
     formState: { errors },
     reset,
-  } = useForm({
+  } = useForm<WaitlistFormValues>({
+    resolver: zodResolver(waitlistSchema),
     defaultValues: {
       name: "",
       email: "",
-    },
-    // Adding custom resolver for zod
-    validate: (values) => {
-      try {
-        waitlistSchema.parse(values);
-        return false;
-      } catch (err) {
-        if (err instanceof z.ZodError) {
-          return err.formErrors.fieldErrors;
-        }
-      }
     },
   });
 
@@ -164,7 +155,7 @@ export function WaitlistModal() {
                 {errors.email && (
                   <p className="text-red-500 text-xs font-medium mt-1 flex items-center gap-1">
                     <AlertCircle className="w-3 h-3" />
-                    {errors.email as string}
+                    {errors.email.message}
                   </p>
                 )}
               </div>

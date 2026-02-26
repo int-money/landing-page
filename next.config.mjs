@@ -1,7 +1,7 @@
-/* global process */
 import bundleAnalyzer from "@next/bundle-analyzer";
 
 const withBundleAnalyzer = bundleAnalyzer({
+  // eslint-disable-next-line no-undef
   enabled: process.env.ANALYZE === "true",
 });
 
