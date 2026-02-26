@@ -21,23 +21,23 @@ interface AnimateOnScrollProps {
 
 // ─── Translate offsets per direction ─────────────────────────────────────────
 const TRANSLATE: Record<NonNullable<AnimateOnScrollProps["direction"]>, string> = {
-  up:    "translateY(24px)",
-  down:  "translateY(-24px)",
-  left:  "translateX(24px)",
+  up: "translateY(24px)",
+  down: "translateY(-24px)",
+  left: "translateX(24px)",
   right: "translateX(-24px)",
 };
 
 // ─── Component ────────────────────────────────────────────────────────────────
 export function AnimateOnScroll({
   children,
-  delay     = 0,
+  delay = 0,
   direction = "up",
-  duration  = 400,
+  duration = 400,
   threshold = 0.1,
-  once      = true,
+  once = true,
   className = "",
 }: AnimateOnScrollProps) {
-  const ref        = useRef<HTMLDivElement>(null);
+  const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
   const [prefersReduced, setPrefersReduced] = useState(false);
 
@@ -90,12 +90,12 @@ export function AnimateOnScroll({
   const style: React.CSSProperties = prefersReduced
     ? {}
     : {
-        opacity:          visible ? 1 : 0,
-        transform:        visible ? "translate(0, 0)" : TRANSLATE[direction],
-        transition:       `opacity ${duration}ms ease, transform ${duration}ms ease`,
-        transitionDelay:  `${delay}ms`,
+        opacity: visible ? 1 : 0,
+        transform: visible ? "translate(0, 0)" : TRANSLATE[direction],
+        transition: `opacity ${duration}ms ease, transform ${duration}ms ease`,
+        transitionDelay: `${delay}ms`,
         // Prevents CLS by reserving paint layer upfront
-        willChange:       "transform, opacity",
+        willChange: "transform, opacity",
       };
 
   return (
