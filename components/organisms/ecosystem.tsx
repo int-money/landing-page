@@ -14,7 +14,7 @@ export function Ecosystem() {
             Part of the <span className="gradient-text">Stellar Ecosystem</span>
           </>
         }
-        subtitle="Your agent leverages the full power of Stellar&apos;s network to move your money faster,
+        subtitle="Your agent leverages the full power of Stellar's network to move your money faster,
             cheaper, and smarter"
       />
 
@@ -24,12 +24,12 @@ export function Ecosystem() {
             <EcosystemItem
               icon={<Zap className="h-7 w-7 text-primary" />}
               title="Agent + Stellar = Instant Payments"
-              description="Your AI agent and Stellar&apos;s payment-optimized network work together to deliver near-instant, low-cost cross-border transactions that feel effortless."
+              description="Your AI agent and Stellar's payment-optimized network work together to deliver near-instant, low-cost cross-border transactions that feel effortless."
             />
             <EcosystemItem
               icon={<Shield className="h-7 w-7 text-primary" />}
               title="Security Your Agent Enforces"
-              description="Stellar&apos;s decentralized, battle-tested network combined with your agent&apos;s transaction verification ensures every payment is safe, authenticated, and accounted for."
+              description="Stellar's decentralized, battle-tested network combined with your agent's transaction verification ensures every payment is safe, authenticated, and accounted for."
             />
             <EcosystemItem
               icon={<Brain className="h-7 w-7 text-primary" />}
@@ -42,4 +42,3 @@ export function Ecosystem() {
     </section>
   );
 }
-

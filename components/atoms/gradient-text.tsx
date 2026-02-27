@@ -12,4 +12,3 @@ export function GradientText({ children, className, ...props }: GradientTextProp
     </span>
   );
 }
-

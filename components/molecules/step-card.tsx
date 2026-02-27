@@ -10,7 +10,9 @@ interface StepCardProps {
 
 export function StepCard({ icon, title, description, color = "primary" }: StepCardProps) {
   const borderClass =
-    color === "green" ? "border-green-500/40 group-hover:border-green-500/70" : "border-primary/40 group-hover:border-primary/70";
+    color === "green"
+      ? "border-green-500/40 group-hover:border-green-500/70"
+      : "border-primary/40 group-hover:border-primary/70";
   return (
     <div className="text-center group relative">
       <div
@@ -26,4 +28,3 @@ export function StepCard({ icon, title, description, color = "primary" }: StepCa
     </div>
   );
 }
-

@@ -1,9 +1,9 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Button } from "@/components/atoms/button";
 import { useActiveSection } from "@/hooks/use-active-section";
 import { Menu, X, ChevronRight } from "lucide-react";
+import { WaitlistButton } from "@/components/atoms/waitlist-button";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 import ThemeToggle from "@/components/atoms/theme-toggle";
@@ -122,14 +122,14 @@ export function Navbar() {
             <div className="hidden md:block w-px h-6 bg-border/50" />
 
             <div className="hidden md:flex items-center pl-1 pr-1">
-              <Button
+              <WaitlistButton
                 variant="default"
                 className="rounded-full px-5 h-9 shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300 group text-sm"
                 onClick={openWaitlist}
               >
                 <span>Join Waitlist</span>
                 <ChevronRight className="ml-1 h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" />
-              </Button>
+              </WaitlistButton>
             </div>
 
             <button
@@ -203,7 +203,8 @@ export function Navbar() {
             <ThemeToggle />
           </div>
 
-          <Button
+          {/* Mobile CTA */}
+          <WaitlistButton
             size="lg"
             className="rounded-full px-10 py-6 text-lg shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 mt-4"
             onClick={() => {
@@ -213,7 +214,7 @@ export function Navbar() {
           >
             Join the Waitlist
             <ChevronRight className="ml-2 h-5 w-5" />
-          </Button>
+          </WaitlistButton>
 
           <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-primary/10 rounded-full blur-3xl -z-10" />
           <div className="absolute bottom-1/4 right-1/4 w-48 h-48 bg-primary/5 rounded-full blur-3xl -z-10" />

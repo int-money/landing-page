@@ -6,18 +6,22 @@ import { HowItWorks } from "@/components/organisms/how-it-works";
 import { Ecosystem } from "@/components/organisms/ecosystem";
 import { CtaSection } from "@/components/organisms/cta-section";
 import { Footer } from "@/components/organisms/footer";
+import { WaitlistProvider } from "@/components/providers/waitlist-provider";
+import { WaitlistModal } from "@/components/organisms/waitlist-modal";
 
 export default function Home() {
   return (
-    <LandingLayout>
-      <Navbar />
-      <HeroSection />
-      <FeaturesGrid />
-      <HowItWorks />
-      <Ecosystem />
-      <CtaSection />
-      <Footer />
-    </LandingLayout>
+    <WaitlistProvider>
+      <LandingLayout>
+        <Navbar />
+        <HeroSection />
+        <FeaturesGrid />
+        <HowItWorks />
+        <Ecosystem />
+        <CtaSection />
+        <Footer />
+        <WaitlistModal />
+      </LandingLayout>
+    </WaitlistProvider>
   );
 }
-

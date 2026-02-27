@@ -4,7 +4,10 @@ import { Zap, Brain, MessageSquareText, CheckCircle2 } from "lucide-react";
 
 export function HowItWorks() {
   return (
-    <section id="how-it-works" className="container mx-auto px-4 py-16 md:py-28 relative z-10 section-glow">
+    <section
+      id="how-it-works"
+      className="container mx-auto px-4 py-16 md:py-28 relative z-10 section-glow"
+    >
       <div className="mx-auto max-w-4xl">
         <SectionHeader
           badgeText="How It Works"
@@ -49,4 +52,3 @@ export function HowItWorks() {
     </section>
   );
 }
-

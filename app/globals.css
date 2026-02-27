@@ -213,11 +213,15 @@
   }
 
   .dark .glow {
-    box-shadow: 0 0 60px oklch(0.55 0.25 290 / 0.4), 0 0 120px oklch(0.55 0.25 290 / 0.15);
+    box-shadow:
+      0 0 60px oklch(0.55 0.25 290 / 0.4),
+      0 0 120px oklch(0.55 0.25 290 / 0.15);
   }
 
   .dark .glow-sm {
-    box-shadow: 0 0 30px oklch(0.55 0.25 290 / 0.3), 0 0 60px oklch(0.55 0.25 290 / 0.1);
+    box-shadow:
+      0 0 30px oklch(0.55 0.25 290 / 0.3),
+      0 0 60px oklch(0.55 0.25 290 / 0.1);
   }
 
   /* Gradient border - purple */

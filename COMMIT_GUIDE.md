@@ -135,25 +135,31 @@ git push -u origin feat/theme-toggle
 After pushing, create a PR with the following details:
 
 ### PR Title
+
 ```
 feat: add theme toggle with light/dark mode support
 ```
 
 ### PR Description
+
 ```markdown
 ## Description
+
 Adds theme toggle functionality to the navbar, allowing users to switch between light and dark modes with proper persistence and no flash of incorrect theme on page load.
 
 ## Context
+
 The project already has next-themes installed and a ThemeProvider wrapping the app, but the theme was hardcoded to dark mode. This PR adds a UI toggle and ensures both light and dark themes are visually polished.
 
 ## Changes
+
 - ✨ Created `ThemeToggle` atom component with smooth icon transitions
 - ⚙️ Configured `ThemeProvider` in layout with dark default and system support
 - 🎨 Integrated toggle into desktop and mobile navbar
 - 💅 Enhanced light mode styling for all UI elements (cards, glows, gradients)
 
 ## Implementation Details
+
 - Uses `next-themes` `useTheme()` hook for state management
 - Theme preference persists via localStorage (handled by next-themes)
 - No flash of incorrect theme on page load (suppressHydrationWarning + next-themes script)
@@ -162,6 +168,7 @@ The project already has next-themes installed and a ThemeProvider wrapping the a
 - Accessible with proper ARIA labels and keyboard navigation
 
 ## Testing Checklist
+
 - [x] Toggle works on desktop navbar
 - [x] Toggle works in mobile menu
 - [x] Theme persists after page reload
@@ -176,23 +183,29 @@ The project already has next-themes installed and a ThemeProvider wrapping the a
 - [x] ARIA labels are correct
 
 ## Screen Recording
+
 [Attach your screen recording here showing:]
+
 - Theme toggle on desktop
 - Theme toggle on mobile
 - Theme persistence after reload
 - Light mode visual polish
 
 ## Complexity
+
 Medium (150 points)
 
 ## Atomic Design Compliance
+
 - ✅ Component placed in `components/atoms/`
 - ✅ No barrel exports used
 - ✅ Direct file imports only
 - ✅ Follows existing component patterns
 
 ## Conventional Commits
+
 All commits follow the Conventional Commits specification:
+
 - `feat(atoms)`: Theme toggle component
 - `feat(layout)`: ThemeProvider configuration
 - `feat(navbar)`: Navbar integration
@@ -211,17 +224,20 @@ All commits follow this format:
 ```
 
 ### Types Used
+
 - `feat`: New feature
 - `style`: Styling changes (CSS)
 - `docs`: Documentation
 
 ### Scopes Used
+
 - `atoms`: Atomic component
 - `layout`: Root layout
 - `navbar`: Navigation component
 - `theme`: Theme-related changes
 
 ### Guidelines
+
 - Use present tense ("add" not "added")
 - Use imperative mood ("move" not "moves")
 - Don't capitalize first letter of description
@@ -232,6 +248,7 @@ All commits follow this format:
 ## Troubleshooting
 
 ### Issue: Commit rejected due to lint errors
+
 ```bash
 # Run lint to see errors
 npm run lint
@@ -242,6 +259,7 @@ git commit --amend --no-edit
 ```
 
 ### Issue: Need to modify last commit
+
 ```bash
 # Make your changes
 git add <files>
@@ -254,6 +272,7 @@ git push origin feat/theme-toggle --force-with-lease
 ```
 
 ### Issue: Commits in wrong order
+
 ```bash
 # Interactive rebase to reorder
 git rebase -i HEAD~5
@@ -262,6 +281,7 @@ git rebase -i HEAD~5
 ```
 
 ### Issue: Need to squash commits
+
 ```bash
 # Interactive rebase
 git rebase -i HEAD~5

@@ -14,7 +14,6 @@ export default function NotFound() {
 
       <main className="flex-1 flex items-center justify-center px-6 py-20">
         <div className="max-w-2xl w-full text-center">
-          
           <motion.h1
             initial={{ y: -20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
@@ -39,8 +38,8 @@ export default function NotFound() {
             transition={{ delay: 0.4, duration: 0.6 }}
             className="mt-4 text-muted-foreground max-w-md mx-auto"
           >
-            The page you’re looking for doesn’t exist or may have been moved.
-            Let’s get you back to something useful.
+            The page you’re looking for doesn’t exist or may have been moved. Let’s get you back to
+            something useful.
           </motion.p>
 
           <motion.div
@@ -50,9 +49,7 @@ export default function NotFound() {
             className="mt-8"
           >
             <Link href="/">
-              <Button size="lg">
-                Back to Home
-              </Button>
+              <Button size="lg">Back to Home</Button>
             </Link>
           </motion.div>
 
