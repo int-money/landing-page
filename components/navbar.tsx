@@ -8,6 +8,7 @@ import Image from "next/image";
 import { cn } from "@/lib/utils";
 import ThemeToggle from "@/components/atoms/theme-toggle";
 import { useWaitlist } from "@/components/providers/waitlist-provider";
+import { useFocusTrap } from "@/hooks/use-focus-trap";
 
 const NAV_LINKS = [
   { href: "#features", label: "Features" },
@@ -21,6 +22,7 @@ export function Navbar() {
   const [hoveredLink, setHoveredLink] = useState("");
   const activeSection = useActiveSection(["features", "how-it-works", "ecosystem"]);
   const { openWaitlist } = useWaitlist();
+  const mobileMenuRef = useFocusTrap(isMobileMenuOpen);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -51,6 +53,17 @@ export function Navbar() {
     };
   }, [isMobileMenuOpen]);
 
+  // Close mobile menu on Escape key
+  useEffect(() => {
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === "Escape" && isMobileMenuOpen) {
+        setIsMobileMenuOpen(false);
+      }
+    };
+    window.addEventListener("keydown", handleEscape);
+    return () => window.removeEventListener("keydown", handleEscape);
+  }, [isMobileMenuOpen]);
+
   return (
     <>
       <header
@@ -61,19 +74,21 @@ export function Navbar() {
       >
         <div className="px-4 w-full max-w-fit">
           <nav
+            aria-label="Main navigation"
             className={cn(
-              "relative flex items-center gap-2 rounded-full border px-2 py-2 transition-all duration-500",
+              "relative flex items-center gap-2 rounded-full border px-2 py-2 transition-all duration-500 motion-reduce:transition-none",
               isScrolled
                 ? "border-border/50 bg-background/80 backdrop-blur-2xl shadow-lg shadow-black/20 shadow-[0_4px_30px_oklch(0.55_0.25_290_/_0.05)]"
                 : "border-border/30 bg-background/50 backdrop-blur-xl"
             )}
           >
+            {/* Logo */}
             <a href="#" className="flex items-center gap-2 group pl-2 pr-3">
               <Image src="/icon.svg" alt="IntMoney" width={36} height={36} className="rounded-lg" />
               <span className="text-base font-bold tracking-tight hidden sm:inline">IntMoney</span>
             </a>
 
-            <div className="hidden md:block w-px h-6 bg-border/50" />
+            <div className="hidden md:block w-px h-6 bg-border/50" aria-hidden="true" />
 
             <div className="hidden md:flex items-center">
               <div className="flex items-center gap-1">
@@ -86,6 +101,7 @@ export function Navbar() {
                       href={link.href}
                       onMouseEnter={() => setHoveredLink(link.href)}
                       onMouseLeave={() => setHoveredLink("")}
+                      aria-current={isActive ? "page" : undefined}
                       className={cn(
                         "relative px-4 py-2 text-sm font-medium transition-all duration-300 rounded-full",
                         isActive || isHovered
@@ -119,12 +135,12 @@ export function Navbar() {
               <ThemeToggle />
             </div>
 
-            <div className="hidden md:block w-px h-6 bg-border/50" />
+            <div className="hidden md:block w-px h-6 bg-border/50" aria-hidden="true" />
 
             <div className="hidden md:flex items-center pl-1 pr-1">
               <WaitlistButton
                 variant="default"
-                className="rounded-full px-5 h-9 shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300 group text-sm"
+                className="rounded-full px-5 h-9 shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300 motion-reduce:transition-none motion-reduce:hover:scale-100 group text-sm"
                 onClick={openWaitlist}
               >
                 <span>Join Waitlist</span>
@@ -134,25 +150,28 @@ export function Navbar() {
 
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="relative md:hidden flex h-9 w-9 items-center justify-center rounded-full bg-muted/80 transition-all duration-300 hover:bg-muted ml-1"
-              aria-label="Toggle menu"
+              className="relative md:hidden flex h-9 w-9 items-center justify-center rounded-full bg-muted/80 transition-all duration-300 motion-reduce:transition-none hover:bg-muted ml-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+              aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
+              aria-expanded={isMobileMenuOpen}
+              aria-controls="mobile-menu"
             >
-              <span className="sr-only">Toggle menu</span>
               <Menu
                 className={cn(
-                  "h-4 w-4 absolute transition-all duration-300",
+                  "h-4 w-4 absolute transition-all duration-300 motion-reduce:transition-none",
                   isMobileMenuOpen
                     ? "opacity-0 rotate-90 scale-0"
                     : "opacity-100 rotate-0 scale-100"
                 )}
+                aria-hidden="true"
               />
               <X
                 className={cn(
-                  "h-4 w-4 absolute transition-all duration-300",
+                  "h-4 w-4 absolute transition-all duration-300 motion-reduce:transition-none",
                   isMobileMenuOpen
                     ? "opacity-100 rotate-0 scale-100"
                     : "opacity-0 -rotate-90 scale-0"
                 )}
+                aria-hidden="true"
               />
             </button>
           </nav>
@@ -160,6 +179,11 @@ export function Navbar() {
       </header>
 
       <div
+        id="mobile-menu"
+        ref={mobileMenuRef}
+        role="dialog"
+        aria-modal="true"
+        aria-label="Mobile navigation menu"
         className={cn(
           "fixed inset-0 z-40 bg-background/90 backdrop-blur-2xl transition-all duration-500 md:hidden",
           isMobileMenuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
@@ -171,7 +195,7 @@ export function Navbar() {
             isMobileMenuOpen ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-8"
           )}
         >
-          <nav className="flex flex-col items-center gap-6">
+          <nav className="flex flex-col items-center gap-6" aria-label="Mobile navigation">
             {NAV_LINKS.map((link, index) => {
               const isActive = activeSection === link.href.substring(1);
               return (
@@ -179,19 +203,21 @@ export function Navbar() {
                   key={link.href}
                   href={link.href}
                   onClick={() => setIsMobileMenuOpen(false)}
+                  aria-current={isActive ? "page" : undefined}
                   className={cn(
-                    "group relative text-3xl font-bold transition-all duration-300",
+                    "group relative text-3xl font-bold transition-all duration-300 motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded-lg px-4 py-2",
                     isActive ? "text-primary" : "text-foreground hover:text-primary"
                   )}
-                  style={{ transitionDelay: `${(index + 1) * 75}ms` }}
+                  style={{ transitionDelay: isMobileMenuOpen ? `${(index + 1) * 75}ms` : "0ms" }}
                 >
                   <span className="relative">
                     {link.label}
                     <span
                       className={cn(
-                        "absolute -bottom-2 left-0 h-1 bg-primary rounded-full transition-all duration-300",
+                        "absolute -bottom-2 left-0 h-1 bg-primary rounded-full transition-all duration-300 motion-reduce:transition-none",
                         isActive ? "w-full" : "w-0 group-hover:w-full"
                       )}
+                      aria-hidden="true"
                     />
                   </span>
                 </a>
@@ -206,7 +232,7 @@ export function Navbar() {
           {/* Mobile CTA */}
           <WaitlistButton
             size="lg"
-            className="rounded-full px-10 py-6 text-lg shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 mt-4"
+            className="rounded-full px-10 py-6 text-lg shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 motion-reduce:transition-none motion-reduce:hover:scale-100 mt-4"
             onClick={() => {
               setIsMobileMenuOpen(false);
               openWaitlist();
@@ -216,8 +242,8 @@ export function Navbar() {
             <ChevronRight className="ml-2 h-5 w-5" />
           </WaitlistButton>
 
-          <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-primary/10 rounded-full blur-3xl -z-10" />
-          <div className="absolute bottom-1/4 right-1/4 w-48 h-48 bg-primary/5 rounded-full blur-3xl -z-10" />
+          <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-primary/10 rounded-full blur-3xl -z-10 motion-reduce:hidden" aria-hidden="true" />
+          <div className="absolute bottom-1/4 right-1/4 w-48 h-48 bg-primary/5 rounded-full blur-3xl -z-10 motion-reduce:hidden" aria-hidden="true" />
         </div>
       </div>
 
