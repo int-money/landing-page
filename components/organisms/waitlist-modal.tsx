@@ -1,152 +1,193 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import * as z from "zod";
-import { useForm } from "react-hook-form";
+import React, { useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Loader2, CheckCircle2 } from "lucide-react";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { useWaitlist } from "@/components/providers/waitlist-provider";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Loader2, CheckCircle2, AlertCircle } from "lucide-react";
 
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/atoms/dialog";
-
-type WaitlistFormData = {
-  email: string;
-  name?: string;
-};
-
-type WaitlistModalProps = {
-  open: boolean;
-  onOpenChange: (open: boolean) => void;
-  onSubmit?: (data: WaitlistFormData) => Promise<void>;
-};
-
-const schema = z.object({
-  email: z.string().email("Please enter a valid email address"),
+// The validation schema
+const waitlistSchema = z.object({
   name: z.string().optional(),
+  email: z
+    .string()
+    .min(1, { message: "Email is required" })
+    .email({ message: "Please enter a valid email address" }),
 });
 
-export function WaitlistModal({ open, onOpenChange, onSubmit }: WaitlistModalProps) {
-  const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
+type WaitlistFormValues = z.infer<typeof waitlistSchema>;
+
+export function WaitlistModal() {
+  const { isOpen, closeWaitlist } = useWaitlist();
+
+  // States: idle, loading, success, error
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [errorMessage, setErrorMessage] = useState("");
 
   const {
     register,
     handleSubmit,
-    reset,
     formState: { errors },
-  } = useForm<WaitlistFormData>({
-    resolver: zodResolver(schema),
+    reset,
+  } = useForm<WaitlistFormValues>({
+    resolver: zodResolver(waitlistSchema),
+    defaultValues: {
+      name: "",
+      email: "",
+    },
   });
 
-  // Reset form when modal reopens
-  useEffect(() => {
-    if (open) {
+  const onSubmit = async (values: WaitlistFormValues) => {
+    setStatus("loading");
+    setErrorMessage("");
+
+    const apiUrl = process.env.NEXT_PUBLIC_WAITLIST_API_URL;
+
+    try {
+      if (!apiUrl) {
+        // Demo mode fallback
+        await new Promise((resolve) => setTimeout(resolve, 1500));
+        handleSuccess();
+      } else {
+        // Real API call
+        const response = await fetch(apiUrl, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(values),
+        });
+
+        if (!response.ok) {
+          throw new Error("Failed to join waitlist. Please try again.");
+        }
+
+        handleSuccess();
+      }
+    } catch (error) {
+      setStatus("error");
+      setErrorMessage(error instanceof Error ? error.message : "An unexpected error occurred");
+    }
+  };
+
+  const handleSuccess = () => {
+    setStatus("success");
+    // Reset form and close modal after delay
+    setTimeout(() => {
       reset();
       setStatus("idle");
-    }
-  }, [open, reset]);
+      closeWaitlist();
+    }, 2500);
+  };
 
-  // Auto close on success
-  useEffect(() => {
-    if (status === "success") {
-      const timer = setTimeout(() => {
-        onOpenChange(false);
-      }, 3000);
-
-      return () => clearTimeout(timer);
-    }
-  }, [status, onOpenChange]);
-
-  const onFormSubmit = async (data: WaitlistFormData) => {
-    try {
-      setStatus("submitting");
-
-      if (onSubmit) {
-        await onSubmit(data);
-      } else {
-        // Demo mode
-        await new Promise((resolve) => setTimeout(resolve, 1500));
-      }
-
-      setStatus("success");
-    } catch {
-      setStatus("error");
+  const handleOpenChange = (open: boolean) => {
+    if (!open) {
+      closeWaitlist();
+      // Reset after animation
+      setTimeout(() => {
+        reset();
+        setStatus("idle");
+      }, 300);
     }
   };
 
   return (
-    <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="glass-card max-w-md rounded-2xl p-10">
-        {status === "success" ? (
-          <div className="flex flex-col items-center justify-center py-10 text-center">
-            <CheckCircle2 className="text-primary mb-4 animate-[scaleIn_0.4s_ease-out]" size={64} />
-            <h2 className="text-2xl font-semibold gradient-text">You're on the list!</h2>
-            <p className="mt-2 text-muted-foreground">We'll notify you as soon as we launch.</p>
-          </div>
-        ) : (
-          <>
-            <DialogHeader>
-              <DialogTitle className="text-2xl font-bold gradient-text text-center mb-2">
-                Join the Waitlist
-              </DialogTitle>
-            </DialogHeader>
+    <Dialog open={isOpen} onOpenChange={handleOpenChange}>
+      <DialogContent className="sm:max-w-md glass-card gradient-border overflow-hidden">
+        {/* Decorative background glow */}
+        <div className="absolute -top-24 -right-24 w-48 h-48 bg-primary/20 rounded-full blur-[48px] pointer-events-none" />
+        <div className="absolute -bottom-24 -left-24 w-48 h-48 bg-primary/20 rounded-full blur-[48px] pointer-events-none" />
 
-            <form onSubmit={handleSubmit(onFormSubmit)} className="mt-6 space-y-4">
-              <div className="flex flex-col space-y-1">
-                <label htmlFor="email" className="text-sm font-bold mb-5">
-                  Email (Required)<span className="text-red-500">*</span>
-                </label>
-                <input
-                  id="email"
-                  type="email"
-                  aria-invalid={!!errors.email}
-                  disabled={status === "submitting"}
-                  {...register("email")}
-                  className={`rounded-md border border-primary px-3 py-3 text-sm outline-none focus:ring-2 disabled:opacity-50 ${
-                    errors.email
-                      ? "border-red-500 focus:ring-red-500"
-                      : "bg-background focus:ring-primary"
-                  }`}
+        <div className="relative z-10">
+          <DialogHeader className="mb-4">
+            <DialogTitle className="text-2xl font-bold">Join the Waitlist</DialogTitle>
+            <DialogDescription className="text-muted-foreground">
+              Be the first to know when we launch and get early access to your AI financial agent.
+            </DialogDescription>
+          </DialogHeader>
+
+          {status === "success" ? (
+            <div className="flex flex-col items-center justify-center py-8 text-center animate-in fade-in zoom-in duration-500">
+              <div className="w-16 h-16 bg-green-500/10 rounded-full flex items-center justify-center mb-4">
+                <CheckCircle2 className="w-8 h-8 text-green-500" />
+              </div>
+              <h3 className="text-xl font-bold mb-2">You're on the list!</h3>
+              <p className="text-muted-foreground text-sm">
+                Keep an eye on your inbox. We'll be in touch soon.
+              </p>
+            </div>
+          ) : (
+            <form onSubmit={handleSubmit(onSubmit)} className="space-y-4" noValidate>
+              <div className="space-y-2">
+                <Label htmlFor="name">Name (Optional)</Label>
+                <Input
+                  id="name"
+                  placeholder="Jane Doe"
+                  className="bg-background/50 border-white/10 focus-visible:ring-primary"
+                  disabled={status === "loading"}
+                  {...register("name")}
                 />
-                {errors.email && (
-                  <span className="text-xs text-red-500">{errors.email.message}</span>
-                )}
               </div>
 
-              <div className="flex flex-col space-y-1">
-                <label htmlFor="name" className="text-sm font-bold mb-5">
-                  Name (optional)
-                </label>
-                <input
-                  id="name"
-                  type="text"
-                  disabled={status === "submitting"}
-                  {...register("name")}
-                  className="rounded-md border border-primary bg-background px-3 py-3 text-sm outline-none focus:ring-2 focus:ring-primary disabled:opacity-50"
+              <div className="space-y-2">
+                <Label htmlFor="email">
+                  Email <span className="text-red-500">*</span>
+                </Label>
+                <Input
+                  id="email"
+                  type="email"
+                  placeholder="jane@example.com"
+                  className={`bg-background/50 border-white/10 focus-visible:ring-primary ${errors.email ? "border-red-500 focus-visible:ring-red-500" : ""}`}
+                  disabled={status === "loading"}
+                  {...register("email")}
                 />
+                {errors.email && (
+                  <p className="text-red-500 text-xs font-medium mt-1 flex items-center gap-1">
+                    <AlertCircle className="w-3 h-3" />
+                    {errors.email.message}
+                  </p>
+                )}
               </div>
 
               {status === "error" && (
-                <div className="rounded-md bg-red-500/10 p-3 text-sm text-red-500">
-                  Something went wrong. Please try again.
+                <div className="p-3 bg-red-500/10 border border-red-500/20 rounded-xl flex items-start gap-2 text-sm text-red-500 animate-in fade-in">
+                  <AlertCircle className="w-4 h-4 mt-0.5 shrink-0" />
+                  <p>{errorMessage}</p>
                 </div>
               )}
 
-              <button
+              <Button
                 type="submit"
-                disabled={status === "submitting"}
-                className="glow-sm w-full rounded-md bg-primary py-3 text-sm font-bold text-primary-foreground transition hover:opacity-90 disabled:opacity-60 "
+                className="w-full relative overflow-hidden group shadow-lg shadow-primary/20"
+                disabled={status === "loading"}
               >
-                {status === "submitting" ? (
-                  <span className="flex items-center justify-center gap-2">
-                    <Loader2 className="h-4 w-4 animate-spin" />
-                    Joining...
-                  </span>
-                ) : (
-                  "Join Waitlist"
-                )}
-              </button>
+                {/* Button gradient background that shines on hover */}
+                <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-primary/80 via-primary to-primary/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+                <span className="relative flex items-center justify-center gap-2">
+                  {status === "loading" ? (
+                    <>
+                      <Loader2 className="w-4 h-4 animate-spin" />
+                      Securing your spot...
+                    </>
+                  ) : (
+                    "Join Waitlist"
+                  )}
+                </span>
+              </Button>
             </form>
-          </>
-        )}
+          )}
+        </div>
       </DialogContent>
     </Dialog>
   );

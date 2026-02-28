@@ -1,51 +1,32 @@
 "use client";
 
-import { createContext, useContext, useState } from "react";
-import type { ReactNode } from "react";
-import { WaitlistModal } from "@/components/organisms/waitlist-modal";
+import React, { createContext, useContext, useState, type ReactNode } from "react";
 
-interface WaitlistContextValue {
-  open: boolean;
+interface WaitlistContextType {
+  isOpen: boolean;
   openWaitlist: () => void;
   closeWaitlist: () => void;
 }
 
-const WaitlistContext = createContext<WaitlistContextValue | undefined>(undefined);
+const WaitlistContext = createContext<WaitlistContextType | undefined>(undefined);
 
-interface WaitlistProviderProps {
-  children: ReactNode;
-}
+export function WaitlistProvider({ children }: { children: ReactNode }) {
+  const [isOpen, setIsOpen] = useState(false);
 
-export function WaitlistProvider({ children }: WaitlistProviderProps) {
-  const [open, setOpen] = useState(false);
-
-  const openWaitlist = () => setOpen(true);
-  const closeWaitlist = () => setOpen(false);
+  const openWaitlist = () => setIsOpen(true);
+  const closeWaitlist = () => setIsOpen(false);
 
   return (
-    <WaitlistContext.Provider value={{ open, openWaitlist, closeWaitlist }}>
+    <WaitlistContext.Provider value={{ isOpen, openWaitlist, closeWaitlist }}>
       {children}
-
-      {/* keep modal at top level so any component can trigger it */}
-      <WaitlistModal
-        open={open}
-        onOpenChange={setOpen}
-        onSubmit={async (data) => {
-          await fetch("/api/waitlist", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(data),
-          });
-        }}
-      />
     </WaitlistContext.Provider>
   );
 }
 
 export function useWaitlist() {
-  const ctx = useContext(WaitlistContext);
-  if (!ctx) {
+  const context = useContext(WaitlistContext);
+  if (context === undefined) {
     throw new Error("useWaitlist must be used within a WaitlistProvider");
   }
-  return ctx;
+  return context;
 }

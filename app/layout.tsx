@@ -76,6 +76,8 @@ const jsonLd = {
   ],
 };
 
+import { SkipToContent } from "@/components/atoms/skip-to-content";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -84,6 +86,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${inter.variable} ${geist.variable} font-body antialiased`}>
+        <SkipToContent />
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
           <WaitlistProvider>{children}</WaitlistProvider>
         </ThemeProvider>

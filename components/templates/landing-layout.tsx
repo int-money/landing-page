@@ -14,8 +14,9 @@ export function LandingLayout({ children }: LandingLayoutProps) {
         <div className="absolute bottom-1/3 right-1/5 w-87.5 h-87.5 bg-[oklch(0.5_0.18_330/_0.1)] rounded-full blur-3xl float will-change-transform" />
         <div className="absolute top-2/3 left-1/3 w-75 h-75 bg-primary/8 rounded-full blur-[48px] float-delayed will-change-transform" />
       </div>
-      {children}
+      <main id="main-content" tabIndex={-1} className="outline-none">
+        {children}
+      </main>
     </div>
   );
 }
-

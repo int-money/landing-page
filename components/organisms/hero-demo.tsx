@@ -202,7 +202,9 @@ export function HeroDemo() {
                   {phase === "typing" && (
                     <span className="inline-block w-0.5 h-4 bg-primary ml-0.5 align-middle animate-pulse motion-reduce:animate-none" aria-hidden="true" />
                   )}
-                  {!showInput && <span className="text-muted-foreground/30">Type a command...</span>}
+                  {!showInput && (
+                    <span className="text-muted-foreground/30">Type a command...</span>
+                  )}
                 </p>
               </div>
               {showInput && phase !== "typing" && (
@@ -328,4 +330,3 @@ export function HeroDemo() {
     </div>
   );
 }
-

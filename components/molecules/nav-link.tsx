@@ -25,4 +25,3 @@ export function NavLink({ active, className, children, ...props }: NavLinkProps)
     </a>
   );
 }
-

@@ -20,4 +20,3 @@ export function SectionBadge({ children, icon, className }: SectionBadgeProps) {
     </div>
   );
 }
-

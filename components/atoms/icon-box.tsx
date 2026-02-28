@@ -24,4 +24,3 @@ export function IconBox({ size = "md", className, ...props }: IconBoxProps) {
     />
   );
 }
-

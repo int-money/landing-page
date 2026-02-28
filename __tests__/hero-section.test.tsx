@@ -17,8 +17,6 @@ describe("HeroSection", () => {
     await user.click(button);
 
     // modal should show success or title text
-    expect(
-      await screen.findByRole("heading", { name: /join the waitlist/i })
-    ).toBeInTheDocument();
+    expect(await screen.findByRole("heading", { name: /join the waitlist/i })).toBeInTheDocument();
   });
 });

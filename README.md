@@ -51,7 +51,6 @@ IntMoney is an AI-powered wallet that lets you send, receive, swap, and manage f
    - Click the "Fork" button at [github.com/int-money/landing-page](https://github.com/int-money/landing-page)
    - This creates your own copy to work on
 
-
 2. **Clone your fork**
 
    ```bash
@@ -77,7 +76,7 @@ IntMoney is an AI-powered wallet that lets you send, receive, swap, and manage f
    pnpm dev
    ```
 
-5. **Open in browser** — Visit [http://localhost:3000](http://localhost:3000)
+6. **Open in browser** — Visit [http://localhost:3000](http://localhost:3000)
 
 Done! You now have the project running locally.
 
