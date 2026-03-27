@@ -4,6 +4,7 @@ import { Geist, Inter } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import { WaitlistProvider } from "@/components/providers/waitlist-provider";
+import { Toaster } from "@/components/ui/toaster";
 import "./globals.css";
 
 const geist = Geist({
@@ -88,7 +89,10 @@ export default function RootLayout({
       <body className={`${inter.variable} ${geist.variable} font-body antialiased`}>
         <SkipToContent />
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
-          <WaitlistProvider>{children}</WaitlistProvider>
+          <WaitlistProvider>
+            {children}
+            <Toaster />
+          </WaitlistProvider>
         </ThemeProvider>
         <Analytics />
         <script

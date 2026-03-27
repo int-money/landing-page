@@ -16,6 +16,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Loader2, CheckCircle2, AlertCircle } from "lucide-react";
+import { toast } from "@/hooks/use-toast";
 
 // The validation schema
 const waitlistSchema = z.object({
@@ -77,12 +78,22 @@ export function WaitlistModal() {
       }
     } catch (error) {
       setStatus("error");
-      setErrorMessage(error instanceof Error ? error.message : "An unexpected error occurred");
+      const message = error instanceof Error ? error.message : "An unexpected error occurred";
+      setErrorMessage(message);
+      toast({
+        variant: "destructive",
+        title: "Something went wrong",
+        description: message,
+      });
     }
   };
 
   const handleSuccess = () => {
     setStatus("success");
+    toast({
+      title: "You're on the list!",
+      description: "Keep an eye on your inbox. We'll be in touch soon.",
+    });
     // Reset form and close modal after delay
     setTimeout(() => {
       reset();

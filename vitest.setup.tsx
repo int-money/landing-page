@@ -38,8 +38,3 @@ vi.mock("next-themes", () => ({
 vi.mock("@vercel/analytics/next", () => ({
   Analytics: () => null,
 }));
-
-// Mock useActiveSection hook
-vi.mock("@/hooks/use-active-section", () => ({
-  useActiveSection: () => "",
-}));
