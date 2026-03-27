@@ -18,7 +18,7 @@ export function ShortcutBadge({ className }: ShortcutBadgeProps) {
     <span
       className={cn("hidden md:inline-flex items-center text-xs text-muted-foreground", className)}
     >
-      {isMac ? "⌘+Shift+W" : "Ctrl+Shift+W"}
+      {isMac ? "⌘+Shift+K" : "Ctrl+Shift+K"}
     </span>
   );
 }

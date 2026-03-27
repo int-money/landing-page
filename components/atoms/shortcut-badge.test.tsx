@@ -9,21 +9,20 @@ import { ShortcutBadge } from "./shortcut-badge";
 
 describe("ShortcutBadge", () => {
   beforeEach(() => {
-    // Reset navigator.platform mock before each test
     vi.restoreAllMocks();
   });
 
-  it("renders Ctrl+Shift+W by default (SSR / non-Mac)", () => {
+  it("renders Ctrl+Shift+K by default (SSR / non-Mac)", () => {
     Object.defineProperty(navigator, "platform", {
       value: "Win32",
       configurable: true,
     });
 
     render(<ShortcutBadge />);
-    expect(screen.getByText("Ctrl+Shift+W")).toBeTruthy();
+    expect(screen.getByText("Ctrl+Shift+K")).toBeTruthy();
   });
 
-  it("renders ⌘+Shift+W when isMac is true", async () => {
+  it("renders ⌘+Shift+K when isMac is true", async () => {
     Object.defineProperty(navigator, "platform", {
       value: "MacIntel",
       configurable: true,
@@ -33,7 +32,7 @@ describe("ShortcutBadge", () => {
       render(<ShortcutBadge />);
     });
 
-    expect(screen.getByText("⌘+Shift+W")).toBeTruthy();
+    expect(screen.getByText("⌘+Shift+K")).toBeTruthy();
   });
 
   it("has hidden md:inline-flex class in rendered output", () => {
@@ -67,10 +66,9 @@ describe("Property 4: badge text matches platform", () => {
 
         const { unmount } = render(<ShortcutBadge />);
 
-        // Wait for useEffect to run
         await act(async () => {});
 
-        const expectedText = isMac ? "⌘+Shift+W" : "Ctrl+Shift+W";
+        const expectedText = isMac ? "⌘+Shift+K" : "Ctrl+Shift+K";
         const element = screen.queryByText(expectedText);
         expect(element).toBeTruthy();
 

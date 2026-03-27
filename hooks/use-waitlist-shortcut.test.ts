@@ -73,7 +73,7 @@ function shouldTrigger(
   if (isInputContext(activeElement)) return false;
   const modifierActive = isMac ? event.metaKey : event.ctrlKey;
   const oppositeModifier = isMac ? event.ctrlKey : event.metaKey;
-  return modifierActive && !oppositeModifier && event.shiftKey && event.key === "W";
+  return modifierActive && !oppositeModifier && event.shiftKey && event.key === "K";
 }
 
 // ---------------------------------------------------------------------------
@@ -87,15 +87,14 @@ describe("Property 2: input context suppresses shortcut", () => {
     fc.assert(
       fc.property(
         fc.constantFrom("INPUT", "TEXTAREA"),
-        fc.boolean(), // isMac
+        fc.boolean(),
         (tag: string, isMac: boolean) => {
           const el = makeElement(tag);
-          // Even with the "perfect" shortcut event, should not trigger
           const event = {
             metaKey: isMac,
             ctrlKey: !isMac,
             shiftKey: true,
-            key: "W",
+            key: "K",
           };
           expect(shouldTrigger(event, isMac, el)).toBe(false);
         }
@@ -112,7 +111,7 @@ describe("Property 2: input context suppresses shortcut", () => {
           metaKey: isMac,
           ctrlKey: !isMac,
           shiftKey: true,
-          key: "W",
+          key: "K",
         };
         expect(shouldTrigger(event, isMac, el)).toBe(false);
       }),
@@ -131,18 +130,18 @@ describe("Property 3: correct modifier key per platform", () => {
   it("triggers if and only if the correct modifier combination is present", () => {
     fc.assert(
       fc.property(
-        fc.boolean(), // metaKey
-        fc.boolean(), // ctrlKey
-        fc.boolean(), // shiftKey
-        fc.string({ minLength: 1, maxLength: 3 }), // key
-        fc.boolean(), // isMac
+        fc.boolean(),
+        fc.boolean(),
+        fc.boolean(),
+        fc.string({ minLength: 1, maxLength: 3 }),
+        fc.boolean(),
         (metaKey: boolean, ctrlKey: boolean, shiftKey: boolean, key: string, isMac: boolean) => {
           const event = { metaKey, ctrlKey, shiftKey, key };
           const result = shouldTrigger(event, isMac, null);
 
           const expectedModifier = isMac ? metaKey : ctrlKey;
           const expectedOppositeAbsent = isMac ? !ctrlKey : !metaKey;
-          const expected = expectedModifier && expectedOppositeAbsent && shiftKey && key === "W";
+          const expected = expectedModifier && expectedOppositeAbsent && shiftKey && key === "K";
 
           expect(result).toBe(expected);
         }
@@ -154,7 +153,7 @@ describe("Property 3: correct modifier key per platform", () => {
   it("does not trigger when both metaKey and ctrlKey are held on Mac", () => {
     fc.assert(
       fc.property(fc.boolean(), (shiftKey: boolean) => {
-        const event = { metaKey: true, ctrlKey: true, shiftKey, key: "W" };
+        const event = { metaKey: true, ctrlKey: true, shiftKey, key: "K" };
         expect(shouldTrigger(event, true, null)).toBe(false);
       }),
       { numRuns: 100 }
@@ -164,7 +163,7 @@ describe("Property 3: correct modifier key per platform", () => {
   it("does not trigger when both metaKey and ctrlKey are held on non-Mac", () => {
     fc.assert(
       fc.property(fc.boolean(), (shiftKey: boolean) => {
-        const event = { metaKey: true, ctrlKey: true, shiftKey, key: "W" };
+        const event = { metaKey: true, ctrlKey: true, shiftKey, key: "K" };
         expect(shouldTrigger(event, false, null)).toBe(false);
       }),
       { numRuns: 100 }

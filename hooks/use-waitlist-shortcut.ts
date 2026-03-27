@@ -37,7 +37,8 @@ export function useWaitlistShortcut(): void {
       const modifierActive = isMac ? event.metaKey : event.ctrlKey;
       const oppositeModifier = isMac ? event.ctrlKey : event.metaKey;
 
-      if (modifierActive && !oppositeModifier && event.shiftKey && event.key === "W") {
+      if (modifierActive && !oppositeModifier && event.shiftKey && event.key === "K") {
+        event.preventDefault();
         toggleWaitlist();
       }
     }
