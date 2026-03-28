@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -29,12 +29,44 @@ const waitlistSchema = z.object({
 
 type WaitlistFormValues = z.infer<typeof waitlistSchema>;
 
+const COOLDOWN_MS = 30_000;
+const WAITLIST_LAST_SUBMITTED_AT = "waitlist_last_submitted_at";
+
+function getRemainingCooldown(now = Date.now()) {
+  if (typeof window === "undefined") {
+    return 0;
+  }
+
+  const rawTimestamp = window.localStorage.getItem(WAITLIST_LAST_SUBMITTED_AT);
+  if (!rawTimestamp) {
+    return 0;
+  }
+
+  const parsedTimestamp = Number.parseInt(rawTimestamp, 10);
+  if (Number.isNaN(parsedTimestamp)) {
+    return 0;
+  }
+
+  const elapsed = now - parsedTimestamp;
+  return Math.max(COOLDOWN_MS - elapsed, 0);
+}
+
+function setSubmissionTimestamp(now = Date.now()) {
+  if (typeof window === "undefined") {
+    return;
+  }
+
+  window.localStorage.setItem(WAITLIST_LAST_SUBMITTED_AT, String(now));
+}
+
 export function WaitlistModal() {
   const { isOpen, closeWaitlist } = useWaitlist();
 
   // States: idle, loading, success, error
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState("");
+  const [remainingCooldownMs, setRemainingCooldownMs] = useState(0);
+  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   const {
     register,
@@ -49,7 +81,59 @@ export function WaitlistModal() {
     },
   });
 
+  const clearCooldownTimer = () => {
+    if (timerRef.current) {
+      clearInterval(timerRef.current);
+      timerRef.current = null;
+    }
+  };
+
+  const applyCooldown = (remainingMs: number) => {
+    clearCooldownTimer();
+
+    if (remainingMs <= 0) {
+      setRemainingCooldownMs(0);
+      return;
+    }
+
+    const cooldownEndsAt = Date.now() + remainingMs;
+    setRemainingCooldownMs(remainingMs);
+
+    timerRef.current = setInterval(() => {
+      const remaining = Math.max(cooldownEndsAt - Date.now(), 0);
+      setRemainingCooldownMs(remaining);
+
+      if (remaining === 0) {
+        clearCooldownTimer();
+      }
+    }, 1000);
+  };
+
+  useEffect(() => {
+    if (!isOpen) {
+      clearCooldownTimer();
+      return;
+    }
+
+    applyCooldown(getRemainingCooldown());
+
+    return () => {
+      clearCooldownTimer();
+    };
+  }, [isOpen]);
+
   const onSubmit = async (values: WaitlistFormValues) => {
+    const remainingCooldown = getRemainingCooldown();
+    if (remainingCooldown > 0) {
+      applyCooldown(remainingCooldown);
+      toast({
+        variant: "destructive",
+        title: "Please wait before trying again",
+        description: `You can submit again in ${Math.ceil(remainingCooldown / 1000)} seconds.`,
+      });
+      return;
+    }
+
     setStatus("loading");
     setErrorMessage("");
 
@@ -89,6 +173,8 @@ export function WaitlistModal() {
   };
 
   const handleSuccess = () => {
+    setSubmissionTimestamp();
+    applyCooldown(COOLDOWN_MS);
     setStatus("success");
     toast({
       title: "You're on the list!",
@@ -112,6 +198,9 @@ export function WaitlistModal() {
       }, 300);
     }
   };
+
+  const remainingCooldownSeconds = Math.ceil(remainingCooldownMs / 1000);
+  const isRateLimited = remainingCooldownMs > 0;
 
   return (
     <Dialog open={isOpen} onOpenChange={handleOpenChange}>
@@ -146,7 +235,7 @@ export function WaitlistModal() {
                   id="name"
                   placeholder="Jane Doe"
                   className="bg-background/50 border-white/10 focus-visible:ring-primary"
-                  disabled={status === "loading"}
+                  disabled={status === "loading" || isRateLimited}
                   {...register("name")}
                 />
               </div>
@@ -160,7 +249,7 @@ export function WaitlistModal() {
                   type="email"
                   placeholder="jane@example.com"
                   className={`bg-background/50 border-white/10 focus-visible:ring-primary ${errors.email ? "border-red-500 focus-visible:ring-red-500" : ""}`}
-                  disabled={status === "loading"}
+                  disabled={status === "loading" || isRateLimited}
                   {...register("email")}
                 />
                 {errors.email && (
@@ -178,10 +267,16 @@ export function WaitlistModal() {
                 </div>
               )}
 
+              {isRateLimited && (
+                <p className="text-xs text-muted-foreground">
+                  Please wait {remainingCooldownSeconds}s before submitting again.
+                </p>
+              )}
+
               <Button
                 type="submit"
                 className="w-full relative overflow-hidden group shadow-lg shadow-primary/20"
-                disabled={status === "loading"}
+                disabled={status === "loading" || isRateLimited}
               >
                 {/* Button gradient background that shines on hover */}
                 <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-primary/80 via-primary to-primary/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
@@ -191,6 +286,8 @@ export function WaitlistModal() {
                       <Loader2 className="w-4 h-4 animate-spin" />
                       Securing your spot...
                     </>
+                  ) : isRateLimited ? (
+                    `Please wait ${remainingCooldownSeconds}s`
                   ) : (
                     "Join Waitlist"
                   )}
