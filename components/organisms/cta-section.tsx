@@ -33,7 +33,10 @@ export function CtaSection() {
               <Sparkles className="h-5 w-5" />
               Join the Waitlist
             </Button>
-            <a href="#features">
+            <a
+              href="#features"
+              className="rounded-full outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+            >
               <Button
                 size="lg"
                 variant="outline"

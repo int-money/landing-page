@@ -20,10 +20,7 @@ export function FooterColumn({ title, links }: FooterColumnProps) {
           <li key={link.label}>
             <a
               href={link.href}
-              className="hover:text-primary transition-colors duration-200"
-              {...(link.external
-                ? { target: "_blank", rel: "noopener noreferrer" }
-                : {})}
+              className="rounded-sm outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background hover:text-primary transition-colors duration-200"
             >
               {link.label}
             </a>
