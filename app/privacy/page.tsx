@@ -1,6 +1,17 @@
+import type { Metadata } from "next";
 import { Navbar } from "@/components/organisms/navbar";
 import { Footer } from "@/components/organisms/footer";
 import { Shield } from "lucide-react";
+
+export const metadata: Metadata = {
+  alternates: {
+    canonical: "/privacy",
+    languages: {
+      en: "/privacy",
+      "x-default": "/privacy",
+    },
+  },
+};
 
 export default function PrivacyPage() {
   return (

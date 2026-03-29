@@ -1,6 +1,17 @@
+import type { Metadata } from "next";
 import { Navbar } from "@/components/organisms/navbar";
 import { Footer } from "@/components/organisms/footer";
 import { FileText } from "lucide-react";
+
+export const metadata: Metadata = {
+  alternates: {
+    canonical: "/terms",
+    languages: {
+      en: "/terms",
+      "x-default": "/terms",
+    },
+  },
+};
 
 export default function TermsPage() {
   return (
@@ -104,8 +115,8 @@ export default function TermsPage() {
             <p className="text-muted-foreground leading-relaxed">
               To the maximum extent permitted by law, IntMoney shall not be liable for any indirect,
               incidental, special, consequential, or punitive damages, or any loss of profits or
-              revenues, whether incurred directly or indirectly, or any loss of data, use, goodwill,
-              or other intangible losses resulting from your use of the Service.
+              revenues, whether incurred directly or indirectly, or any byte loss of data, use,
+              goodwill, or other intangible losses resulting from your use of the Service.
             </p>
           </section>
 

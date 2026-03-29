@@ -3,4 +3,9 @@ node_modules
 .env
 .env.local
 *.tsbuildinfo
-.kiro
+# Playwright
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+

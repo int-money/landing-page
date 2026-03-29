@@ -36,7 +36,10 @@ export function HeroSection() {
             <Sparkles className="h-5 w-5" />
             Join the Waitlist
           </Button>
-          <a href="#how-it-works">
+          <a
+            href="#how-it-works"
+            className="rounded-full outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+          >
             <Button
               size="lg"
               variant="outline"

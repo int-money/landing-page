@@ -20,18 +20,22 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://intmoney.com"),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL!),
   title: "IntMoney - AI-Powered Cross-Border Payments",
   description:
     "The AI-powered mobile wallet for seamless cross-border payments using simple chat or voice commands. Built on Stellar.",
   alternates: {
     canonical: "/",
+    languages: {
+      en: "/",
+      "x-default": "/",
+    },
   },
   openGraph: {
     title: "IntMoney - AI-Powered Cross-Border Payments",
     description:
       "The AI-powered mobile wallet for seamless cross-border payments using simple chat or voice commands. Built on Stellar.",
-    url: "https://intmoney.com",
+    url: "/",
     siteName: "IntMoney",
     locale: "en_US",
     type: "website",
@@ -57,21 +61,21 @@ const jsonLd = {
   "@graph": [
     {
       "@type": "Organization",
-      "@id": "https://intmoney.com/#organization",
+      "@id": "/#organization",
       name: "IntMoney",
-      url: "https://intmoney.com",
-      logo: "https://intmoney.com/icon.svg",
+      url: "/",
+      logo: "/icon.svg",
       sameAs: ["https://github.com/int-money/landing-page"],
     },
     {
       "@type": "WebSite",
-      "@id": "https://intmoney.com/#website",
-      url: "https://intmoney.com",
+      "@id": "/#website",
+      url: "/",
       name: "IntMoney - AI-Powered Cross-Border Payments",
       description:
         "The AI-powered mobile wallet for seamless cross-border payments using simple chat or voice commands.",
       publisher: {
-        "@id": "https://intmoney.com/#organization",
+        "@id": "/#organization",
       },
     },
   ],

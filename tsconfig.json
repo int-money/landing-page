@@ -61,7 +61,6 @@
     "components/ui/scroll-area.tsx",
     "components/ui/select.tsx",
     "components/ui/separator.tsx",
-    "components/ui/sheet.tsx",
     "components/ui/sidebar.tsx",
     "components/ui/slider.tsx",
     "components/ui/sonner.tsx",
