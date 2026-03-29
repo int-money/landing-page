@@ -47,10 +47,16 @@ export function Footer() {
           <div className="h-[1px] w-full bg-gradient-to-r from-transparent via-border/50 to-transparent absolute left-0 right-0" />
           <p>&copy; {currentYear} IntMoney. Your personal AI agent for cross-border payments.</p>
           <div className="flex items-center gap-6">
-            <a href="/privacy" className="hover:text-primary transition-colors duration-200">
+            <a
+              href="/privacy"
+              className="rounded-sm outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background hover:text-primary transition-colors duration-200"
+            >
               Privacy
             </a>
-            <a href="/terms" className="hover:text-primary transition-colors duration-200">
+            <a
+              href="/terms"
+              className="rounded-sm outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background hover:text-primary transition-colors duration-200"
+            >
               Terms
             </a>
           </div>

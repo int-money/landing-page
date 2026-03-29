@@ -35,7 +35,17 @@ export function WaitlistModal() {
   // States: idle, loading, success, error
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState("");
-  const [ariaMessage, setAriaMessage] = useState("");
+  const [csrfToken, setCsrfToken] = useState<string | null>(null);
+
+  // Fetch CSRF token when modal opens
+  useEffect(() => {
+    if (isOpen) {
+      fetch("/api/csrf")
+        .then((res) => res.json())
+        .then((data) => setCsrfToken(data.token))
+        .catch((err) => console.error("Failed to fetch CSRF token:", err));
+    }
+  }, [isOpen]);
 
   const {
     register,
@@ -66,29 +76,23 @@ export function WaitlistModal() {
     setErrorMessage("");
     setAriaMessage("");
 
-    const apiUrl = process.env.NEXT_PUBLIC_WAITLIST_API_URL;
-
     try {
-      if (!apiUrl) {
-        // Demo mode fallback
-        await new Promise((resolve) => setTimeout(resolve, 1500));
-        handleSuccess();
-      } else {
-        // Real API call
-        const response = await fetch(apiUrl, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(values),
-        });
+      // Local API call that handles CSRF and forwarding/demo mode
+      const response = await fetch("/api/waitlist", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "X-CSRF-Token": csrfToken || "",
+        },
+        body: JSON.stringify(values),
+      });
 
-        if (!response.ok) {
-          throw new Error("Failed to join waitlist. Please try again.");
-        }
-
-        handleSuccess();
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({}));
+        throw new Error(errorData.error || "Failed to join waitlist. Please try again.");
       }
+
+      handleSuccess();
     } catch (error) {
       setStatus("error");
       const message = error instanceof Error ? error.message : "An unexpected error occurred";

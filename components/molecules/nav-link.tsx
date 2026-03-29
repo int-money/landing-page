@@ -10,6 +10,7 @@ export function NavLink({ active, className, children, ...props }: NavLinkProps)
     <a
       className={cn(
         "relative px-4 py-2 text-sm font-medium transition-all duration-300 rounded-full",
+        "outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
         active ? "text-foreground" : "text-muted-foreground hover:text-foreground",
         className
       )}

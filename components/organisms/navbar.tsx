@@ -68,7 +68,10 @@ export function Navbar() {
                 : "border-border/30 bg-background/50 backdrop-blur-xl"
             )}
           >
-            <a href="#" className="flex items-center gap-2 group pl-2 pr-3">
+            <a
+              href="#"
+              className="flex items-center gap-2 group pl-2 pr-3 rounded-full outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+            >
               <Image src="/icon.svg" alt="IntMoney" width={36} height={36} className="rounded-lg" />
               <span className="text-base font-bold tracking-tight hidden sm:inline">IntMoney</span>
             </a>
@@ -88,6 +91,7 @@ export function Navbar() {
                       onMouseLeave={() => setHoveredLink("")}
                       className={cn(
                         "relative px-4 py-2 text-sm font-medium transition-all duration-300 rounded-full",
+                        "outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
                         isActive || isHovered
                           ? "text-foreground"
                           : "text-muted-foreground hover:text-foreground"
@@ -134,7 +138,7 @@ export function Navbar() {
 
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="relative md:hidden flex h-9 w-9 items-center justify-center rounded-full bg-muted/80 transition-all duration-300 hover:bg-muted ml-1"
+              className="relative md:hidden flex h-9 w-9 items-center justify-center rounded-full bg-muted/80 transition-all duration-300 hover:bg-muted ml-1 outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
               aria-label="Toggle menu"
             >
               <span className="sr-only">Toggle menu</span>
@@ -180,7 +184,8 @@ export function Navbar() {
                   href={link.href}
                   onClick={() => setIsMobileMenuOpen(false)}
                   className={cn(
-                    "group relative text-3xl font-bold transition-all duration-300",
+                    "group relative text-3xl font-bold transition-all duration-300 rounded-lg",
+                    "outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
                     isActive ? "text-primary" : "text-foreground hover:text-primary"
                   )}
                   style={{ transitionDelay: `${(index + 1) * 75}ms` }}
