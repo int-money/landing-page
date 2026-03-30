@@ -60,9 +60,21 @@ export function WaitlistModal() {
     },
   });
 
+  // Handle validation errors for screen readers
+  useEffect(() => {
+    if (Object.keys(errors).length > 0) {
+      // Find the first error message to announce
+      const firstError = Object.values(errors)[0];
+      if (firstError?.message) {
+        setAriaMessage(firstError.message as string);
+      }
+    }
+  }, [errors]);
+
   const onSubmit = async (values: WaitlistFormValues) => {
     setStatus("loading");
     setErrorMessage("");
+    setAriaMessage("");
 
     try {
       // Local API call that handles CSRF and forwarding/demo mode
@@ -85,6 +97,7 @@ export function WaitlistModal() {
       setStatus("error");
       const message = error instanceof Error ? error.message : "An unexpected error occurred";
       setErrorMessage(message);
+      setAriaMessage(message);
       toast({
         variant: "destructive",
         title: "Something went wrong",
@@ -95,6 +108,7 @@ export function WaitlistModal() {
 
   const handleSuccess = () => {
     setStatus("success");
+    setAriaMessage("Successfully joined the waitlist");
     toast({
       title: "You're on the list!",
       description: "Keep an eye on your inbox. We'll be in touch soon.",
@@ -103,6 +117,7 @@ export function WaitlistModal() {
     setTimeout(() => {
       reset();
       setStatus("idle");
+      setAriaMessage("");
       closeWaitlist();
     }, 2500);
   };
@@ -114,6 +129,7 @@ export function WaitlistModal() {
       setTimeout(() => {
         reset();
         setStatus("idle");
+        setAriaMessage("");
       }, 300);
     }
   };
@@ -121,6 +137,11 @@ export function WaitlistModal() {
   return (
     <Dialog open={isOpen} onOpenChange={handleOpenChange}>
       <DialogContent className="sm:max-w-md glass-card gradient-border overflow-hidden">
+        {/* Screen reader only live region for status updates */}
+        <div className="sr-only" aria-live="polite" role="status">
+          {ariaMessage}
+        </div>
+
         {/* Decorative background glow */}
         <div className="absolute -top-24 -right-24 w-48 h-48 bg-primary/20 rounded-full blur-[48px] pointer-events-none" />
         <div className="absolute -bottom-24 -left-24 w-48 h-48 bg-primary/20 rounded-full blur-[48px] pointer-events-none" />
