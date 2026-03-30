@@ -6,10 +6,6 @@ const withBundleAnalyzer = bundleAnalyzer({
 });
 
 /** @type {import('next').NextConfig} */
-const nextConfig = {
-  images: {
-    unoptimized: true,
-  },
-};
+const nextConfig = {};
 
 export default withBundleAnalyzer(nextConfig);
