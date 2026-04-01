@@ -57,11 +57,11 @@ describe("useIsMobile", () => {
     let changeCallback: () => void = () => {};
 
     // Mock matchMedia to capture the change callback
-    (window.matchMedia as any).mockImplementation((query: string) => ({
+    (window.matchMedia as ReturnType<typeof vi.fn>).mockImplementation((query: string) => ({
       matches: false,
       media: query,
       onchange: null,
-      addEventListener: vi.fn((event, cb) => {
+      addEventListener: vi.fn((event: string, cb: () => void) => {
         if (event === "change") changeCallback = cb;
       }),
       removeEventListener: vi.fn(),
@@ -72,14 +72,14 @@ describe("useIsMobile", () => {
 
     // Simulate resize to mobile width
     act(() => {
-      (window as any).innerWidth = 500;
+      (window as Window & { innerWidth: number }).innerWidth = 500;
       changeCallback();
     });
     expect(result.current).toBe(true);
 
     // Simulate resize back to desktop width
     act(() => {
-      (window as any).innerWidth = 1024;
+      (window as Window & { innerWidth: number }).innerWidth = 1024;
       changeCallback();
     });
     expect(result.current).toBe(false);
@@ -88,7 +88,7 @@ describe("useIsMobile", () => {
   it("should clean up event listener on unmount", () => {
     const removeEventListenerMock = vi.fn();
 
-    (window.matchMedia as any).mockImplementation((query: string) => ({
+    (window.matchMedia as ReturnType<typeof vi.fn>).mockImplementation((query: string) => ({
       matches: false,
       media: query,
       onchange: null,
