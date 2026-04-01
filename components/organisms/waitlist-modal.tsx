@@ -120,7 +120,7 @@ export function WaitlistModal() {
 
   return (
     <Dialog open={isOpen} onOpenChange={handleOpenChange}>
-      <DialogContent className="sm:max-w-md glass-card gradient-border">
+      <DialogContent className="sm:max-w-md border border-border bg-background shadow-xl">
         {/* Decorative background glow */}
         <div className="absolute -top-24 -right-24 w-48 h-48 bg-primary/20 rounded-full blur-[48px] pointer-events-none" />
         <div className="absolute -bottom-24 -left-24 w-48 h-48 bg-primary/20 rounded-full blur-[48px] pointer-events-none" />
