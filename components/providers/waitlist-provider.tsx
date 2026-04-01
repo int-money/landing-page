@@ -6,6 +6,7 @@ interface WaitlistContextType {
   isOpen: boolean;
   openWaitlist: () => void;
   closeWaitlist: () => void;
+  toggleWaitlist: () => void;
 }
 
 const WaitlistContext = createContext<WaitlistContextType | undefined>(undefined);
@@ -15,9 +16,10 @@ export function WaitlistProvider({ children }: { children: ReactNode }) {
 
   const openWaitlist = () => setIsOpen(true);
   const closeWaitlist = () => setIsOpen(false);
+  const toggleWaitlist = () => setIsOpen((prev) => !prev);
 
   return (
-    <WaitlistContext.Provider value={{ isOpen, openWaitlist, closeWaitlist }}>
+    <WaitlistContext.Provider value={{ isOpen, openWaitlist, closeWaitlist, toggleWaitlist }}>
       {children}
     </WaitlistContext.Provider>
   );

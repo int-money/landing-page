@@ -1,3 +1,4 @@
+import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { describe, it, expect, vi, beforeEach } from "vitest";
@@ -7,7 +8,7 @@ import { Navbar } from "@/components/organisms/navbar";
 
 // Mock next/image
 vi.mock("next/image", () => ({
-  default: (props: any) => <img {...props} />,
+  default: (props: React.ImgHTMLAttributes<HTMLImageElement>) => <img {...props} />, // eslint-disable-line @next/next/no-img-element
 }));
 
 // Mock ThemeToggle
