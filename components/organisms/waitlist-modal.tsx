@@ -25,6 +25,7 @@ const waitlistSchema = z.object({
     .string()
     .min(1, { message: "Email is required" })
     .email({ message: "Please enter a valid email address" }),
+  website: z.string().optional(), // Honeypot field
 });
 
 type WaitlistFormValues = z.infer<typeof waitlistSchema>;
@@ -57,10 +58,17 @@ export function WaitlistModal() {
     defaultValues: {
       name: "",
       email: "",
+      website: "", // Honeypot
     },
   });
 
   const onSubmit = async (values: WaitlistFormValues) => {
+    // Honeypot check: if filled, silently reject (fake success)
+    if (values.website && values.website.trim() !== "") {
+      handleSuccess();
+      return;
+    }
+
     setStatus("loading");
     setErrorMessage("");
 
@@ -177,6 +185,15 @@ export function WaitlistModal() {
                   </p>
                 )}
               </div>
+
+              {/* Honeypot field for bot protection */}
+              <input
+                type="text"
+                className="absolute -left-[9999px] opacity-0 pointer-events-none"
+                aria-hidden="true"
+                tabIndex={-1}
+                {...register("website")}
+              />
 
               {status === "error" && (
                 <div className="p-3 bg-red-500/10 border border-red-500/20 rounded-xl flex items-start gap-2 text-sm text-red-500 animate-in fade-in">

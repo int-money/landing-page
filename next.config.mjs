@@ -6,6 +6,11 @@ const withBundleAnalyzer = bundleAnalyzer({
 });
 
 /** @type {import('next').NextConfig} */
-const nextConfig = {};
+const nextConfig = {
+  compress: true,
+  images: {
+    unoptimized: false,
+  },
+};
 
 export default withBundleAnalyzer(nextConfig);
