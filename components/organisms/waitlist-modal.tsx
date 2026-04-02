@@ -36,6 +36,7 @@ export function WaitlistModal() {
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState("");
   const [csrfToken, setCsrfToken] = useState<string | null>(null);
+  const [ariaMessage, setAriaMessage] = useState("");
 
   // Fetch CSRF token when modal opens
   useEffect(() => {
