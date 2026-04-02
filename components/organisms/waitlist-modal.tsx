@@ -187,6 +187,8 @@ export function WaitlistModal() {
                   placeholder="jane@example.com"
                   className={`bg-background/50 border-white/10 focus-visible:ring-primary ${errors.email ? "border-red-500 focus-visible:ring-red-500" : ""}`}
                   disabled={status === "loading"}
+                  autoComplete="email"
+                  inputMode="email"
                   {...register("email")}
                 />
                 {errors.email && (
