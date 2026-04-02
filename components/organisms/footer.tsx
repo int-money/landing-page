@@ -10,9 +10,16 @@ export function Footer() {
     { label: "Ecosystem", href: "#ecosystem" },
   ];
 
-  const developerLinks = [{ label: "GitHub", href: "https://github.com/int-money/landing-page" }];
+  const developerLinks = [
+    { label: "GitHub", href: "https://github.com/int-money/landing-page", external: true },
+    { label: "Documentation", href: "https://docs.intmoney.com", external: true },
+  ];
 
-  const companyLinks = [{ label: "Contact", href: "mailto:hello@intmoney.com" }];
+  const companyLinks = [
+    { label: "Contact", href: "mailto:hello@intmoney.com" },
+    { label: "Twitter", href: "https://twitter.com/intmoney", external: true },
+    { label: "Discord", href: "https://discord.gg/intmoney", external: true },
+  ];
 
   return (
     <footer className="relative z-10 backdrop-blur-sm">

@@ -1,6 +1,7 @@
 interface FooterLink {
   label: string;
   href: string;
+  external?: boolean;
 }
 
 interface FooterColumnProps {
